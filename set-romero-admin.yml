@@ -1,0 +1,54 @@
+
+name: Set Romero Admin
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  set-admin:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Firebase Admin SDK
+        run: |
+          mkdir admin-job
+          cd admin-job
+          npm init -y
+          npm install firebase-admin
+
+      - name: Grant admin claim
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          cd admin-job
+          node --input-type=module <<'NODE'
+          import admin from 'firebase-admin';
+
+          const raw = process.env.FIREBASE_SERVICE_ACCOUNT;
+          if (!raw) throw new Error('Missing service account secret');
+
+          const serviceAccount = JSON.parse(raw);
+
+          admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount)
+          });
+
+          const uid = '2KhmHElyCgRJyE90GPgETVtOv4y2';
+          const user = await admin.auth().getUser(uid);
+
+          await admin.auth().setCustomUserClaims(uid, {
+            ...(user.customClaims || {}),
+            admin: true
+          });
+
+          console.log('Admin claim assigned successfully.');
+          await admin.app().delete();
+          NODE

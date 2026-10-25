@@ -6,191 +6,238 @@
 <meta name="theme-color" content="#09090b">
 <meta name="description" content="ROMERO FAMILY roleplay community app">
 <title>ROMERO FAMILY</title>
-<link rel="manifest" href="manifest.json">
 <style>
-:root{--bg:#09090b;--panel:#141417;--panel2:#1b1b20;--red:#c8192e;--red2:#8e0f20;--text:#f6f2f2;--muted:#a7a2a5;--line:#303036;--gold:#d5ad65}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#251015 0,#09090b 48%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+:root{--bg:#09090b;--panel:#141417;--red:#c8192e;--text:#f6f2f2;--muted:#a7a2a5;--line:#303036;--gold:#d5ad65}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#251015 0,#09090b 48%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
 button,input,textarea,select{font:inherit}button{cursor:pointer}
-.app{max-width:900px;margin:auto;min-height:100vh;padding-bottom:92px}
-header{position:sticky;top:0;z-index:10;background:#0a090bf0;backdrop-filter:blur(14px);border-bottom:1px solid #2a2023;padding:15px 16px 12px}
-.brandrow{display:flex;align-items:center;gap:12px}.crest{width:43px;height:43px;border:2px solid var(--red);display:grid;place-items:center;border-radius:12px;color:#fff;font-weight:900;font-size:18px;background:linear-gradient(145deg,#42101a,#100d10);box-shadow:0 0 22px #c8192e22}
-.brand{font-weight:950;letter-spacing:2px;font-size:18px}.subbrand{font-size:10px;letter-spacing:3px;color:var(--red);font-weight:800;margin-top:3px}.status{margin-left:auto;color:#9ee0ad;font-size:11px;display:flex;align-items:center;gap:5px}.dot{width:7px;height:7px;border-radius:50%;background:#65d985}
-main{padding:16px}.hero{border:1px solid #46212a;border-radius:20px;padding:22px 19px;background:linear-gradient(120deg,#2a0c13e8,#111014f2 70%),linear-gradient(45deg,#151515,#300b13);position:relative;overflow:hidden}
-.hero:after{content:"R";position:absolute;right:3px;bottom:-45px;font-size:190px;font-weight:1000;color:#ffffff08;line-height:1}
-.eyebrow{font-size:10px;letter-spacing:3px;color:#e55b6d;font-weight:900}.hero h1{font-size:30px;line-height:1.08;margin:10px 0 8px;letter-spacing:1px}.hero p{font-size:13px;color:#c2b9bc;max-width:320px;line-height:1.6}.hero-actions{display:flex;gap:9px;margin-top:18px;position:relative;z-index:1}
-.btn{border:0;border-radius:11px;padding:11px 14px;font-weight:800;font-size:12px}.primary{background:linear-gradient(135deg,#df233b,#8e1021);color:white;box-shadow:0 8px 22px #c8192e2a}.secondary{background:#242126;color:#f2e9ec;border:1px solid #44353a}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:13px 0 22px}.stat{padding:13px 11px;background:#121216;border:1px solid var(--line);border-radius:13px}.stat strong{display:block;font-size:21px}.stat span{font-size:10px;color:var(--muted);letter-spacing:.5px}
-.section-head{display:flex;align-items:center;justify-content:space-between;margin:21px 0 12px}.section-head h2{font-size:15px;margin:0;letter-spacing:.5px}.section-head small{font-size:10px;color:var(--red);font-weight:900;letter-spacing:1px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tile{background:linear-gradient(145deg,#19191e,#111114);border:1px solid #303036;border-radius:15px;padding:14px;min-height:118px;text-align:left;color:var(--text);transition:.15s}.tile:active{transform:scale(.98)}.tile .ico{width:34px;height:34px;display:grid;place-items:center;background:#39111a;border:1px solid #67202d;border-radius:10px;font-size:17px;margin-bottom:12px}.tile b{display:block;font-size:13px}.tile span{display:block;color:var(--muted);font-size:10px;line-height:1.5;margin-top:5px}
-.card{background:#141417;border:1px solid var(--line);border-radius:15px;padding:14px;margin-bottom:10px}.member{display:flex;align-items:center;gap:11px}.avatar{width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,#6d1224,#211116);display:grid;place-items:center;font-weight:900;border:1px solid #81263a}.member-info{flex:1}.member-info b{font-size:13px}.member-info small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.pill{display:inline-block;padding:5px 8px;border-radius:7px;background:#35111a;color:#f17c8c;font-size:9px;font-weight:900;letter-spacing:.5px}.gold{background:#332817;color:var(--gold)}
-.notice-title{font-weight:850;font-size:13px}.notice-meta{font-size:10px;color:var(--muted);margin:5px 0 9px}.notice-body{font-size:12px;line-height:1.6;color:#d1cbd0}
-.page{display:none}.page.active{display:block}.backline{display:flex;align-items:center;gap:10px;margin:4px 0 17px}.back{background:#211c20;border:1px solid #403239;color:#fff;border-radius:10px;padding:8px 11px}.page h2{font-size:22px;margin:0}.page .intro{font-size:12px;color:var(--muted);margin:7px 0 17px;line-height:1.5}
-.field{width:100%;background:#0c0c0f;border:1px solid #363239;color:#fff;border-radius:10px;padding:11px 12px;margin:6px 0 10px;outline:none}.field:focus{border-color:var(--red)}textarea.field{min-height:85px;resize:vertical}.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}.empty{padding:24px;text-align:center;border:1px dashed #41363b;border-radius:13px;color:var(--muted);font-size:12px;line-height:1.7}
-.chatbox{height:280px;overflow:auto;background:#0d0d10;border:1px solid var(--line);border-radius:13px;padding:10px;margin-bottom:10px}.bubble{background:#211a1f;border:1px solid #3a252d;border-radius:12px;padding:9px 11px;margin:7px 0;max-width:85%;font-size:12px}.bubble.mine{margin-left:auto;background:#49121e}.bubble small{display:block;color:#b8aab0;font-size:9px;margin-top:4px}
-.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.photo-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid #3a2b30}.radio-panel{text-align:center;padding:24px 12px}.record{width:112px;height:112px;border-radius:50%;margin:0 auto 17px;background:radial-gradient(circle,#151515 0 22%,#070708 23% 32%,#bd1b32 33% 35%,#19191c 36% 60%,#050505 61%);border:2px solid #6b1a2a;display:grid;place-items:center;font-size:27px;box-shadow:0 0 30px #c8192e22}
-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#0c0b0df5;border-top:1px solid #33252a;display:flex;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(16px)}.navinner{display:flex;width:min(900px,100%);justify-content:space-around}.navbtn{border:0;background:none;color:#8e858b;min-width:52px;padding:6px 3px;font-size:9px;display:flex;flex-direction:column;align-items:center;gap:4px}.navbtn .navico{font-size:18px}.navbtn.active{color:#ff6578}.navbtn.active .navico{filter:drop-shadow(0 0 6px #c8192e)}
-hr{border:0;border-top:1px solid #302b30;margin:14px 0}.muted{color:var(--muted);font-size:11px}.footer{text-align:center;color:#6e6268;font-size:9px;padding:20px 0}
-@media(min-width:650px){main{padding:22px}.hero{padding:30px}.hero h1{font-size:40px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tile{min-height:135px}.stats{max-width:560px}.app{border-left:1px solid #171519;border-right:1px solid #171519}}
-
-/* ROMERO animated edition */
-@keyframes riseIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes emberGlow{0%,100%{box-shadow:0 0 16px #c8192e12,inset 0 0 18px #c8192e05}50%{box-shadow:0 0 30px #c8192e30,inset 0 0 28px #c8192e0d}}
-@keyframes logoPulse{0%,100%{text-shadow:0 0 0 #ff263f00}50%{text-shadow:0 0 16px #ff263f75}}
-@keyframes ambientDrift{0%{background-position:0% 0%,0 0}50%{background-position:100% 45%,0 0}100%{background-position:0% 0%,0 0}}
-@keyframes softShimmer{0%{transform:translateX(-140%) skewX(-18deg);opacity:0}20%{opacity:.4}55%,100%{transform:translateX(220%) skewX(-18deg);opacity:0}}
-@keyframes recordSpin{to{transform:rotate(360deg)}}
-.brand{animation:logoPulse 4s ease-in-out infinite}
-.hero{animation:emberGlow 5s ease-in-out infinite;background-size:180% 180%;animation-name:emberGlow,ambientDrift;animation-duration:5s,18s;animation-timing-function:ease-in-out,linear;animation-iteration-count:infinite,infinite}
-.hero:before{content:"";position:absolute;top:0;bottom:0;left:0;width:25%;background:linear-gradient(90deg,transparent,#ff667015,transparent);transform:translateX(-140%) skewX(-18deg);animation:softShimmer 8s ease-in-out infinite;pointer-events:none}
-.hero>*{position:relative;z-index:1}
-.page.active{animation:riseIn .32s ease-out both}
-.tile{position:relative;overflow:hidden;animation:riseIn .45s both;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
-.tile:nth-child(2){animation-delay:.035s}.tile:nth-child(3){animation-delay:.07s}.tile:nth-child(4){animation-delay:.105s}.tile:nth-child(5){animation-delay:.14s}.tile:nth-child(6){animation-delay:.175s}.tile:nth-child(7){animation-delay:.21s}.tile:nth-child(8){animation-delay:.245s}
-.tile:after{content:"";position:absolute;top:-20%;bottom:-20%;left:-70%;width:40%;background:linear-gradient(90deg,transparent,#ffffff0b,transparent);transform:skewX(-18deg);transition:left .45s ease}
-.tile:active{transform:scale(.975);border-color:#9c2639;box-shadow:0 0 20px #c8192e20}.tile:active:after{left:140%}
-.primary{transition:transform .18s ease,filter .18s ease}.primary:active{transform:scale(.97);filter:brightness(1.18)}
-.record.spinning{animation:recordSpin 5s linear infinite}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
-
+.app{max-width:900px;margin:auto;min-height:100vh;padding-bottom:90px}
+header{position:sticky;top:0;z-index:10;background:#0a090bf0;border-bottom:1px solid #2a2023;padding:15px}
+.brandrow{display:flex;align-items:center;gap:12px}
+.crest,.avatar{display:grid;place-items:center;background:linear-gradient(135deg,#6d1224,#211116);border:1px solid #81263a;font-weight:900}
+.crest{width:43px;height:43px;border:2px solid var(--red);border-radius:12px;font-size:18px}
+.brand{font-weight:950;letter-spacing:2px;font-size:18px}
+.subbrand{font-size:10px;letter-spacing:3px;color:var(--red);font-weight:800;margin-top:3px}
+.status{margin-left:auto;color:#9ee0ad;font-size:11px}
+.account{margin:20px 16px;padding:18px;background:#151216;border:1px solid #54232d;border-radius:15px}
+.account h2{color:var(--gold);font-size:18px}
+.account p{font-size:12px;line-height:1.5}
+.field{width:100%;background:#0c0c0f;border:1px solid #363239;color:#fff;border-radius:10px;padding:11px 12px;margin:6px 0 10px}
+.field:focus{outline:1px solid var(--red)}
+.auth-buttons{display:flex;flex-wrap:wrap;gap:7px}
+.auth-buttons button,.btn{border:0;border-radius:10px;padding:11px 13px;font-weight:800;font-size:12px;background:#302b30;color:white}
+.auth-buttons .register,.primary{background:linear-gradient(135deg,#df233b,#8e1021);color:white}
+.auth-status{color:#e4a4ac;overflow-wrap:anywhere}
+.hidden{display:none!important}
+main{padding:16px}
+.hero{border:1px solid #46212a;border-radius:20px;padding:23px 19px;background:linear-gradient(120deg,#2a0c13e8,#111014f2 70%);animation:glow 5s infinite}
+.eyebrow{font-size:10px;letter-spacing:3px;color:#e55b6d;font-weight:900}
+.hero h1{font-size:30px;line-height:1.08;margin:10px 0}
+.hero p,.intro{font-size:12px;color:#c2b9bc;line-height:1.6}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.secondary{background:#242126;color:#f2e9ec;border:1px solid #44353a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:13px 0 22px}
+.stat,.card,.tile{background:#141417;border:1px solid var(--line);border-radius:14px;padding:13px}
+.stat strong{display:block;font-size:21px}
+.stat span,.muted{font-size:10px;color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:21px 0 12px}
+.section-head h2{font-size:15px;margin:0}
+.section-head small{font-size:10px;color:var(--red);font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{text-align:left;color:white;min-height:110px}
+.tile .ico{font-size:19px;margin-bottom:9px}
+.tile b{display:block;font-size:13px}
+.tile span{display:block;color:var(--muted);font-size:10px;line-height:1.5;margin-top:5px}
+.page{display:none}.page.active{display:block}
+.backline{display:flex;align-items:center;gap:10px;margin:4px 0 17px}
+.back{background:#211c20;border:1px solid #403239;color:#fff;border-radius:10px;padding:8px 11px}
+.page h2{font-size:21px;margin:0}
+.page .intro{margin:7px 0 17px}
+.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}
+.member{display:flex;align-items:center;gap:11px}
+.avatar{width:43px;height:43px;border-radius:13px;flex-shrink:0}
+.member-info{flex:1;min-width:0}
+.member-info b{font-size:13px;overflow-wrap:anywhere}
+.member-info small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.pill{display:inline-block;padding:5px 8px;border-radius:7px;background:#35111a;color:#f17c8c;font-size:9px;font-weight:900}
+.gold{background:#332817;color:var(--gold)}
+.notice-title{font-weight:850;font-size:13px}
+.notice-meta{font-size:10px;color:var(--muted);margin:5px 0 9px}
+.notice-body{font-size:12px;line-height:1.6;color:#d1cbd0;overflow-wrap:anywhere}
+.empty{padding:24px;text-align:center;border:1px dashed #41363b;border-radius:13px;color:var(--muted);font-size:12px;line-height:1.7}
+.chatbox{height:280px;overflow:auto;background:#0d0d10;border:1px solid var(--line);border-radius:13px;padding:10px;margin-bottom:10px}
+.bubble{background:#211a1f;border:1px solid #3a252d;border-radius:12px;padding:9px 11px;margin:7px 0;max-width:85%;font-size:12px;overflow-wrap:anywhere}
+.bubble.mine{margin-left:auto;background:#49121e}
+.bubble small{display:block;color:#b8aab0;font-size:9px;margin-top:4px}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.photo-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid #3a2b30}
+.radio-panel{text-align:center;padding:24px 12px}
+.record{width:112px;height:112px;border-radius:50%;margin:0 auto 17px;background:radial-gradient(circle,#151515 0 22%,#070708 23% 32%,#bd1b32 33% 35%,#19191c 36% 60%,#050505 61%);border:2px solid #6b1a2a;display:grid;place-items:center;font-size:27px}
+.record.spinning{animation:spin 5s linear infinite}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#0c0b0df5;border-top:1px solid #33252a;display:flex;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(16px)}
+.navinner{display:flex;width:min(900px,100%);justify-content:space-around}
+.navbtn{border:0;background:none;color:#8e858b;min-width:52px;padding:6px 3px;font-size:9px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.navico{font-size:18px}.navbtn.active{color:#ff6578}
+.footer{text-align:center;color:#6e6268;font-size:9px;padding:20px 0}
+hr{border:0;border-top:1px solid #302b30;margin:14px 0}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glow{0%,100%{box-shadow:0 0 10px #c8192e08}50%{box-shadow:0 0 25px #c8192e20}}
+@media(min-width:650px){main{padding:22px}.hero{padding:30px}.hero h1{font-size:40px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.account{margin:22px auto;max-width:700px}.app{border-left:1px solid #171519;border-right:1px solid #171519}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-  
-<!-- ROMERO FAMILY - Firebase setup -->
-<script type="module">
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
-
-  import {
-    getDatabase,
-    ref,
-    set,
-    get
-  } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAtRYSd148kdfC-XZ5r1IrwHXO5lMPuHAE",
-    authDomain: "romero-familly-48377.firebaseapp.com",
-    databaseURL: "https://romero-familly-48377-default-rtdb.firebaseio.com",
-    projectId: "romero-familly-48377",
-    storageBucket: "romero-familly-48377.firebasestorage.app",
-    messagingSenderId: "560912404098",
-    appId: "1:560912404098:web:7360497f0a08d9bae7ae9b",
-    measurementId: "G-72BYFFE5ZD"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getDatabase(app);
-
-  // Available for the registration/login interface to use.
-  window.romeroFirebase = {
-    auth,
-    db,
-    register: async (email, password, username) => {
-      const result = await createUserWithEmailAndPassword(
-        auth, email, password
-      );
-
-      await set(ref(db, "members/" + result.user.uid), {
-        username: username.trim(),
-        email: result.user.email,
-        status: "pending",
-        createdAt: Date.now()
-      });
-
-      return result.user;
-    },
-    login: (email, password) =>
-      signInWithEmailAndPassword(auth, email, password),
-    logout: () => signOut(auth),
-    onAuthStateChanged: callback =>
-      onAuthStateChanged(auth, callback)
-  };
-</script>
-
 <body>
 <div class="app">
-<header><div class="brandrow"><div class="crest">R</div><div><div class="brand">ROMERO FAMILY</div><div class="subbrand">LOYALTY · POWER · RESPECT</div></div><div class="status"><i class="dot"></i> ONLINE</div></div></header>
+<header>
+  <div class="brandrow">
+    <div class="crest">R</div>
+    <div><div class="brand">ROMERO FAMILY</div><div class="subbrand">LOYALTY · POWER · RESPECT</div></div>
+    <div class="status">● ONLINE</div>
+  </div>
+</header>
+
+<section id="account" class="account">
+  <h2>ROMERO FAMILY — MEMBER ACCESS</h2>
+  <p>Create your account or sign in. New profiles are marked pending.</p>
+  <input id="authUsername" class="field" placeholder="Username" autocomplete="username" maxlength="40">
+  <input id="authEmail" class="field" type="email" placeholder="Email" autocomplete="email">
+  <input id="authPassword" class="field" type="password" placeholder="Password (minimum 6 characters)" autocomplete="current-password">
+  <div class="auth-buttons">
+    <button id="registerBtn" class="register" type="button">CREATE ACCOUNT</button>
+    <button id="loginBtn" type="button">LOGIN</button>
+    <button id="resetBtn" type="button">RESET PASSWORD</button>
+    <button id="logoutBtn" class="hidden" type="button">LOG OUT</button>
+  </div>
+  <p id="authStatus" class="auth-status" role="status" aria-live="polite">Connecting to Firebase…</p>
+</section>
+
 <main>
 <section class="page active" id="home">
-<div class="hero"><div class="eyebrow">WELCOME TO THE FAMILY</div><h1>YOUR FAMILY.<br>YOUR LEGACY.</h1><p>A private home for our members, announcements, media and family life.</p><div class="hero-actions"><button class="btn primary" onclick="showPage('roster')">View Roster ↗</button><button class="btn secondary" onclick="showPage('announcements')">News & Updates</button></div></div>
-<div class="stats"><div class="stat"><strong id="memberCount">08</strong><span>MEMBERS</span></div><div class="stat"><strong id="announcementCount">02</strong><span>NEWS POSTS</span></div><div class="stat"><strong>01</strong><span>FAMILY</span></div></div>
-<div class="section-head"><h2>FAMILY HUB</h2><small>QUICK ACCESS</small></div>
-<div class="grid">
-<button class="tile" onclick="showPage('roster')"><div class="ico">♟</div><b>Gang Roster</b><span>Members, profiles and family ranks</span></button>
-<button class="tile" onclick="showPage('chat')"><div class="ico">✉</div><b>Family Chat</b><span>Member conversation space</span></button>
-<button class="tile" onclick="showPage('photos')"><div class="ico">▧</div><b>Photo Gallery</b><span>Family memories and screenshots</span></button>
-<button class="tile" onclick="showPage('radio')"><div class="ico">♫</div><b>Family Radio</b><span>Radio player and station link</span></button>
-<button class="tile" onclick="showPage('maison')"><div class="ico">⌂</div><b>La Maison</b><span>Family base, rules and location</span></button>
-<button class="tile" onclick="showPage('vip')"><div class="ico">♛</div><b>VIP Lounge</b><span>Exclusive member area</span></button>
-<button class="tile" onclick="showPage('member')"><div class="ico">★</div><b>Member of the Month</b><span>Recognize loyalty and activity</span></button>
-<button class="tile" onclick="showPage('admin')"><div class="ico">⚙</div><b>Admin Panel</b><span>Manage demo roster and posts</span></button>
-</div>
-<div class="section-head"><h2>TOP MEMBER</h2><small>THIS MONTH</small></div>
-<div class="card member"><div class="avatar">RM</div><div class="member-info"><b id="topName">Romero_Marco</b><small id="topReason">Member of the Month · Demo profile</small></div><span class="pill gold">MVP ★</span></div>
-<div class="section-head"><h2>LATEST NEWS</h2><small>FAMILY BULLETIN</small></div><div id="homeNews"></div>
-<div class="footer">ROMERO FAMILY • COMMUNITY DEMO • V1.0</div>
+  <div class="hero">
+    <div class="eyebrow">WELCOME TO THE FAMILY</div>
+    <h1>YOUR FAMILY.<br>YOUR LEGACY.</h1>
+    <p>A private home for our members, announcements, media and family life.</p>
+    <div class="hero-actions">
+      <button class="btn primary" onclick="showPage('roster')">View Roster ↗</button>
+      <button class="btn secondary" onclick="showPage('announcements')">News & Updates</button>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><strong id="memberCount">08</strong><span>MEMBERS</span></div>
+    <div class="stat"><strong id="announcementCount">02</strong><span>NEWS POSTS</span></div>
+    <div class="stat"><strong>01</strong><span>FAMILY</span></div>
+  </div>
+  <div class="section-head"><h2>FAMILY HUB</h2><small>QUICK ACCESS</small></div>
+  <div class="grid">
+    <button class="tile" onclick="showPage('roster')"><div class="ico">♟</div><b>Gang Roster</b><span>Members, profiles and family ranks</span></button>
+    <button class="tile" onclick="showPage('chat')"><div class="ico">✉</div><b>Family Chat</b><span>Member conversation space</span></button>
+    <button class="tile" onclick="showPage('photos')"><div class="ico">▧</div><b>Photo Gallery</b><span>Family memories and screenshots</span></button>
+    <button class="tile" onclick="showPage('radio')"><div class="ico">♫</div><b>Family Radio</b><span>Radio player and station link</span></button>
+    <button class="tile" onclick="showPage('maison')"><div class="ico">⌂</div><b>La Maison</b><span>Family base, rules and location</span></button>
+    <button class="tile" onclick="showPage('vip')"><div class="ico">♛</div><b>VIP Lounge</b><span>Exclusive member area</span></button>
+    <button class="tile" onclick="showPage('member')"><div class="ico">★</div><b>Member of the Month</b><span>Recognize loyalty and activity</span></button>
+    <button class="tile" onclick="showPage('admin')"><div class="ico">⚙</div><b>Admin Panel</b><span>Manage demo roster and posts</span></button>
+  </div>
+  <div class="section-head"><h2>TOP MEMBER</h2><small>THIS MONTH</small></div>
+  <div class="card member"><div class="avatar">RM</div><div class="member-info"><b id="topName">Romero_Marco</b><small id="topReason">Member of the Month</small></div><span class="pill gold">MVP ★</span></div>
+  <div class="section-head"><h2>LATEST NEWS</h2><small>FAMILY BULLETIN</small></div>
+  <div id="homeNews"></div>
+  <div class="footer">ROMERO FAMILY • COMMUNITY DEMO • V1.0</div>
 </section>
 
 <section class="page" id="roster">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Gang Roster</h2></div><p class="intro">Every member. Every rank. One family.</p><div class="row"><input id="searchMember" class="field" placeholder="Search members..." oninput="renderRoster()"><select id="rankFilter" class="field" onchange="renderRoster()"><option value="">All ranks</option><option>Boss</option><option>Underboss</option><option>Capo</option><option>Soldier</option><option>Associate</option></select></div><div id="rosterList"></div>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Gang Roster</h2></div>
+  <p class="intro">Every member. Every rank. One family.</p>
+  <div class="row">
+    <input id="searchMember" class="field" placeholder="Search members..." oninput="renderRoster()">
+    <select id="rankFilter" class="field" onchange="renderRoster()">
+      <option value="">All ranks</option><option>Boss</option><option>Underboss</option><option>Capo</option><option>Soldier</option><option>Associate</option>
+    </select>
+  </div>
+  <div id="rosterList"></div>
 </section>
 
 <section class="page" id="announcements">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>News & Announcements</h2></div><p class="intro">Official family updates and important messages.</p><div id="newsList"></div>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>News & Announcements</h2></div>
+  <p class="intro">Official family updates and important messages.</p>
+  <div id="newsList"></div>
 </section>
 
 <section class="page" id="chat">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Family Chat</h2></div><p class="intro">Demo chat — messages are saved only in this browser on this device. Real multi-member chat needs a database connection.</p><div class="chatbox" id="chatMessages"></div><form onsubmit="sendChat(event)"><input id="chatInput" class="field" placeholder="Write a message..." maxlength="300" required><button class="btn primary" type="submit">Send message ➤</button></form>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Family Chat</h2></div>
+  <p class="intro">Demo chat. Messages are saved only in this browser on this device.</p>
+  <div class="chatbox" id="chatMessages"></div>
+  <form id="chatForm"><input id="chatInput" class="field" placeholder="Write a message..." maxlength="300" required><button class="btn primary" type="submit">Send message ➤</button></form>
 </section>
 
 <section class="page" id="photos">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Photo Gallery</h2></div><p class="intro">Add screenshots, event photos and family memories. Demo photos stay on this device only.</p><label class="btn primary" for="photoInput" style="display:inline-block;margin-bottom:14px">＋ Add photos</label><input id="photoInput" type="file" accept="image/*" multiple hidden onchange="addPhotos(event)"><div class="photo-grid" id="photoGrid"></div><div class="muted" style="margin-top:12px">For a shared gallery visible to everyone, connect cloud storage later.</div>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Photo Gallery</h2></div>
+  <p class="intro">Add screenshots, event photos and family memories. Photos stay on this page until it is refreshed.</p>
+  <label class="btn primary" for="photoInput" style="display:inline-block;margin-bottom:14px">＋ Add photos</label>
+  <input id="photoInput" type="file" accept="image/*" multiple hidden>
+  <div class="photo-grid" id="photoGrid"></div>
 </section>
 
 <section class="page" id="radio">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Family Radio</h2></div><p class="intro">Your family soundtrack.</p><div class="card radio-panel"><div class="record">♫</div><h3 style="margin:0 0 6px">ROMERO RADIO</h3><p class="muted">Paste a public radio stream URL below to enable playback.</p><input class="field" id="radioUrl" placeholder="https://example.com/stream.mp3" type="url"><button class="btn primary" onclick="playRadio()">Connect radio</button><div id="radioPlayer" style="margin-top:15px"></div><hr><p class="muted">Use a stream URL you have permission to play. Radio service is not connected by default.</p></div>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Family Radio</h2></div>
+  <p class="intro">Your family soundtrack.</p>
+  <div class="card radio-panel">
+    <div class="record">♫</div><h3 style="margin:0 0 6px">ROMERO RADIO</h3>
+    <p class="muted">Paste a public radio stream URL below.</p>
+    <input class="field" id="radioUrl" placeholder="https://example.com/stream.mp3" type="url">
+    <button class="btn primary" id="radioBtn" type="button">Connect radio</button>
+    <div id="radioPlayer" style="margin-top:15px"></div>
+    <hr><p class="muted">Use a stream URL you have permission to play.</p>
+  </div>
 </section>
 
 <section class="page" id="maison">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>La Maison</h2></div><p class="intro">The family base — information, rules and meeting details.</p><div class="hero" style="padding:19px"><div class="eyebrow">FAMILY HEADQUARTERS</div><h1 style="font-size:25px">LA MAISON ROMERO</h1><p>One house. One code. One family.</p></div><div class="section-head"><h2>Family Code</h2></div><div class="card"><div class="notice-title">01 · Loyalty</div><p class="notice-body">Respect the family and treat every member with dignity.</p><hr><div class="notice-title">02 · Respect</div><p class="notice-body">Follow the roleplay rules and respect staff decisions.</p><hr><div class="notice-title">03 · Discretion</div><p class="notice-body">Keep private community matters within the appropriate channels.</p></div><div class="card"><b>Meeting place / location</b><input id="maisonLocation" class="field" placeholder="Add your in-game location"><button class="btn secondary" onclick="saveMaison()">Save location</button><p class="muted" id="maisonSaved"></p></div>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>La Maison</h2></div>
+  <p class="intro">The family base — information, rules and meeting details.</p>
+  <div class="hero"><div class="eyebrow">FAMILY HEADQUARTERS</div><h1 style="font-size:25px">LA MAISON ROMERO</h1><p>One house. One code. One family.</p></div>
+  <div class="section-head"><h2>Family Code</h2></div>
+  <div class="card"><b>01 · Loyalty</b><p class="notice-body">Respect the family and treat every member with dignity.</p><hr><b>02 · Respect</b><p class="notice-body">Follow the roleplay rules and respect staff decisions.</p><hr><b>03 · Discretion</b><p class="notice-body">Keep private community matters within the appropriate channels.</p></div>
+  <div class="card"><b>Meeting place / location</b><input id="maisonLocation" class="field" placeholder="Add your in-game location"><button class="btn secondary" id="saveMaisonBtn">Save location</button><p class="muted" id="maisonSaved"></p></div>
 </section>
 
 <section class="page" id="member">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Member of the Month</h2></div><p class="intro">Celebrate the member who made the biggest positive contribution.</p><div class="card" style="text-align:center;padding:24px"><div class="avatar" style="width:78px;height:78px;border-radius:50%;font-size:25px;margin:auto">RM</div><div class="pill gold" style="margin-top:14px">★ MEMBER OF THE MONTH ★</div><h2 id="memberMonthName" style="margin:12px 0 4px">Romero_Marco</h2><p id="memberMonthReason" class="muted">For activity, loyalty and teamwork.</p></div><div class="card"><b>Nomination notes</b><p class="notice-body">Admins can update the winner and reason from the Admin Panel in this demo.</p></div>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Member of the Month</h2></div>
+  <p class="intro">Celebrate the member who made the biggest positive contribution.</p>
+  <div class="card" style="text-align:center;padding:24px"><div class="avatar" style="width:78px;height:78px;border-radius:50%;font-size:25px;margin:auto">RM</div><div class="pill gold" style="margin-top:14px">★ MEMBER OF THE MONTH ★</div><h2 id="memberMonthName" style="margin:12px 0 4px">Romero_Marco</h2><p id="memberMonthReason" class="muted">For activity, loyalty and teamwork.</p></div>
+  <div class="card"><b>Nomination notes</b><p class="notice-body">Admins can update the winner and reason from the Admin Panel in this demo.</p></div>
 </section>
 
 <section class="page" id="vip">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>VIP Lounge</h2></div><p class="intro">A premium space for VIP members.</p><div class="hero"><div class="eyebrow" style="color:var(--gold)">EXCLUSIVE ACCESS</div><h1 style="font-size:29px">VIP LOUNGE</h1><p>Private announcements, perks and recognition for approved VIP members.</p><span class="pill gold">VIP MEMBER AREA</span></div><div class="section-head"><h2>VIP BENEFITS</h2></div><div class="card">♛ &nbsp; VIP badge on your profile</div><div class="card">✦ &nbsp; Exclusive VIP announcements</div><div class="card">◆ &nbsp; Priority in family events</div><div class="empty">This is a demo gate only. Real VIP access must be enforced by a secure server, not just by this screen.</div>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>VIP Lounge</h2></div>
+  <p class="intro">A premium space for VIP members.</p>
+  <div class="hero"><div class="eyebrow" style="color:var(--gold)">EXCLUSIVE ACCESS</div><h1 style="font-size:29px">VIP LOUNGE</h1><p>Private announcements, perks and recognition for approved VIP members.</p><span class="pill gold">VIP MEMBER AREA</span></div>
+  <div class="section-head"><h2>VIP BENEFITS</h2></div>
+  <div class="card">♛ &nbsp; VIP badge on your profile</div><div class="card">✦ &nbsp; Exclusive VIP announcements</div><div class="card">◆ &nbsp; Priority in family events</div>
+  <div class="empty">Demo only. Real VIP access needs secure permissions.</div>
 </section>
 
 <section class="page" id="admin">
-<div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Admin Panel</h2></div><p class="intro">Demo administration tools. This local prototype has no secure admin login yet.</p>
-<div class="card"><div class="section-head" style="margin-top:0"><h2>Post announcement</h2><small>NEWS</small></div><input class="field" id="postTitle" placeholder="Announcement title"><textarea class="field" id="postBody" placeholder="Write the announcement..."></textarea><button class="btn primary" onclick="addAnnouncement()">Publish announcement</button></div>
-<div class="card"><div class="section-head" style="margin-top:0"><h2>Add member</h2><small>ROSTER</small></div><input class="field" id="newName" placeholder="Member name"><div class="row"><select class="field" id="newRank"><option>Associate</option><option>Soldier</option><option>Capo</option><option>Underboss</option><option>Boss</option></select><input class="field" id="newStatus" placeholder="Status (e.g. Active)" value="Active"></div><button class="btn primary" onclick="addMember()">Add member</button></div>
-<div class="card"><div class="section-head" style="margin-top:0"><h2>Member of the month</h2><small>MVP</small></div><input class="field" id="mvpName" placeholder="Winner name"><input class="field" id="mvpReason" placeholder="Reason / achievement"><button class="btn primary" onclick="saveMvp()">Update winner</button></div>
-<div class="card"><div class="section-head" style="margin-top:0"><h2>Manage ranks & permissions</h2><small>ROLES</small></div><p class="notice-body">Demo rank hierarchy: Boss → Underboss → Capo → Soldier → Associate. Secure role-based permissions require server-side authentication before launch.</p></div>
-<div class="muted">Demo data is saved locally on this device where supported. Do not use this prototype to store passwords or confidential information.</div>
+  <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Admin Panel</h2></div>
+  <p class="intro">Demo administration tools. These tools are not protected by admin permissions yet.</p>
+  <div class="card"><div class="section-head" style="margin-top:0"><h2>Post announcement</h2><small>NEWS</small></div><input class="field" id="postTitle" placeholder="Announcement title"><textarea class="field" id="postBody" placeholder="Write the announcement..."></textarea><button class="btn primary" id="publishBtn">Publish announcement</button></div>
+  <div class="card"><div class="section-head" style="margin-top:0"><h2>Add member</h2><small>ROSTER</small></div><input class="field" id="newName" placeholder="Member name"><div class="row"><select class="field" id="newRank"><option>Associate</option><option>Soldier</option><option>Capo</option><option>Underboss</option><option>Boss</option></select><input class="field" id="newStatus" placeholder="Status" value="Active"></div><button class="btn primary" id="addMemberBtn">Add member</button></div>
+  <div class="card"><div class="section-head" style="margin-top:0"><h2>Member of the month</h2><small>MVP</small></div><input class="field" id="mvpName" placeholder="Winner name"><input class="field" id="mvpReason" placeholder="Reason / achievement"><button class="btn primary" id="saveMvpBtn">Update winner</button></div>
+  <div class="card"><b>Manage ranks & permissions</b><p class="notice-body">Demo rank hierarchy: Boss → Underboss → Capo → Soldier → Associate. Secure permissions require server-side authorization.</p></div>
 </section>
 </main>
+
 <nav><div class="navinner">
-<button class="navbtn active" data-page="home" onclick="showPage('home',this)"><span class="navico">⌂</span>Home</button>
-<button class="navbtn" data-page="roster" onclick="showPage('roster',this)"><span class="navico">♟</span>Roster</button>
-<button class="navbtn" data-page="chat" onclick="showPage('chat',this)"><span class="navico">✉</span>Chat</button>
-<button class="navbtn" data-page="photos" onclick="showPage('photos',this)"><span class="navico">▧</span>Photos</button>
-<button class="navbtn" data-page="admin" onclick="showPage('admin',this)"><span class="navico">⚙</span>Admin</button>
+  <button class="navbtn active" data-page="home" onclick="showPage('home',this)"><span class="navico">⌂</span>Home</button>
+  <button class="navbtn" data-page="roster" onclick="showPage('roster',this)"><span class="navico">♟</span>Roster</button>
+  <button class="navbtn" data-page="chat" onclick="showPage('chat',this)"><span class="navico">✉</span>Chat</button>
+  <button class="navbtn" data-page="photos" onclick="showPage('photos',this)"><span class="navico">▧</span>Photos</button>
+  <button class="navbtn" data-page="admin" onclick="showPage('admin',this)"><span class="navico">⚙</span>Admin</button>
 </div></nav>
 </div>
+
 <script>
-const defaultMembers=[
+"use strict";
+const defaultsM=[
 {name:"Romero_Marco",rank:"Boss",status:"Active"},
 {name:"Romero_Luca",rank:"Underboss",status:"Active"},
 {name:"Romero_Tony",rank:"Capo",status:"Active"},
@@ -200,29 +247,220 @@ const defaultMembers=[
 {name:"Romero_Andre",rank:"Associate",status:"Active"},
 {name:"Romero_Sal",rank:"Associate",status:"Active"}
 ];
-const defaultNews=[
-{title:"Welcome to ROMERO FAMILY",body:"The family hub is open. Keep an eye on this page for official announcements, events and roster updates.",date:"Launch notice"},
+const defaultsN=[
+{title:"Welcome to ROMERO FAMILY",body:"The family hub is open. Watch this page for official announcements, events and roster updates.",date:"Launch notice"},
 {title:"Respect the family code",body:"Stay respectful, follow the server rules and represent the family with loyalty and good roleplay.",date:"Family reminder"}
 ];
-let members=JSON.parse(localStorage.getItem("rf_members")||"null")||defaultMembers;
-let news=JSON.parse(localStorage.getItem("rf_news")||"null")||defaultNews;
-let chats=JSON.parse(localStorage.getItem("rf_chats")||"null")||[{text:"Welcome to the family chat demo.",who:"ROMERO BOT",mine:false}];
-let mvp=JSON.parse(localStorage.getItem("rf_mvp")||"null")||{name:"Romero_Marco",reason:"For activity, loyalty and teamwork."};
-function save(){localStorage.setItem("rf_members",JSON.stringify(members));localStorage.setItem("rf_news",JSON.stringify(news));localStorage.setItem("rf_chats",JSON.stringify(chats));localStorage.setItem("rf_mvp",JSON.stringify(mvp))}
-function showPage(id,btn){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n.dataset.page===id));if(btn)btn.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});if(id==="roster")renderRoster();if(id==="chat")renderChat();if(id==="announcements")renderNews();updateMvp()}
-function renderRoster(){const q=(document.getElementById("searchMember")?.value||"").toLowerCase();const r=document.getElementById("rankFilter")?.value||"";const list=members.filter(m=>m.name.toLowerCase().includes(q)&&(!r||m.rank===r));document.getElementById("rosterList").innerHTML=list.map(m=>`<div class="card member"><div class="avatar">${esc(m.name.slice(0,2).toUpperCase())}</div><div class="member-info"><b>${esc(m.name)}</b><small>${esc(m.status||"Active")}</small></div><span class="pill ${m.rank==="Boss"||m.rank==="Underboss"?"gold":""}">${esc(m.rank)}</span></div>`).join("")||'<div class="empty">No members found.</div>';document.getElementById("memberCount").textContent=String(members.length).padStart(2,"0")}
-function renderNews(){document.getElementById("newsList").innerHTML=news.map(n=>`<div class="card"><div class="notice-title">${esc(n.title)}</div><div class="notice-meta">${esc(n.date||"Family update")}</div><div class="notice-body">${esc(n.body)}</div></div>`).join("");document.getElementById("announcementCount").textContent=String(news.length).padStart(2,"0");document.getElementById("homeNews").innerHTML=news.slice(0,2).map(n=>`<div class="card"><div class="notice-title">${esc(n.title)}</div><div class="notice-meta">${esc(n.date||"Family update")}</div><div class="notice-body">${esc(n.body)}</div></div>`).join("")}
-function addAnnouncement(){const t=document.getElementById("postTitle").value.trim(),b=document.getElementById("postBody").value.trim();if(!t||!b){alert("Add a title and message first.");return}news.unshift({title:t,body:b,date:new Date().toLocaleDateString()});save();document.getElementById("postTitle").value="";document.getElementById("postBody").value="";renderNews();alert("Announcement added to this demo.");}
-function addMember(){const name=document.getElementById("newName").value.trim();if(!name){alert("Enter a member name.");return}members.push({name,rank:document.getElementById("newRank").value,status:document.getElementById("newStatus").value.trim()||"Active"});save();document.getElementById("newName").value="";renderRoster();alert("Member added to this demo roster.");}
-function renderChat(){document.getElementById("chatMessages").innerHTML=chats.map(c=>`<div class="bubble ${c.mine?"mine":""}">${esc(c.text)}<small>${esc(c.who||"Member")}</small></div>`).join("");document.getElementById("chatMessages").scrollTop=99999}
-function sendChat(e){e.preventDefault();const input=document.getElementById("chatInput"),t=input.value.trim();if(!t)return;chats.push({text:t,who:"You (demo)",mine:true});save();input.value="";renderChat()}
-function addPhotos(e){const grid=document.getElementById("photoGrid");[...e.target.files].forEach(file=>{const reader=new FileReader();reader.onload=ev=>{const img=document.createElement("img");img.src=ev.target.result;img.alt="Family photo";grid.prepend(img)};reader.readAsDataURL(file)})}
-function playRadio(){const u=document.getElementById("radioUrl").value.trim(),out=document.getElementById("radioPlayer");if(!u.startsWith("https://")){out.innerHTML='<p class="muted">Enter a valid HTTPS stream URL.</p>';return}out.innerHTML="";const a=document.createElement("audio");a.controls=true;a.src=u;a.style.width="100%";out.appendChild(a);const disc=document.querySelector(".record");a.addEventListener("play",()=>disc.classList.add("spinning"));a.addEventListener("pause",()=>disc.classList.remove("spinning"));a.addEventListener("ended",()=>disc.classList.remove("spinning"));a.play().catch(()=>{})}
-function saveMaison(){const v=document.getElementById("maisonLocation").value.trim();localStorage.setItem("rf_maison",v);document.getElementById("maisonSaved").textContent="Saved on this device: "+(v||"No location added")}
-function saveMvp(){const n=document.getElementById("mvpName").value.trim(),r=document.getElementById("mvpReason").value.trim();if(!n){alert("Enter the winner name.");return}mvp={name:n,reason:r||"Recognized for contribution to the family."};save();updateMvp();alert("Member of the month updated in this demo.");}
-function updateMvp(){document.getElementById("topName").textContent=mvp.name;document.getElementById("topReason").textContent="Member of the Month · "+mvp.reason;document.getElementById("memberMonthName").textContent=mvp.name;document.getElementById("memberMonthReason").textContent=mvp.reason}
+function load(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}}
+let members=load("rf_members",defaultsM),news=load("rf_news",defaultsN);
+let chats=load("rf_chats",[{text:"Welcome to the family chat demo.",who:"ROMERO BOT",mine:false}]);
+let mvp=load("rf_mvp",{name:"Romero_Marco",reason:"For activity, loyalty and teamwork"});
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem("rf_members",JSON.stringify(members));localStorage.setItem("rf_news",JSON.stringify(news));localStorage.setItem("rf_chats",JSON.stringify(chats));localStorage.setItem("rf_mvp",JSON.stringify(mvp))}catch(e){console.warn("Local save failed",e)}}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showPage(id,btn){
+ const page=$(id);if(!page)return;
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ page.classList.add("active");
+ document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n.dataset.page===id));
+ if(btn)btn.classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(id==="roster")renderRoster();
+ if(id==="chat")renderChat();
+ if(id==="announcements")renderNews();
+ updateMvp();
+}
+function renderRoster(){
+ const q=($("searchMember").value||"").toLowerCase(),rank=$("rankFilter").value;
+ const list=members.filter(m=>String(m.name).toLowerCase().includes(q)&&(!rank||m.rank===rank));
+ $("rosterList").innerHTML=list.map(m=>`<div class="card member"><div class="avatar">${esc(String(m.name).slice(0,2).toUpperCase())}</div><div class="member-info"><b>${esc(m.name)}</b><small>${esc(m.status||"Active")}</small></div><span class="pill ${m.rank==="Boss"||m.rank==="Underboss"?"gold":""}">${esc(m.rank)}</span></div>`).join("")||'<div class="empty">No members found.</div>';
+ $("memberCount").textContent=String(members.length).padStart(2,"0");
+}
+function renderNews(){
+ $("newsList").innerHTML=news.map(n=>`<div class="card"><div class="notice-title">${esc(n.title)}</div><div class="notice-meta">${esc(n.date||"Family update")}</div><div class="notice-body">${esc(n.body)}</div></div>`).join("")||'<div class="empty">No announcements yet.</div>';
+ $("announcementCount").textContent=String(news.length).padStart(2,"0");
+ $("homeNews").innerHTML=news.slice(0,2).map(n=>`<div class="card"><div class="notice-title">${esc(n.title)}</div><div class="notice-meta">${esc(n.date||"Family update")}</div><div class="notice-body">${esc(n.body)}</div></div>`).join("");
+}
+function addAnnouncement(){
+ const title=$("postTitle").value.trim(),body=$("postBody").value.trim();
+ if(!title||!body){alert("Add a title and message first.");return}
+ news.unshift({title,body,date:new Date().toLocaleDateString()});save();
+ $("postTitle").value="";$("postBody").value="";renderNews();alert("Announcement saved on this device.");
+}
+function addMember(){
+ const name=$("newName").value.trim();if(!name){alert("Enter a member name.");return}
+ members.push({name,rank:$("newRank").value,status:$("newStatus").value.trim()||"Active"});
+ save();$("newName").value="";renderRoster();alert("Member added to this device's demo roster.");
+}
+function renderChat(){
+ $("chatMessages").innerHTML=chats.map(c=>`<div class="bubble ${c.mine?"mine":""}">${esc(c.text)}<small>${esc(c.who||"Member")}</small></div>`).join("");
+ $("chatMessages").scrollTop=$("chatMessages").scrollHeight;
+}
+$("chatForm").addEventListener("submit",e=>{
+ e.preventDefault();const input=$("chatInput"),text=input.value.trim();if(!text)return;
+ chats.push({text,who:"You (demo)",mine:true});save();input.value="";renderChat();
+});
+$("photoInput").addEventListener("change",e=>{
+ [...e.target.files].forEach(file=>{
+  if(!file.type.startsWith("image/"))return;
+  const reader=new FileReader();
+  reader.onload=event=>{const img=document.createElement("img");img.src=event.target.result;img.alt="Family photo";$("photoGrid").prepend(img)};
+  reader.readAsDataURL(file);
+ });
+});
+$("radioBtn").addEventListener("click",()=>{
+ const url=$("radioUrl").value.trim(),out=$("radioPlayer");let parsed;
+ try{parsed=new URL(url)}catch{out.textContent="Enter a valid HTTPS stream URL.";return}
+ if(parsed.protocol!=="https:"){out.textContent="Enter a valid HTTPS stream URL.";return}
+ out.replaceChildren();const audio=document.createElement("audio");audio.controls=true;audio.src=url;audio.style.width="100%";out.append(audio);
+ const disc=document.querySelector(".record");audio.addEventListener("play",()=>disc.classList.add("spinning"));audio.addEventListener("pause",()=>disc.classList.remove("spinning"));audio.play().catch(()=>{});
+});
+$("saveMaisonBtn").addEventListener("click",()=>{
+ const value=$("maisonLocation").value.trim();
+ try{localStorage.setItem("rf_maison",value);$("maisonSaved").textContent="Saved on this device: "+(value||"No location added")}
+ catch{$("maisonSaved").textContent="Could not save on this device."}
+});
+$("publishBtn").addEventListener("click",addAnnouncement);
+$("addMemberBtn").addEventListener("click",addMember);
+$("saveMvpBtn").addEventListener("click",()=>{
+ const name=$("mvpName").value.trim();if(!name){alert("Enter the winner name.");return}
+ mvp={name,reason:$("mvpReason").value.trim()||"Recognized for contribution to the family."};
+ save();updateMvp();alert("Member of the month updated.");
+});
+function updateMvp(){
+ $("topName").textContent=mvp.name;$("topReason").textContent="Member of the Month · "+mvp.reason;
+ $("memberMonthName").textContent=mvp.name;$("memberMonthReason").textContent=mvp.reason;
+}
+try{const loc=localStorage.getItem("rf_maison");if(loc!==null){$("maisonLocation").value=loc;$("maisonSaved").textContent="Saved on this device: "+(loc||"No location added")}}catch{}
 renderRoster();renderNews();renderChat();updateMvp();
-if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-</body></html>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+import{
+ getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,
+ signOut,onAuthStateChanged,sendPasswordResetEmail
+}from"https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+import{getDatabase,ref,set}from"https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyAtRYSd148kdfC-XZ5r1IrwHXO5lMPuHAE",
+ authDomain:"romero-familly-48377.firebaseapp.com",
+ databaseURL:"https://romero-familly-48377-default-rtdb.firebaseio.com",
+ projectId:"romero-familly-48377",
+ storageBucket:"romero-familly-48377.firebasestorage.app",
+ messagingSenderId:"560912404098",
+ appId:"1:560912404098:web:7360497f0a08d9bae7ae9b",
+ measurementId:"G-72BYFFE5ZD"
+};
+const $=id=>document.getElementById(id);
+const status=$("authStatus");
+const authButtons=[$("registerBtn"),$("loginBtn"),$("resetBtn"),$("logoutBtn")];
+
+function message(text,isError=false){status.textContent=text;status.style.color=isError?"#ff8794":"#e4a4ac"}
+function busy(value){authButtons.forEach(button=>{button.disabled=value;button.style.opacity=value?".6":"1"})}
+function explain(error){
+ const code=error?.code||"";
+ const messages={
+  "auth/email-already-in-use":"This email is already registered. Try logging in.",
+  "auth/invalid-email":"Email address is not valid.",
+  "auth/weak-password":"Password must have at least 6 characters.",
+  "auth/invalid-credential":"Email or password is incorrect.",
+  "auth/user-not-found":"No account found for this email.",
+  "auth/wrong-password":"Email or password is incorrect.",
+  "auth/too-many-requests":"Too many attempts. Wait and try again.",
+  "auth/network-request-failed":"Network error. Check your internet connection.",
+  "auth/operation-not-allowed":"Enable Email/Password sign-in in Firebase Authentication settings."
+ };
+ if(code==="PERMISSION_DENIED"||String(error?.message||"").includes("PERMISSION_DENIED"))return"Firebase Database denied access. Check Realtime Database rules.";
+ return messages[code]||("Error: "+(error?.message||"Unknown error"));
+}
+
+try{
+ const app=initializeApp(firebaseConfig);
+ const auth=getAuth(app);
+ const db=getDatabase(app);
+
+ window.romeroFirebase={
+  auth,
+  db,
+  register:async(email,password,username)=>{
+   const result=await createUserWithEmailAndPassword(auth,email,password);
+   try{
+    await set(ref(db,"members/"+result.user.uid),{
+     username:username.trim(),
+     email:result.user.email,
+     status:"pending",
+     createdAt:Date.now()
+    });
+   }catch(error){
+    try{await result.user.delete()}catch(deleteError){console.error(deleteError)}
+    throw error;
+   }
+   return result.user;
+  },
+  login:(email,password)=>signInWithEmailAndPassword(auth,email,password),
+  logout:()=>signOut(auth),
+  resetPassword:email=>sendPasswordResetEmail(auth,email),
+  onAuthStateChanged:callback=>onAuthStateChanged(auth,callback)
+ };
+
+ $("registerBtn").addEventListener("click",async()=>{
+  const username=$("authUsername").value.trim();
+  const email=$("authEmail").value.trim();
+  const password=$("authPassword").value;
+  if(username.length<2){message("Username must have at least 2 characters.",true);return}
+  if(!email||password.length<6){message("Enter a valid email and a password of at least 6 characters.",true);return}
+  busy(true);message("Creating account…");
+  try{
+   await window.romeroFirebase.register(email,password,username);
+   message("Account created. Your profile is pending approval.");
+  }catch(error){console.error(error);message(explain(error),true)}
+  finally{busy(false)}
+ });
+
+ $("loginBtn").addEventListener("click",async()=>{
+  const email=$("authEmail").value.trim(),password=$("authPassword").value;
+  if(!email||!password){message("Enter email and password.",true);return}
+  busy(true);message("Signing in…");
+  try{await window.romeroFirebase.login(email,password);message("Signed in successfully.")}
+  catch(error){console.error(error);message(explain(error),true)}
+  finally{busy(false)}
+ });
+
+ $("resetBtn").addEventListener("click",async()=>{
+  const email=$("authEmail").value.trim();
+  if(!email){message("Enter your email first.",true);return}
+  busy(true);message("Sending password reset email…");
+  try{
+   await window.romeroFirebase.resetPassword(email);
+   message("If this email is registered, check your inbox and spam folder for a reset link.");
+  }catch(error){console.error(error);message(explain(error),true)}
+  finally{busy(false)}
+ });
+
+ $("logoutBtn").addEventListener("click",async()=>{
+  busy(true);
+  try{await window.romeroFirebase.logout();message("You have logged out.")}
+  catch(error){message(explain(error),true)}
+  finally{busy(false)}
+ });
+
+ window.romeroFirebase.onAuthStateChanged(user=>{
+  $("logoutBtn").classList.toggle("hidden",!user);
+  $("registerBtn").classList.toggle("hidden",!!user);
+  $("loginBtn").classList.toggle("hidden",!!user);
+  $("authUsername").classList.toggle("hidden",!!user);
+  if(user){
+   $("authPassword").value="";
+   message("Signed in as "+(user.email||user.uid)+". New profiles may need admin approval.");
+  }
+ });
+ message("Firebase connected. Create an account or sign in.");
+}catch(error){
+ console.error(error);
+ message("Firebase failed to initialize. Check config and internet connection.",true);
+}
+</script>
+</body>
+</html>

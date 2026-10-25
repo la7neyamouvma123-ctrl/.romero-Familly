@@ -1,536 +1,182 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#09090b">
-<meta name="description" content="ROMERO FAMILY Roleplay Community">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-
+fit=cover"><meta name="theme-color" content="#09090b">
 <title>ROMERO FAMILY</title>
 <style>
-:root{--bg:#09090b;--panel:#151216;--red:#c8192e;--gold:#d5ad65;--text:#f6f2f2;--muted:#aaa0a5;--line:#393138}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#291018,#09090b 60%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
-.app{max-width:900px;margin:auto;min-height:100vh;padding-bottom:88px}
-header{position:sticky;top:0;z-index:10;background:#0b090bf2;border-bottom:1px solid #38212a;padding:14px}
-.brandrow{display:flex;align-items:center;gap:11px}
-.crest{display:grid;place-items:center;width:44px;height:44px;border:2px solid var(--red);border-radius:12px;background:#32101a;font-weight:950}
-.brand{font-weight:950;letter-spacing:2px}
-.subbrand{font-size:10px;color:var(--red);letter-spacing:3px;font-weight:850}
-.header-right{margin-left:auto}
-button,.btn{border:0;border-radius:10px;padding:11px 14px;background:#30282e;color:white;font-weight:800}
-.primary{background:linear-gradient(135deg,#e32842,#851020)}
-.secondary{border:1px solid #4b333b;background:#201a20}
-.account{margin:20px 15px;padding:18px;background:#151216;border:1px solid #54232d;border-radius:16px}
-.account h2{color:var(--gold);font-size:18px}
-.field{width:100%;background:#0b0b0e;border:1px solid #393139;color:white;border-radius:10px;padding:12px;margin:6px 0 10px}
-.field:focus{outline:1px solid var(--red)}
-.auth-buttons{display:flex;flex-wrap:wrap;gap:8px}
-.auth-buttons button{flex:1}
-.auth-status{font-size:12px;line-height:1.5;color:#ef9eaa;overflow-wrap:anywhere}
-main{padding:15px}
-.hero{border:1px solid #51222d;border-radius:20px;padding:24px 19px;background:linear-gradient(120deg,#2b0d15,#111014)}
-.eyebrow{font-size:10px;letter-spacing:3px;color:#ed6579;font-weight:900}
-.hero h1{font-size:clamp(29px,7vw,43px);line-height:1.1;margin:12px 0}
-.hero p,.intro{font-size:13px;color:#c5bbc0;line-height:1.65}
-.hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
-.section-head{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}
-.section-head h2{font-size:15px;margin:0}
-.section-head small{font-size:10px;color:var(--red);font-weight:900}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 22px}
-.stat,.card,.tile{background:#151417;border:1px solid var(--line);border-radius:14px;padding:13px}
-.stat strong{display:block;font-size:21px}
-.stat span,.muted{font-size:11px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.tile{text-align:left;color:white;min-height:105px}
-.tile .ico{font-size:20px;margin-bottom:8px}
-.tile b{display:block;font-size:13px}
-.tile span{display:block;color:var(--muted);font-size:11px;line-height:1.5;margin-top:5px}
-.page{display:none}.page.active{display:block}
-.backline{display:flex;align-items:center;gap:10px;margin:5px 0 16px}
-.back{padding:8px 11px}
-.page h2{font-size:21px;margin:0}
-.page .intro{margin:8px 0 17px}
-.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}
-.member{display:flex;align-items:center;gap:11px;margin:9px 0}
-.avatar{display:grid;place-items:center;width:43px;height:43px;flex-shrink:0;border-radius:12px;background:#39111c;border:1px solid #72263a;font-weight:900}
-.member-info{flex:1;min-width:0}
-.member-info b{font-size:13px;overflow-wrap:anywhere}
-.member-info small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
-.pill{display:inline-block;padding:5px 8px;border-radius:7px;background:#35111a;color:#f17c8c;font-size:9px;font-weight:900}
-.gold{background:#332817;color:var(--gold)}
-.notice-title{font-weight:850;font-size:13px}
-.notice-meta{font-size:10px;color:var(--muted);margin:5px 0 9px}
-.notice-body{font-size:12px;line-height:1.6;color:#d1cbd0;overflow-wrap:anywhere}
-.empty{padding:22px;text-align:center;border:1px dashed #41363b;border-radius:13px;color:var(--muted);font-size:12px;line-height:1.7}
-.chatbox{height:280px;overflow:auto;background:#0d0d10;border:1px solid var(--line);border-radius:13px;padding:10px;margin-bottom:10px}
-.bubble{background:#211a1f;border:1px solid #3a252d;border-radius:12px;padding:9px 11px;margin:7px 0;max-width:88%;font-size:12px;overflow-wrap:anywhere}
-.bubble.mine{margin-left:auto;background:#49121e}
-.bubble small{display:block;color:#b8aab0;font-size:9px;margin-top:4px}
-.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.photo-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
-.radio-panel{text-align:center;padding:22px 12px}
-.record{width:112px;height:112px;border-radius:50%;margin:0 auto 17px;background:radial-gradient(circle,#151515 0 22%,#070708 23% 32%,#bd1b32 33% 35%,#19191c 36% 60%,#050505 61%);border:2px solid #6b1a2a;display:grid;place-items:center;font-size:27px}
-.record.spinning{animation:spin 5s linear infinite}
-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#0c0b0df5;border-top:1px solid #33252a;display:flex;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
-.navinner{display:flex;width:min(900px,100%);justify-content:space-around}
-.navbtn{border:0;background:none;color:#8e858b;min-width:48px;padding:6px 3px;font-size:9px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.navico{font-size:18px}.navbtn.active{color:#ff6578}
-.footer{text-align:center;color:#76666d;font-size:10px;padding:22px 0}
-hr{border:0;border-top:1px solid #302b30;margin:14px 0}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.account{padding:24px}main{padding:20px}}
-</style>
-</head>
-<body>
-<div class="app">
-<header>
-  <div class="brandrow">
-    <div class="crest">RF</div>
-    <div>
-      <div class="brand">ROMERO FAMILY</div>
-      <div class="subbrand">LOYALTY • POWER • RESPECT</div>
-    </div>
-    <div class="header-right">
-      <button id="logoutBtn" class="primary hidden" type="button">LOG OUT</button>
-    </div>
-  </div>
-</header>
+:root{--bg:#09090b;--panel:#171317;--red:#c8192e;--gold:#d5ad65;--line:#3b3037;--muted:#b5aab0}*{box-sizing:
+border-box}body{margin:0;background:radial-gradient(ellipse at top,#2b1018,#09090b 60%);color:#f8f4f5;font:
+15px system-ui,sans-serif}.wrap{max-width:850px;margin:auto;padding-bottom:85px}header{position:sticky;top:0;
+background:#0b090bf2;border-bottom:1px solid #4b202a;padding:14px;z-index:5;display:flex;align-items:center;
+gap:12px}.logo{border:2px solid var(--red);border-radius:12px;padding:10px;font-weight:950}.brand{font-weight:
+950;letter-spacing:2px}.sub{font-size:10px;letter-spacing:2px;color:#e65b70}.spacer{flex:1}button,.btn{border:
+0;border-radius:9px;padding:11px 14px;background:#30272e;color:white;font-weight:800;cursor:pointer}.primary{
+background:linear-gradient(135deg,#e32842,#851020)}input,textarea,select{width:100%;padding:12px;margin:6px 0
+10px;border-radius:9px;border:1px solid var(--line);background:#0d0b0e;color:white;font:inherit}label{font-
+size:12px;color:#d5cbd0}.box,main{margin:14px;padding:17px;border:1px solid var(--line);border-radius:15px;
+background:var(--panel)}h1{font-size:clamp(30px,7vw,45px);line-height:1.05}h2{font-size:20px;color:var(--
+gold)}p{line-height:1.6;color:#c7bdc3}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}.hidden{display:
+none!important}.page{display:none}.page.active{display:block}.card{padding:13px;margin:9px 0;background:
+#100e11;border:1px solid var(--line);border-radius:12px;overflow-wrap:anywhere}.muted{font-size:11px;color:
+var(--muted)}.pill{font-size:10px;color:#ff9cac;background:#3a111c;padding:5px 8px;border-radius:6px}.member{
+display:flex;gap:10px;align-items:center}.member div:nth-child(2){flex:1}.chatbox{height:300px;overflow:auto;
+background:#0b0a0c;padding:10px;border-radius:12px;border:1px solid var(--line)}.bubble{background:#21191f;
+border:1px solid #40303a;border-radius:10px;padding:9px;margin:7px 0;font-size:13px}.mine{background:#48131e;
+margin-left:12%}.bubble small{display:block;color:#c4aeb7;font-size:10px;margin-top:4px}.grid{display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.tile{text-align:left;min-height:90px;border:1px solid
+var(--line);background:#171317}.tile b,.tile span{display:block}.tile span{font-size:11px;color:var(--muted);
+margin-top:5px}nav{position:fixed;bottom:0;left:0;right:0;background:#0c0b0df5;border-top:1px solid #38252c;
+display:flex;justify-content:center;padding:7px 3px calc(7px + env(safe-area-inset-bottom));z-index:8}.
+navinner{width:min(850px,100%);display:flex;justify-content:space-around}.navbtn{background:none;color:
+#9d9198;padding:5px 3px;font-size:10px}.navbtn.active{color:#ff7184}.status{font-size:12px;color:#f49aa8;
+overflow-wrap:anywhere}.danger{background:#70202c}@media(min-width:600px){.grid{grid-template-columns:repeat(
+3,minmax(0,1fr))}}
+</style></head><body><div class="wrap">
+<header><div class="logo">RF</div><div><div class="brand">ROMERO FAMILY</div><div class="sub">LOYALTY • POWER
+• RESPECT</div></div><div class="spacer"></div><button id="logout" class="primary hidden">LOG OUT</button></
+header>
+<section class="box" id="authbox"><div id="welcome"><div class="sub">WELCOME TO THE FAMILY</div><h1>ROMERO
+FAMILY RP</h1><p>A family. A legacy. One code. Sign in or create an account to enter.</p></div><h2>Enter the
+family</h2><label>Username (for new accounts)</label><input id="username" placeholder="RP username"
+autocomplete="username"><label>Email</label><input id="email" type="email" placeholder="name@example.com"
+autocomplete="email"><label>Password</label><input id="password" type="password" placeholder="At least 6
+characters" autocomplete="current-password"><div class="row"><button id="register" class="primary">CREATE
+ACCOUNT</button><button id="login">LOGIN</button></div><button id="reset" style="margin-top:8px">RESET
+PASSWORD</button><p id="status" class="status">Create an account or sign in.</p></section>
+<main id="main" class="hidden">
+<section class="page active" id="home"><div class="box" style="margin:0;background:linear-gradient(120deg,
+#2b0d15,#111014)"><div class="sub">THE FAMILY HUB</div><h1>ROMERO<br>FAMILY</h1><p>Respect the name. Protect
+the family. Build the legacy.</p><div class="row"><button class="primary" onclick="go('roster')">VIEW ROSTER</
+button><button onclick="go('news')">FAMILY NEWS</button></div></div><div class="grid" style="margin-top:
+12px"><button class="tile" onclick="go('roster')">■ <b>Gang Roster</b><span>Members and ranks</span></
+button><button class="tile" onclick="go('news')">■ <b>Announcements</b><span>Shared family updates</span></
+button><button class="tile" onclick="go('chat')">✉ <b>Family Chat</b><span>Live shared messages</span></
+button><button class="tile" onclick="go('mvp')">★ <b>Member of the Month</b><span>Family recognition</span></
+button><button id="adminTile" class="tile hidden" onclick="go('admin')">■ <b>Admin Panel</b><span>Approve and
+manage</span></button></div><h2>Latest announcements</h2><div id="homeNews"></div><h2>Member of the Month</
+h2><div class="card"><b id="mvpHome">Romero_Marco</b><p id="mvpReasonHome">Recognized for loyalty and
+activity.</p></div></section>
+<section class="page" id="roster"><button onclick="go('home')">← Home</button><h2>Gang Roster</h2><input
+id="search" placeholder="Search members..." oninput="renderRoster()"><select id="rankFilter"
+onchange="renderRoster()"><option value="">All ranks</option><option>Boss</option><option>Underboss</
+option><option>Capo</option><option>Soldier</option><option>Associate</option></select><div id="rosterList"></
+div></section>
+<section class="page" id="news"><button onclick="go('home')">← Home</button><h2>Family News</h2><div
+id="newsList"></div></section>
+<section class="page" id="chat"><button onclick="go('home')">← Home</button><h2>Family Chat</h2><div
+id="chatbox" class="chatbox"></div><form id="chatForm"><input id="chatText" maxlength="500"
+placeholder="Write a message..." required><button class="primary">Send message ➤</button></form></section>
+<section class="page" id="mvp"><button onclick="go('home')">← Home</button><h2>Member of the Month</h2><div
+class="card"><b id="mvpPage">Romero_Marco</b><p id="mvpReasonPage">Recognized for loyalty and activity.</p></
+div></section>
+<section class="page" id="admin"><button onclick="go('home')">← Home</button><h2>Admin Panel</h2><div
+class="card"><h3>Pending accounts</h3><div id="pending"></div></div><div class="card"><h3>Add roster member</
+h3><input id="newName" placeholder="Username"><select id="newRank"><option>Associate</option><option>Soldier</
+option><option>Capo</option><option>Underboss</option><option>Boss</option></select><input id="newStatus"
+placeholder="Status (e.g. Active)"><button id="addRoster" class="primary">Add member</button><div
+id="adminRoster"></div></div><div class="card"><h3>Publish announcement</h3><input id="postTitle"
+placeholder="Title" maxlength="100"><textarea id="postBody" placeholder="Message" rows="4" maxlength="2000"></
+textarea><button id="publish" class="primary">Publish for all members</button></div><div
+class="card"><h3>Member of the Month</h3><input id="mvpName" placeholder="Member username"><input
+id="mvpReason" placeholder="Reason"><button id="saveMvp" class="primary">Save for all members</button></div></
+section>
+</main><nav id="nav" class="hidden"><div class="navinner"><button class="navbtn active" data-page="home"
+onclick="go('home')">■ HOME</button><button class="navbtn" data-page="roster" onclick="go('roster')">■
+ROSTER</button><button class="navbtn" data-page="news" onclick="go('news')">■ NEWS</button><button
+class="navbtn" data-page="chat" onclick="go('chat')">✉ CHAT</button></div></nav></div>
+<script>
+const cfg={apiKey:"AIzaSyAtRYSd148kdfC-XZ5r1IrwHXO5lMPuHAE",authDomain:"romero-familly-48377.firebaseapp.com",
+databaseURL:"https://romero-familly-48377-default-rtdb.firebaseio.com",projectId:"romero-familly-48377",
+storageBucket:"romero-familly-48377.firebasestorage.app",messagingSenderId:"560912404098",appId:"1:
+560912404098:web:7360497f0a08d9bae7ae9b",measurementId:"G-72BYFFE5ZD"};
+const $=x=>document.getElementById(x);let A,D,auth,db,user=null,admin=false,profile=null,roster=[],news=[],
+chat=[],mvp={name:"Romero_Marco",reason:"Recognized for loyalty and activity."},stops=[];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;
+"}[c]));
+function msg(s){$("status").textContent=s}
+function error(e){const m={"auth/email-already-in-use":"Email already registered. Log in instead.","auth/
+invalid-credential":"Email or password incorrect.","auth/weak-password":"Password needs at least 6 characters.
+","auth/invalid-email":"Invalid email.","auth/unauthorized-domain":"Add this website domain in Firebase
+Authentication settings."};msg(m[e.code]||e.message||"Something went wrong.")}
+function go(id){if(!user||(!admin&&profile?.status!=="approved")||(id==="admin"&&!admin))return;document.
+querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".
+navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===id));window.scrollTo(0,0)}
+function showApp(){const ok=!!user&&(admin||profile?.status==="approved");$("main").classList.toggle("hidden",
+!ok);$("nav").classList.toggle("hidden",!ok);$("authbox").classList.toggle("hidden",ok);$("logout").classList.
+toggle("hidden",!user);$("adminTile").classList.toggle("hidden",!admin);if(!user){stops.forEach(f=>f());
+stops=[];$("authbox").classList.remove("hidden");$("welcome").classList.remove("hidden");msg("Create an
+account or sign in.");return}if(!ok){$("authbox").classList.remove("hidden");$("welcome").classList.remove(
+"hidden");msg("Your account is waiting for Admin approval. Please wait.");return}msg(admin?"Signed in as
+Admin.":"Signed in successfully.");listenData();go("home")}
+function listen(path,cb){const r=D.ref(db,path),fn=D.onValue(r,s=>cb(s.val()));stops.push(()=>D.off(r,"value",
+fn))}
+function listenData(){stops.forEach(f=>f());stops=[];listen("roster",v=>{roster=v?Object.entries(v).map(([id,
+x])=>({id,...x})):[];renderRoster();if(admin)renderAdminRoster()});listen("announcements",v=>{news=v?Object.
+entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)):[];renderNews()});listen(
+"chat",v=>{chat=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).
+slice(-100):[];renderChat()});listen("mvp",v=>{if(v)mvp=v;renderMvp()});if(admin)listen("members",
+v=>renderPending(v?Object.entries(v).map(([uid,x])=>({uid,...x})).filter(x=>x.status==="pending"):[]))}
+function renderRoster(){let q=($("search")?.value||"").toLowerCase(),rank=$("rankFilter")?.value||"";let
+list=roster.filter(m=>(m.name||"").toLowerCase().includes(q)&&(!rank||m.rank===rank));$("rosterList").
+innerHTML=list.map(m=>`<div class="card member"><div><b>${esc(m.name)}</b><div class="muted">${esc(m.
+status||"Active")}</div></div><span class="pill">${esc(m.rank||"Associate")}</span></div>`).join("")||'<div
+class="card">No members found.</div>'}
+function renderNews(){let card=n=>`<div class="card"><b>${esc(n.title)}</b><div class="muted">${esc(n.
+date||"Family update")}</div><p>${esc(n.body)}</p></div>`;$("newsList").innerHTML=news.map(card).join(
+"")||'<div class="card">No announcements yet.</div>';$("homeNews").innerHTML=news.slice(0,2).map(card).join(
+"")||'<div class="card">No announcements yet.</div>'}
+function renderChat(){$("chatbox").innerHTML=chat.map(c=>`<div class="bubble ${c.uid===user?.uid?"mine":
+""}">${esc(c.text)}<small>${esc(c.username)} · ${esc(c.timeLabel||"")}</small></div>`).join("")||'<p>No
+messages yet.</p>';$("chatbox").scrollTop=$("chatbox").scrollHeight}
+function renderMvp(){["mvpHome","mvpPage"].forEach(id=>$(id).textContent=mvp.name||"Romero_Marco");[
+"mvpReasonHome","mvpReasonPage"].forEach(id=>$(id).textContent=mvp.reason||"Recognized for loyalty and
+activity.")}
+function renderPending(list){$("pending").innerHTML=list.map(m=>`<div class="card member"><div><b>${esc(m.
+username||m.email||m.uid)}</b><div class="muted">${esc(m.email)} · Pending</div></div><button data-approve="${
+esc(m.uid)}" class="primary">Approve</button></div>`).join("")||'<p>No pending accounts.</p>';$("pending").
+querySelectorAll("[data-approve]").forEach(b=>b.onclick=async()=>{try{await D.update(D.ref(db,"members/"+b.
+dataset.approve),{status:"approved"});alert("Approved")}catch(e){alert(e.message)}})}
+function renderAdminRoster(){$("adminRoster").innerHTML=roster.map(m=>`<div class="member"><div>${esc(m.
+name)} · ${esc(m.rank)}</div><button data-delete="${esc(m.id)}">Delete</button></div>`).join("");$(
+"adminRoster").querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(confirm("Delete this
+member?"))try{await D.remove(D.ref(db,"roster/"+b.dataset.delete))}catch(e){alert(e.message)}})}
+async function boot(){try{const appSdk=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-app.
+js");A=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js");D=await import("https://www.
+gstatic.com/firebasejs/13.1.0/firebase-database.js");const app=appSdk.initializeApp(cfg);auth=A.getAuth(app);
+db=D.getDatabase(app);
+$("register").onclick=async()=>{let name=$("username").value.trim(),email=$("email").value.trim(),password=$(
+"password").value;if(name.length<2||!email||password.length<6)return msg("Enter username, valid email, and
+password of at least 6 characters.");try{let c=await A.createUserWithEmailAndPassword(auth,email,password);
+await D.set(D.ref(db,"members/"+c.user.uid),{username:name,email:c.user.email,status:"pending",createdAt:Date.
+now()});msg("Account created. Wait for Admin approval.")}catch(e){error(e)}};
+$("login").onclick=async()=>{try{await A.signInWithEmailAndPassword(auth,$("email").value.trim(),$(
+"password").value);$("password").value=""}catch(e){error(e)}};
+$("reset").onclick=async()=>{if(!$("email").value.trim())return msg("Enter your email first.");try{await A.
+sendPasswordResetEmail(auth,$("email").value.trim());msg("If the account exists, a reset email has been sent.
+")}catch(e){error(e)}};
+$("logout").onclick=()=>A.signOut(auth);
+A.onAuthStateChanged(auth,async u=>{user=u;admin=false;profile=null;if(!u){showApp();return}try{await u.
+getIdToken(true);admin=(await u.getIdTokenResult()).claims.admin===true;let s=await D.get(D.ref(db,"members/
+"+u.uid));profile=s.exists()?s.val():null;showApp()}catch(e){showApp();msg("Could not verify access: "+e.
+message)}});
+}catch(e){console.error(e);msg("Firebase could not start. Check internet and Firebase config.")}}
+$("chatForm").onsubmit=async e=>{e.preventDefault();let text=$("chatText").value.trim();if(
+!text||!user)return;try{await D.push(D.ref(db,"chat"),{uid:user.uid,username:profile?.username||user.
+email||"Member",text,createdAt:Date.now()});$("chatText").value=""}catch(e){alert("Message failed: "+e.
+message)}};
+$("addRoster").onclick=async()=>{if(!admin)return;let name=$("newName").value.trim();if(!name)return alert(
+"Enter a name.");try{await D.push(D.ref(db,"roster"),{name,rank:$("newRank").value,status:$("newStatus").
+value.trim()||"Active",createdAt:Date.now()});$("newName").value="";$("newStatus").value=""}catch(e){alert(e.
+message)}};
+$("publish").onclick=async()=>{if(!admin)return;let title=$("postTitle").value.trim(),body=$("postBody").
+value.trim();if(!title||!body)return alert("Enter title and message.");try{await D.push(D.ref(db,
+"announcements"),{title,body,date:new Date().toLocaleDateString(),createdAt:Date.now(),authorUid:user.uid});$(
+"postTitle").value="";$("postBody").value=""}catch(e){alert(e.message)}};
+$("saveMvp").onclick=async()=>{if(!admin)return;let name=$("mvpName").value.trim();if(!name)return alert(
+"Enter member name.");try{await D.set(D.ref(db,"mvp"),{name,reason:$("mvpReason").value.trim()||"Recognized
+for loyalty and activity."})}catch(e){alert(e.message)}};
+boot();
+</script></body></html>
 
-<!-- Public welcome and authentication -->
-<section class="account" id="account">
-  <div id="publicWelcome">
-    <div class="eyebrow">WELCOME TO THE FAMILY</div>
-    <h1 style="font-size:27px;margin-bottom:7px">ROMERO FAMILY RP</h1>
-    <p class="intro">A family. A legacy. One code. Sign in or create an account to enter the private family hub.</p>
-  </div>
-  <h2 id="authTitle">Enter the family</h2>
-  <label for="authUsername">Username (for new accounts)</label>
-  <input id="authUsername" class="field" placeholder="Your RP username" autocomplete="username">
-  <label for="authEmail">Email</label>
-  <input id="authEmail" class="field" type="email" placeholder="name@example.com" autocomplete="email">
-  <label for="authPassword">Password</label>
-  <input id="authPassword" class="field" type="password" placeholder="At least 6 characters" autocomplete="current-password">
-  <div class="auth-buttons">
-    <button id="registerBtn" class="primary" type="button">CREATE ACCOUNT</button>
-    <button id="loginBtn" type="button">LOGIN</button>
-    <button id="resetBtn" class="secondary" type="button">RESET PASSWORD</button>
-  </div>
-  <p id="authStatus" class="auth-status" role="status" aria-live="polite">Create an account or sign in to continue.</p>
-</section>
-
-<!-- Private content: shown only when Firebase confirms a signed-in user -->
-<main id="protectedMain" class="hidden">
-  <section class="page active" id="home">
-    <div class="hero">
-      <div class="eyebrow">THE FAMILY HUB</div>
-      <h1>ROMERO<br>FAMILY</h1>
-      <p>Respect the name. Protect the family. Build the legacy.</p>
-      <div class="hero-actions">
-        <button class="primary" onclick="showPage('roster')">VIEW ROSTER</button>
-        <button class="secondary" onclick="showPage('announcements')">FAMILY NEWS</button>
-      </div>
-    </div>
-    <div class="stats">
-      <div class="stat"><strong id="memberCount">00</strong><span>ROSTER MEMBERS</span></div>
-      <div class="stat"><strong id="announcementCount">00</strong><span>ANNOUNCEMENTS</span></div>
-      <div class="stat"><strong>RP</strong><span>FAMILY STATUS</span></div>
-    </div>
-    <div class="section-head"><h2>FAMILY AREAS</h2><small>MEMBERS ONLY</small></div>
-    <div class="grid">
-      <button class="tile" onclick="showPage('roster')"><div class="ico">♟</div><b>Gang Roster</b><span>Members and family ranks</span></button>
-      <button class="tile" onclick="showPage('announcements')"><div class="ico">▤</div><b>News & Announcements</b><span>Official family updates</span></button>
-      <button class="tile" onclick="showPage('chat')"><div class="ico">✉</div><b>Family Chat</b><span>Local demo chat</span></button>
-      <button class="tile" onclick="showPage('photos')"><div class="ico">▧</div><b>Photo Gallery</b><span>Family memories</span></button>
-      <button class="tile" onclick="showPage('radio')"><div class="ico">♫</div><b>Family Radio</b><span>Listen to a stream</span></button>
-      <button class="tile" onclick="showPage('maison')"><div class="ico">⌂</div><b>La Maison</b><span>Base and family rules</span></button>
-      <button class="tile" onclick="showPage('vip')"><div class="ico">♛</div><b>VIP Lounge</b><span>Member area</span></button>
-      <button class="tile" onclick="showPage('member')"><div class="ico">★</div><b>Member of the Month</b><span>Recognize activity</span></button>
-      <button class="tile" onclick="showPage('admin')"><div class="ico">⚙</div><b>Admin Panel</b><span>Demo management tools</span></button>
-    </div>
-    <div class="section-head"><h2>MEMBER OF THE MONTH</h2><small>FEATURED</small></div>
-    <div class="card member"><div class="avatar">RM</div><div class="member-info"><b id="topName">Romero_Marco</b><small id="topReason">Member of the Month</small></div><span class="pill gold">MVP ★</span></div>
-    <div class="section-head"><h2>LATEST NEWS</h2><small>FAMILY BULLETIN</small></div>
-    <div id="homeNews"></div>
-    <div class="footer">ROMERO FAMILY • COMMUNITY HUB</div>
-  </section>
-
-  <section class="page" id="roster">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Gang Roster</h2></div>
-    <p class="intro">Every member. Every rank. One family.</p>
-    <input id="searchMember" class="field" placeholder="Search members..." oninput="renderRoster()">
-    <select id="rankFilter" class="field" onchange="renderRoster()">
-      <option value="">All ranks</option><option>Boss</option><option>Underboss</option><option>Capo</option><option>Soldier</option><option>Associate</option>
-    </select>
-    <div id="rosterList"></div>
-  </section>
-
-  <section class="page" id="announcements">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Family News</h2></div>
-    <p class="intro">Official family updates and important messages.</p>
-    <div id="newsList"></div>
-  </section>
-
-  <section class="page" id="chat">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Family Chat</h2></div>
-    <p class="intro">Demo chat. Messages are saved only in this browser on this device.</p>
-    <div class="chatbox" id="chatMessages"></div>
-    <form id="chatForm"><input id="chatInput" class="field" placeholder="Write a message..." maxlength="300" required><button class="primary" type="submit">Send message ➤</button></form>
-  </section>
-
-  <section class="page" id="photos">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Photo Gallery</h2></div>
-    <p class="intro">Choose images to preview on this device. They are not uploaded for other members.</p>
-    <label class="btn primary" for="photoInput" style="display:inline-block;margin-bottom:14px">＋ Add photos</label>
-    <input id="photoInput" type="file" accept="image/*" multiple hidden>
-    <div class="photo-grid" id="photoGrid"></div>
-  </section>
-
-  <section class="page" id="radio">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Family Radio</h2></div>
-    <div class="card radio-panel">
-      <div class="record">♫</div><h3>ROMERO RADIO</h3>
-      <p class="muted">Paste a public HTTPS radio stream URL.</p>
-      <input class="field" id="radioUrl" placeholder="https://example.com/stream.mp3" type="url">
-      <button class="primary" id="radioBtn" type="button">Connect radio</button>
-      <div id="radioPlayer" style="margin-top:15px"></div>
-    </div>
-  </section>
-
-  <section class="page" id="maison">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>La Maison</h2></div>
-    <p class="intro">The family base — information, rules and meeting details.</p>
-    <div class="card">
-      <h3>Family rules</h3>
-      <p class="intro">Respect members. Follow server rules. Protect account credentials. Keep roleplay fair.</p>
-      <label for="maisonLocation">Family base / meeting note</label>
-      <input id="maisonLocation" class="field" placeholder="Add a location or meeting note">
-      <button id="saveMaisonBtn" class="primary" type="button">Save note on this device</button>
-      <p id="maisonSaved" class="muted"></p>
-    </div>
-  </section>
-
-  <section class="page" id="vip">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>VIP Lounge</h2></div>
-    <div class="card"><h3>Welcome to the VIP Lounge</h3><p class="intro">VIP membership status is a demo placeholder. It is not an access-controlled paid or privileged role.</p></div>
-  </section>
-
-  <section class="page" id="member">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Member of the Month</h2></div>
-    <div class="card"><h3 id="mvpDisplay">Romero_Marco</h3><p class="intro" id="mvpReasonDisplay">Recognized for loyalty and activity.</p></div>
-  </section>
-
-  <section class="page" id="admin">
-    <div class="backline"><button class="back" onclick="showPage('home')">← Home</button><h2>Admin Panel</h2></div>
-    <p class="intro">DEMO ONLY: these tools save locally and are not protected by admin permissions. Do not use for real moderation.</p>
-    <div class="card">
-      <h3>Add a roster member</h3>
-      <input id="newName" class="field" placeholder="Member username">
-      <select id="newRank" class="field"><option>Associate</option><option>Soldier</option><option>Capo</option><option>Underboss</option><option>Boss</option></select>
-      <input id="newStatus" class="field" placeholder="Status (e.g. Active)">
-      <button id="addMemberBtn" class="primary" type="button">Add member</button>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <h3>Publish announcement</h3>
-      <input id="postTitle" class="field" placeholder="Announcement title">
-      <textarea id="postBody" class="field" placeholder="Announcement message" rows="4"></textarea>
-      <button id="publishBtn" class="primary" type="button">Publish on this device</button>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <h3>Member of the Month</h3>
-      <input id="mvpName" class="field" placeholder="Member username">
-      <input id="mvpReason" class="field" placeholder="Reason">
-      <button id="saveMvpBtn" class="primary" type="button">Save locally</button>
-    </div>
-  </section>
-</main>
-
-<nav id="protectedNav" class="hidden" aria-label="Member navigation">
-  <div class="navinner">
-    <button class="navbtn active" data-page="home" onclick="showPage('home',this)"><span class="navico">⌂</span>HOME</button>
-    <button class="navbtn" data-page="roster" onclick="showPage('roster',this)"><span class="navico">♟</span>ROSTER</button>
-    <button class="navbtn" data-page="announcements" onclick="showPage('announcements',this)"><span class="navico">▤</span>NEWS</button>
-    <button class="navbtn" data-page="chat" onclick="showPage('chat',this)"><span class="navico">✉</span>CHAT</button>
-    <button class="navbtn" data-page="maison" onclick="showPage('maison',this)"><span class="navico">⌂</span>MAISON</button>
-  </div>
-</nav>
-</div>
-
-<script>
-const $ = id => document.getElementById(id);
-
-const defaultMembers = [
-  {name:"Romero_Marco",rank:"Boss",status:"Family Leader"},
-  {name:"Romero_Underboss",rank:"Underboss",status:"Active"},
-  {name:"Romero_Capo",rank:"Capo",status:"Active"},
-  {name:"Romero_Soldier",rank:"Soldier",status:"Active"},
-  {name:"Romero_Associate",rank:"Associate",status:"Active"}
-];
-const defaultNews = [
-  {title:"Welcome to ROMERO FAMILY",body:"Welcome to the family hub. Respect the name and follow the rules.",date:"Family Bulletin"}
-];
-
-function loadLocal(key,fallback){
-  try{
-    const raw=localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
-  }catch(e){return fallback}
-}
-let members=loadLocal("rf_members",defaultMembers);
-let news=loadLocal("rf_news",defaultNews);
-let chats=loadLocal("rf_chats",[]);
-let mvp=loadLocal("rf_mvp",{name:"Romero_Marco",reason:"Recognized for loyalty and activity."});
-
-function save(){
-  try{
-    localStorage.setItem("rf_members",JSON.stringify(members));
-    localStorage.setItem("rf_news",JSON.stringify(news));
-    localStorage.setItem("rf_chats",JSON.stringify(chats));
-    localStorage.setItem("rf_mvp",JSON.stringify(mvp));
-  }catch(e){console.warn("Local save failed",e)}
-}
-function esc(value){
-  return String(value).replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
-}
-function message(text,isError=false){
-  $("authStatus").textContent=text;
-  $("authStatus").style.color=isError?"#ff8794":"#e4a4ac";
-}
-function explain(error){
-  const code=error?.code||"";
-  const messages={
-    "auth/email-already-in-use":"This email is already registered. Try logging in.",
-    "auth/invalid-email":"Email address is not valid.",
-    "auth/weak-password":"Password must have at least 6 characters.",
-    "auth/invalid-credential":"Email or password is incorrect.",
-    "auth/user-not-found":"No account found for this email.",
-    "auth/wrong-password":"Email or password is incorrect.",
-    "auth/too-many-requests":"Too many attempts. Wait and try again.",
-    "auth/network-request-failed":"Network error. Check your internet connection.",
-    "auth/operation-not-allowed":"Enable Email/Password in Firebase Authentication.",
-    "auth/unauthorized-domain":"Add this website domain in Firebase Authentication settings."
-  };
-  return messages[code] || ("Error: "+(error?.message||"Unknown error"));
-}
-function showPage(id,btn){
-  if(!window.romeroAuthUser){
-    message("Please sign in to access family sections.",true);
-    return;
-  }
-  const page=$(id);
-  if(!page)return;
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  page.classList.add("active");
-  document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n.dataset.page===id));
-  if(btn)btn.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
-  if(id==="roster")renderRoster();
-  if(id==="chat")renderChat();
-  if(id==="announcements")renderNews();
-}
-function renderRoster(){
-  const q=($("searchMember").value||"").toLowerCase();
-  const rank=$("rankFilter").value;
-  const list=members.filter(m=>String(m.name).toLowerCase().includes(q)&&(!rank||m.rank===rank));
-  $("rosterList").innerHTML=list.map(m=>
-    `<div class="card member"><div class="avatar">${esc(String(m.name).slice(0,2).toUpperCase())}</div><div class="member-info"><b>${esc(m.name)}</b><small>${esc(m.status||"Active")}</small></div><span class="pill ${m.rank==="Boss"||m.rank==="Underboss"?"gold":""}">${esc(m.rank)}</span></div>`
-  ).join("")||'<div class="empty">No members found.</div>';
-  $("memberCount").textContent=String(members.length).padStart(2,"0");
-}
-function renderNews(){
-  const html=news.map(n=>`<div class="card" style="margin-bottom:10px"><div class="notice-title">${esc(n.title)}</div><div class="notice-meta">${esc(n.date||"Family update")}</div><div class="notice-body">${esc(n.body)}</div></div>`).join("")||'<div class="empty">No announcements yet.</div>';
-  $("newsList").innerHTML=html;
-  $("homeNews").innerHTML=news.slice(0,2).map(n=>`<div class="card" style="margin-bottom:10px"><div class="notice-title">${esc(n.title)}</div><div class="notice-meta">${esc(n.date||"Family update")}</div><div class="notice-body">${esc(n.body)}</div></div>`).join("");
-  $("announcementCount").textContent=String(news.length).padStart(2,"0");
-}
-function renderChat(){
-  $("chatMessages").innerHTML=chats.map(c=>`<div class="bubble ${c.mine?"mine":""}">${esc(c.text)}<small>${esc(c.who||"Member")}</small></div>`).join("")||'<div class="empty">No messages on this device yet.</div>';
-  $("chatMessages").scrollTop=$("chatMessages").scrollHeight;
-}
-function renderMvp(){
-  $("topName").textContent=mvp.name;
-  $("topReason").textContent=mvp.reason;
-  $("mvpDisplay").textContent=mvp.name;
-  $("mvpReasonDisplay").textContent=mvp.reason;
-}
-function updateApp(){
-  renderRoster();renderNews();renderMvp();
-  const saved=localStorage.getItem("rf_maison");
-  if(saved)$("maisonLocation").value=saved;
-}
-function setSignedIn(user){
-  window.romeroAuthUser=user||null;
-  const loggedIn=!!user;
-  $("protectedMain").classList.toggle("hidden",!loggedIn);
-  $("protectedNav").classList.toggle("hidden",!loggedIn);
-  $("account").classList.toggle("hidden",loggedIn);
-  $("logoutBtn").classList.toggle("hidden",!loggedIn);
-  if(loggedIn){
-    updateApp();
-    showPage("home");
-    message("Signed in successfully.");
-  }else{
-    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-    $("publicWelcome").classList.remove("hidden");
-    message("Welcome. Create an account or sign in to enter the family.");
-  }
-}
-
-$("chatForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  if(!window.romeroAuthUser)return;
-  const input=$("chatInput"),text=input.value.trim();
-  if(!text)return;
-  chats.push({text,who:window.romeroAuthUser.email||"Member",mine:true});
-  save();input.value="";renderChat();
-});
-$("photoInput").addEventListener("change",e=>{
-  if(!window.romeroAuthUser)return;
-  [...e.target.files].forEach(file=>{
-    if(!file.type.startsWith("image/"))return;
-    const reader=new FileReader();
-    reader.onload=event=>{
-      const img=document.createElement("img");
-      img.src=event.target.result;img.alt="Family photo";$("photoGrid").prepend(img);
-    };
-    reader.readAsDataURL(file);
-  });
-});
-$("radioBtn").addEventListener("click",()=>{
-  if(!window.romeroAuthUser)return;
-  const url=$("radioUrl").value.trim(),out=$("radioPlayer");
-  let parsed;
-  try{parsed=new URL(url)}catch{out.textContent="Enter a valid HTTPS stream URL.";return}
-  if(parsed.protocol!=="https:"){out.textContent="Enter a valid HTTPS stream URL.";return}
-  out.replaceChildren();
-  const audio=document.createElement("audio");
-  audio.controls=true;audio.src=url;audio.style.width="100%";out.append(audio);
-  const disc=document.querySelector(".record");
-  audio.addEventListener("play",()=>disc.classList.add("spinning"));
-  audio.addEventListener("pause",()=>disc.classList.remove("spinning"));
-});
-$("saveMaisonBtn").addEventListener("click",()=>{
-  try{
-    localStorage.setItem("rf_maison",$("maisonLocation").value.trim());
-    $("maisonSaved").textContent="Saved on this device.";
-  }catch(e){$("maisonSaved").textContent="Could not save on this device."}
-});
-$("addMemberBtn").addEventListener("click",()=>{
-  const name=$("newName").value.trim();
-  if(!name){alert("Enter a member name.");return}
-  members.push({name,rank:$("newRank").value,status:$("newStatus").value.trim()||"Active"});
-  save();$("newName").value="";$("newStatus").value="";renderRoster();
-  alert("Demo member saved on this device.");
-});
-$("publishBtn").addEventListener("click",()=>{
-  const title=$("postTitle").value.trim(),body=$("postBody").value.trim();
-  if(!title||!body){alert("Enter a title and message.");return}
-  news.unshift({title,body,date:new Date().toLocaleDateString()});
-  save();$("postTitle").value="";$("postBody").value="";renderNews();
-  alert("Demo announcement saved on this device.");
-});
-$("saveMvpBtn").addEventListener("click",()=>{
-  const name=$("mvpName").value.trim();
-  if(!name){alert("Enter a member name.");return}
-  mvp={name,reason:$("mvpReason").value.trim()||"Member of the Month"};
-  save();renderMvp();alert("Saved on this device.");
-});
-
-/* Firebase Authentication */
-import("https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js").then(async appSdk=>{
-  const authSdk=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js");
-  const dbSdk=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js");
-
-  const firebaseConfig={
-    apiKey:"AIzaSyAtRYSd148kdfC-XZ5r1IrwHXO5lMPuHAE",
-    authDomain:"romero-familly-48377.firebaseapp.com",
-    databaseURL:"https://romero-familly-48377-default-rtdb.firebaseio.com",
-    projectId:"romero-familly-48377",
-    storageBucket:"romero-familly-48377.firebasestorage.app",
-    messagingSenderId:"560912404098",
-    appId:"1:560912404098:web:7360497f0a08d9bae7ae9b",
-    measurementId:"G-72BYFFE5ZD"
-  };
-
-  try{
-    const app=appSdk.initializeApp(firebaseConfig);
-    const auth=authSdk.getAuth(app);
-    const db=dbSdk.getDatabase(app);
-    const {
-      createUserWithEmailAndPassword,
-      signInWithEmailAndPassword,
-      signOut,
-      sendPasswordResetEmail,
-      onAuthStateChanged
-    }=authSdk;
-
-    $("registerBtn").addEventListener("click",async()=>{
-      const username=$("authUsername").value.trim();
-      const email=$("authEmail").value.trim();
-      const password=$("authPassword").value;
-      if(username.length<2){message("Username must have at least 2 characters.",true);return}
-      if(!email||password.length<6){message("Enter a valid email and a password of at least 6 characters.",true);return}
-      $("registerBtn").disabled=true;message("Creating account…");
-      try{
-        const result=await createUserWithEmailAndPassword(auth,email,password);
-        try{
-          await dbSdk.set(dbSdk.ref(db,"members/"+result.user.uid),{
-            username:username,
-            email:result.user.email,
-            status:"pending",
-            createdAt:Date.now()
-          });
-          message("Account created. Welcome to ROMERO FAMILY.");
-        }catch(profileError){
-          console.error("Profile save failed:",profileError);
-          message("Your login account was created, but the profile could not be saved. Check Database Rules.",true);
-        }
-      }catch(error){
-        console.error(error);message(explain(error),true);
-      }finally{$("registerBtn").disabled=false}
-    });
-
-    $("loginBtn").addEventListener("click",async()=>{
-      const email=$("authEmail").value.trim();
-      const password=$("authPassword").value;
-      if(!email||!password){message("Enter your email and password.",true);return}
-      $("loginBtn").disabled=true;message("Signing in…");
-      try{
-        await signInWithEmailAndPassword(auth,email,password);
-        $("authPassword").value="";
-      }catch(error){console.error(error);message(explain(error),true)}
-      finally{$("loginBtn").disabled=false}
-    });
-
-    $("resetBtn").addEventListener("click",async()=>{
-      const email=$("authEmail").value.trim();
-      if(!email){message("Enter your email first.",true);return}
-      try{
-        await sendPasswordResetEmail(auth,email);
-        message("If the account exists, a password reset email has been sent.");
-      }catch(error){console.error(error);message(explain(error),true)}
-    });
-
-    $("logoutBtn").addEventListener("click",async()=>{
-      try{await signOut(auth)}
-      catch(error){message(explain(error),true)}
-    });
-
-    onAuthStateChanged(auth,user=>{
-      setSignedIn(user);
-      if(user)$("authPassword").value="";
-    });
-  }catch(error){
-    console.error("Firebase initialization error:",error);
-    message("Firebase could not start. Check the project configuration and internet connection.",true);
-  }
-});
-</script>
-</body>
-</html>
 

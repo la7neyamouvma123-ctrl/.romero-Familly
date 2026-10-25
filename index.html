@@ -54,6 +54,68 @@ hr{border:0;border-top:1px solid #302b30;margin:14px 0}.muted{color:var(--muted)
 
 </style>
 </head>
+  
+<!-- ROMERO FAMILY - Firebase setup -->
+<script type="module">
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+
+  import {
+    getDatabase,
+    ref,
+    set,
+    get
+  } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAtRYSd148kdfC-XZ5r1IrwHXO5lMPuHAE",
+    authDomain: "romero-familly-48377.firebaseapp.com",
+    databaseURL: "https://romero-familly-48377-default-rtdb.firebaseio.com",
+    projectId: "romero-familly-48377",
+    storageBucket: "romero-familly-48377.firebasestorage.app",
+    messagingSenderId: "560912404098",
+    appId: "1:560912404098:web:7360497f0a08d9bae7ae9b",
+    measurementId: "G-72BYFFE5ZD"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getDatabase(app);
+
+  // Available for the registration/login interface to use.
+  window.romeroFirebase = {
+    auth,
+    db,
+    register: async (email, password, username) => {
+      const result = await createUserWithEmailAndPassword(
+        auth, email, password
+      );
+
+      await set(ref(db, "members/" + result.user.uid), {
+        username: username.trim(),
+        email: result.user.email,
+        status: "pending",
+        createdAt: Date.now()
+      });
+
+      return result.user;
+    },
+    login: (email, password) =>
+      signInWithEmailAndPassword(auth, email, password),
+    logout: () => signOut(auth),
+    onAuthStateChanged: callback =>
+      onAuthStateChanged(auth, callback)
+  };
+</script>
+
 <body>
 <div class="app">
 <header><div class="brandrow"><div class="crest">R</div><div><div class="brand">ROMERO FAMILY</div><div class="subbrand">LOYALTY · POWER · RESPECT</div></div><div class="status"><i class="dot"></i> ONLINE</div></div></header>

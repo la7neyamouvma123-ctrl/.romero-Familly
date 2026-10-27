@@ -22,8 +22,8 @@ h1{font-size:clamp(30px,7vw,45px);line-height:1.05}h2{font-size:20px;color:var(-
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.tile{text-align:left;min-height:90px;border:1px solid var(--line);background:#171317}.tile b,.tile span{display:block}.tile span{font-size:11px;color:var(--muted);margin-top:5px}
 nav{position:fixed;bottom:0;left:0;right:0;background:#0c0b0df5;border-top:1px solid #38252c;display:flex;justify-content:center;padding:7px 3px calc(7px + env(safe-area-inset-bottom));z-index:8}.navinner{width:min(850px,100%);display:flex;justify-content:space-around}.navbtn{background:none;color:#9d9198;padding:5px 3px;font-size:10px}.navbtn.active{color:#ff7184}
 .status{font-size:12px;color:#f49aa8;overflow-wrap:anywhere}.danger{background:#70202c}@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-
-/* ROMERO FAMILY â polished interface layer */
+ 
+/* ROMERO FAMILY — polished interface layer */
 :root{--panel:#151116;--line:#42232d;--muted:#b9aab1;--red-bright:#ff334d;--gold-soft:#f0cf8c}
 body{background:radial-gradient(ellipse at 50% -12%,#48101d 0%,#160b10 35%,#08080a 72%);background-attachment:fixed;letter-spacing:.1px}
 header{backdrop-filter:blur(18px);box-shadow:0 8px 30px #0005;padding:15px 16px}
@@ -53,9 +53,9 @@ h2{letter-spacing:.3px;text-shadow:0 0 16px #d5ad651a}
 #adminRosterSearch{margin-top:12px} .admin-toolbar{display:grid;grid-template-columns:1fr;gap:7px}
 @media(min-width:520px){.admin-member{grid-template-columns:minmax(0,1fr) minmax(250px,1fr);align-items:center}.admin-member-top{grid-column:1}.admin-rank-controls,.admin-actions{grid-column:2}.admin-actions{grid-template-columns:1fr 1fr}.admin-toolbar{grid-template-columns:1fr 190px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
-
-
-/* FINAL CINEMATIC UI â animated background, room icons, premium spacing */
+ 
+ 
+/* FINAL CINEMATIC UI — animated background, room icons, premium spacing */
 body{position:relative;isolation:isolate;background:#080709;overflow-x:hidden}
 body:before,body:after{content:"";position:fixed;inset:-25%;pointer-events:none;z-index:-1}
 body:before{background:radial-gradient(ellipse at 18% 18%,#8e10251f,transparent 28%),radial-gradient(ellipse at 82% 38%,#c8192e1b,transparent 25%),radial-gradient(ellipse at 48% 90%,#d5ad650c,transparent 32%);animation:ambientFlow 18s ease-in-out infinite alternate}
@@ -94,9 +94,9 @@ button:active{transform:scale(.975);filter:brightness(1.12)}
 #rosterList .card{display:flex;align-items:center;justify-content:space-between;gap:12px}
 @media(max-width:380px){.grid{gap:8px}.tile{min-height:116px;padding:13px}.navbtn{font-size:8px}.brand{letter-spacing:1.5px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
-
+ 
 .icon-svg{display:block;width:1em;height:1em;fill:currentColor}.room-icon .icon-svg{width:30px;height:30px}.nav-icon .icon-svg{width:19px;height:19px}.room-icon{display:flex;align-items:center;justify-content:center}
-
+ 
 /* Login screen: developed cinematic motion, no extra particle effects */
 .auth-shell{width:calc(100% - 28px);max-width:470px;margin:clamp(20px,5vh,54px) auto 36px;padding:26px 22px 22px;position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(155deg,#1c1118f5,#100d12f8 62%,#160b10f5);border:1px solid #693040;box-shadow:0 26px 75px #0009,0 0 0 1px #c8192e12,0 0 34px #c8192e13;animation:authEnter .9s cubic-bezier(.2,.8,.2,1) both}
 .auth-shell:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,#ff334d,#d5ad65,#ff334d,transparent);background-size:220% 100%;animation:authSweep 7s linear infinite}
@@ -106,9 +106,9 @@ button:active{transform:scale(.975);filter:brightness(1.12)}
 .auth-kicker{font-size:9px;font-weight:900;letter-spacing:3px;color:#e95b70}.auth-brand h1{font-size:clamp(32px,9vw,45px);line-height:.98;letter-spacing:1px;margin:13px 0 10px;text-align:center;color:#fff4f5;text-shadow:0 0 9px #c8192e70,0 3px 0 #5c101e;animation:redPulse 4s ease-in-out infinite}.auth-tagline{font-size:11px!important;letter-spacing:2.8px;color:#d5ad65!important;margin:0!important;font-weight:800}.auth-rule{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:19px;color:#91818a;font-size:8px;letter-spacing:1.8px}.auth-rule span{height:1px;width:30px;background:linear-gradient(90deg,transparent,#8b3445)}
 #authTabs.tabs{display:grid;grid-template-columns:1fr 1fr;position:relative;isolation:isolate;background:#0b090d;border:1px solid #38232c;border-radius:13px;padding:4px;margin:0 0 20px;overflow:hidden}#authTabs .auth-tab-pill{position:absolute;z-index:-1;left:4px;top:4px;bottom:4px;width:calc(50% - 4px);border-radius:9px;background:linear-gradient(135deg,#e32842,#790e20);box-shadow:0 4px 16px #c8192e45;transition:transform .42s cubic-bezier(.7,0,.2,1)}#authTabs[data-m="register"] .auth-tab-pill{transform:translateX(100%)}#authTabs button{background:transparent;border:0;box-shadow:none;min-height:40px;padding:9px 4px;color:#a99aa2;font-size:10px;letter-spacing:.8px}#authTabs button.on{color:#fff}
 #authHeading{font-size:21px;color:#f0cf8c;margin:0 0 14px}.auth-field{margin:0 0 13px}.auth-field label{display:block;margin:0 0 6px;color:#d7c7ce;font-size:11px;letter-spacing:.5px}.auth-field input{margin:0;min-height:49px;padding:13px 14px;border-radius:12px;background:#0b090d;border-color:#402631;font-size:14px}.auth-field input:focus{border-color:#c8192e;box-shadow:0 0 0 3px #c8192e24}.auth-password{position:relative}.auth-password input{padding-right:52px}.auth-password #authEye{position:absolute;right:5px;top:4px;min-width:40px;width:40px;height:40px;min-height:40px;padding:0;border:0;background:transparent;box-shadow:none;color:#cbb8c1;font-size:18px}.auth-actions{display:grid;grid-template-columns:1fr}.auth-actions button{width:100%;min-height:49px;border-radius:12px;letter-spacing:1px;font-size:11px}.auth-reset{display:block;margin:13px auto 0;background:transparent;border:0;box-shadow:none;color:#c6aeb8;text-decoration:underline;text-underline-offset:3px;font-size:11px;min-height:32px}.auth-status{text-align:center;min-height:24px;margin:13px 0 0;font-size:11px}.auth-foot{display:flex;justify-content:center;align-items:center;gap:8px;color:#786b73;font-size:8px;letter-spacing:1.7px;margin-top:18px}.auth-dot{width:4px;height:4px;border-radius:50%;background:#c8192e;box-shadow:0 0 8px #c8192e}@media(min-width:600px){.auth-shell{padding:30px 32px 25px}}@media(prefers-reduced-motion:reduce){.auth-shell,.auth-shell:before,.auth-brand h1,.auth-crest svg path:first-child{animation:none!important}.auth-crest svg path:first-child{stroke-dashoffset:0}}
-
-
-/* ROMERO FAMILY â refined cinematic motion, matching the supplied developed style */
+ 
+ 
+/* ROMERO FAMILY — refined cinematic motion */
 :root{
   --rf-red-glow: rgba(200,25,46,.24);
   --rf-line-hot: rgba(220,53,78,.62);
@@ -180,9 +180,9 @@ header{transition:background .25s ease,border-color .25s ease}
   html{scroll-behavior:auto}
   *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
 }
-
-
-/* ROMERO FAMILY â post-login interface upgraded to match the premium login screen */
+ 
+ 
+/* ROMERO FAMILY — post-login interface upgraded to match the premium login screen */
 :root{
   --rf-red:#c8192e;
   --rf-red-hot:#ff334d;
@@ -265,28 +265,172 @@ button:focus-visible,.tile:focus-visible{outline:2px solid #f0cf8c;outline-offse
 @media(prefers-reduced-motion:reduce){
   .logo,#home>.box{animation:none!important}
 }
-
+ 
+/* ======== ANIMATION LAYER ======== */
+/* ---------- خلفية الجمرات (canvas) ---------- */
+#rfEmbers{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+ 
+/* ---------- دخول متتابع للعناصر ---------- */
+@keyframes rfIn{from{opacity:0;transform:translateY(20px) scale(.96);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+.card,.admin-member,.gallery-item,.tile{animation:rfIn .6s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0)*70ms)}
+ 
+/* ---------- أيقونات الغرف عائمة ---------- */
+@keyframes rfFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-4deg)}}
+.tile .room-icon{animation:rfFloat 4.5s ease-in-out infinite;animation-delay:calc(var(--i,0)*-.6s)}
+.tile:hover .room-icon{animation-duration:1.4s;color:#ffd0d7;box-shadow:0 0 26px #ff334d66}
+ 
+/* ---------- إمالة ثلاثية الأبعاد للبلاطات ---------- */
+.tile{transform-style:preserve-3d;transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.tile:hover,.tile:focus-visible{transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-4px)}
+.tile:before{background-size:200% 100%;animation:rfSweep 4s linear infinite}
+@keyframes rfSweep{to{background-position:-200% 0}}
+ 
+/* ---------- البطل (Hero) ---------- */
+@keyframes rfHeroGlow{0%,100%{box-shadow:0 18px 45px #0006,0 0 0 #c8192e00}50%{box-shadow:0 18px 45px #0006,0 0 38px #c8192e44}}
+#home>.box{animation:rfHeroEnter .65s ease both,rfHeroGlow 5s ease-in-out infinite}
+#home>.box h1{background:linear-gradient(100deg,#fff5f6 30%,#f0cf8c 48%,#ff6679 54%,#fff5f6 70%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:rfTitleShine 6s ease-in-out infinite;text-shadow:none;filter:drop-shadow(0 0 14px #c8192e66)}
+@keyframes rfTitleShine{0%,20%{background-position:120% 0}70%,100%{background-position:-60% 0}}
+#home>.box p{animation:rfIn .8s .35s backwards}
+#home>.box .row{animation:rfIn .8s .5s backwards}
+ 
+/* ---------- عناوين الصفحات ---------- */
+.page>h2{position:relative}
+.page>h2:after{content:"";position:absolute;left:0;bottom:-8px;height:1px;width:0;background:linear-gradient(90deg,#ff334d,#d5ad65,transparent);animation:rfLine 1s .2s ease forwards}
+@keyframes rfLine{to{width:100%}}
+.page.active{animation:rfPage .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rfPage{from{opacity:0;transform:translateX(24px) scale(.99);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+ 
+/* ---------- الرتب ---------- */
+.rank-chip[data-rank="Boss"],.pill{position:relative;overflow:hidden}
+.rank-chip[data-rank="Boss"]:after,.pill:after{content:"";position:absolute;top:0;bottom:0;left:-80%;width:50%;background:linear-gradient(90deg,transparent,#ffffff40,transparent);transform:skewX(-20deg);animation:rfChip 3.5s ease-in-out infinite}
+@keyframes rfChip{0%,50%{left:-80%}100%{left:160%}}
+ 
+/* ---------- الدردشة ---------- */
+@keyframes rfPopL{from{opacity:0;transform:translateX(-26px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes rfPopR{from{opacity:0;transform:translateX(26px) scale(.9)}to{opacity:1;transform:none}}
+.bubble{animation:rfPopL .4s cubic-bezier(.2,1.2,.3,1) backwards;transform-origin:left bottom}
+.bubble.mine{animation-name:rfPopR;transform-origin:right bottom}
+#chatForm button:active{transform:scale(.9) rotate(-6deg)}
+ 
+/* ---------- المكالمات ---------- */
+@keyframes rfRing{0%{box-shadow:0 0 0 0 #c8192e88}100%{box-shadow:0 0 0 22px #c8192e00}}
+@keyframes rfBars{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+#callStatus.live{animation:rfRing 1.3s ease-out infinite;border-color:#ff334d;position:relative;padding-left:56px}
+#callStatus.live:before{content:"";position:absolute;left:18px;top:50%;width:4px;height:22px;margin-top:-11px;background:#ff5870;border-radius:3px;box-shadow:8px 0 #d5ad65,16px 0 #ff5870,24px 0 #d5ad65;animation:rfBars .9s ease-in-out infinite;transform-origin:center}
+#incomingCall .card{animation:rfRing 1.2s ease-out infinite,rfIn .5s backwards;border-color:#ff334d}
+ 
+/* ---------- شريط التنقل ---------- */
+.navbtn{position:relative}
+.navbtn.active>span:first-child{animation:rfBounce .6s cubic-bezier(.2,1.6,.3,1)}
+@keyframes rfBounce{0%{transform:translateY(6px) scale(.7)}60%{transform:translateY(-5px) scale(1.2)}100%{transform:none}}
+.navbtn.active:after{content:"";position:absolute;top:-9px;left:30%;right:30%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#ff334d,transparent);box-shadow:0 0 10px #ff334d;animation:rfIn .4s backwards}
+ 
+/* ---------- تأثير الموجة عند الضغط ---------- */
+button,.btn{position:relative;overflow:hidden}
+.rf-ripple{position:absolute;border-radius:50%;background:#ffffff40;transform:scale(0);animation:rfRipple .6s ease-out forwards;pointer-events:none}
+@keyframes rfRipple{to{transform:scale(1);opacity:0}}
+ 
+/* ---------- شعار وشارة ---------- */
+.brand:hover{animation:rfGlitch .4s steps(2) 2}
+@keyframes rfGlitch{0%{transform:translate(0)}25%{transform:translate(-2px,1px);text-shadow:2px 0 #0ff3,-2px 0 #f0f6}50%{transform:translate(2px,-1px)}100%{transform:none}}
+.logo{animation:rfLogoBreathe 4s ease-in-out infinite,rfSpinIn 1s cubic-bezier(.2,1.3,.3,1) backwards}
+@keyframes rfSpinIn{from{transform:rotate(-180deg) scale(0);opacity:0}}
+ 
+/* ---------- ظهور عند التمرير ---------- */
+.rf-reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rf-reveal.rf-on{opacity:1;transform:none}
+ 
+/* ---------- شريط تقدّم القراءة ---------- */
+#rfProgress{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;background:linear-gradient(90deg,#c8192e,#ff334d,#d5ad65);box-shadow:0 0 12px #ff334d;transition:width .12s}
+ 
+@media(prefers-reduced-motion:reduce){#rfEmbers{display:none}.rf-reveal{opacity:1;transform:none}}
+ 
+/* ---------- حركات شاشة الدخول ---------- */
+.auth-field,.auth-actions,.auth-reset,#authTabs,#authHeading{animation:rfIn .7s cubic-bezier(.2,.8,.2,1) backwards}
+#authTabs{animation-delay:.25s}#authHeading{animation-delay:.35s}
+.auth-field:nth-of-type(1){animation-delay:.42s}.auth-field:nth-of-type(2){animation-delay:.5s}.auth-field:nth-of-type(3){animation-delay:.58s}
+.auth-actions{animation-delay:.68s}.auth-reset{animation-delay:.78s}
+.auth-crest{animation:rfFloat 5s ease-in-out infinite}
+.auth-tagline{background:linear-gradient(90deg,#d5ad65 30%,#fff3d0 50%,#d5ad65 70%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:rfTitleShine 5s ease-in-out infinite}
+#status.auth-status{animation:rfIn .4s backwards}
+ 
+/* ======== ROOMS + ENTRY + WOLF ======== */
+.auth-crest svg path:nth-child(2){stroke-dasharray:320;stroke-dashoffset:320;animation:authDraw 2s .6s ease forwards}
+.auth-crest svg path:nth-child(3){opacity:0;animation:rfEyes 1s 2.2s forwards,rfBlink 5s 4s infinite}
+@keyframes rfEyes{to{opacity:1}}
+@keyframes rfBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.auth-crest svg path:nth-child(3){transform-origin:center 36px;transform-box:fill-box}
+ 
+/* الرومات: ألوان مميزة لكل غرفة بنفس الترتيب */
+.tile:nth-child(1){--ac:#ff334d}.tile:nth-child(2){--ac:#f0cf8c}.tile:nth-child(3){--ac:#ff6a7e}
+.tile:nth-child(4){--ac:#e0a15a}.tile:nth-child(5){--ac:#ff4d6d}.tile:nth-child(6){--ac:#ffd27a}.tile:nth-child(7){--ac:#b89cff}
+.tile{--ac:#ff334d}
+.tile .room-icon{color:var(--ac);border-color:var(--ac);overflow:visible}
+.tile:hover,.tile:focus-visible{border-color:var(--ac)}
+.tile:before{background:linear-gradient(90deg,transparent,var(--ac),#d5ad65,transparent)}
+.tile b:after{content:"\2192";display:inline-block;margin-left:8px;opacity:0;transform:translateX(-10px);transition:.28s}
+.tile:hover b:after,.tile:focus-visible b:after{opacity:1;transform:none}
+.tile:active{transform:scale(.95)!important}
+ 
+/* دخول الرومات: تطير من اليمين واليسار بالتناوب */
+@keyframes rfFlyL{from{opacity:0;transform:perspective(700px) translate3d(-70px,34px,0) rotate(-7deg) scale(.78)}60%{transform:perspective(700px) translate3d(6px,-4px,0) rotate(1deg) scale(1.03)}to{opacity:1;transform:perspective(700px)}}
+@keyframes rfFlyR{from{opacity:0;transform:perspective(700px) translate3d(70px,34px,0) rotate(7deg) scale(.78)}60%{transform:perspective(700px) translate3d(-6px,-4px,0) rotate(-1deg) scale(1.03)}to{opacity:1;transform:perspective(700px)}}
+.tile:nth-child(odd){animation:rfFlyL .85s cubic-bezier(.2,.9,.3,1) backwards;animation-delay:calc(var(--i,0)*110ms)}
+.tile:nth-child(even){animation:rfFlyR .85s cubic-bezier(.2,.9,.3,1) backwards;animation-delay:calc(var(--i,0)*110ms)}
+body.rf-first .tile{animation-delay:calc(1.7s + var(--i,0)*120ms)}
+body.rf-first #home>.box{animation-delay:1.3s}
+ 
+/* أيقونة الذئب تعوي */
+@keyframes rfHowl{0%,70%,100%{transform:translateY(0) rotate(0) scale(1)}78%{transform:translateY(-3px) rotate(-10deg) scale(1.12)}88%{transform:translateY(-2px) rotate(6deg) scale(1.08)}}
+.tile:nth-child(1) .room-icon{animation:rfHowl 4.5s ease-in-out infinite}
+.navbtn[data-page="roster"].active .nav-icon{animation:rfHowl 1.2s ease-in-out}
+ 
+/* كل تطبيق/صفحة بحركة دخول خاصة */
+@keyframes rfFromL{from{opacity:0;transform:translateX(-50px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes rfFromB{from{opacity:0;transform:translateY(60px) scale(.97);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes rfZoom{from{opacity:0;transform:scale(.88);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes rfFlip{from{opacity:0;transform:perspective(900px) rotateX(-18deg) translateY(-20px)}to{opacity:1;transform:none}}
+@keyframes rfDrop{from{opacity:0;transform:translateY(-40px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+#roster.page.active{animation:rfFromL .55s cubic-bezier(.2,.8,.2,1) both}
+#chat.page.active,#gallery.page.active{animation:rfFromB .55s cubic-bezier(.2,.8,.2,1) both}
+#voice.page.active,#mvp.page.active{animation:rfZoom .55s cubic-bezier(.2,.8,.2,1) both}
+#news.page.active{animation:rfFlip .6s cubic-bezier(.2,.8,.2,1) both}
+#admin.page.active{animation:rfDrop .55s cubic-bezier(.2,.8,.2,1) both}
+#mvp .card{position:relative;overflow:hidden}
+#mvp .card:before{content:"\2605";position:absolute;right:14px;top:6px;font-size:44px;color:#d5ad65;opacity:.25;animation:rfSpin 6s linear infinite}
+@keyframes rfSpin{to{transform:rotate(360deg)}}
+ 
+/* شاشة الدخول الافتتاحية بعد تسجيل الدخول */
+#rfSplash{position:fixed;inset:0;z-index:200;display:grid;place-items:center;text-align:center;background:radial-gradient(ellipse at 50% 40%,#4a0f1d,#09080b 70%);animation:rfSplashOut .7s 2.1s ease forwards}
+#rfSplash svg{width:120px;height:130px;margin:0 auto 18px;display:block;filter:drop-shadow(0 0 22px #c8192e)}
+#rfSplash svg path{fill:none;stroke:#ff334d;stroke-width:2;stroke-linejoin:round;stroke-dasharray:330;stroke-dashoffset:330;animation:authDraw 1.5s .1s ease forwards}
+#rfSplash svg path:nth-child(2){fill:#f0cf8c;stroke:none;opacity:0;stroke-dasharray:none;animation:rfEyes .4s 1.2s forwards}
+#rfSplash small{display:block;font-size:11px;letter-spacing:5px;color:#d5ad65;animation:rfIn .8s .5s backwards}
+#rfSplash h2{margin:10px 0 0;font-size:clamp(26px,8vw,44px);letter-spacing:6px;color:#fff3f5;text-shadow:0 0 18px #c8192e;animation:rfIn .9s .8s backwards}
+#rfSplash i{display:block;width:0;height:2px;margin:16px auto 0;background:linear-gradient(90deg,transparent,#ff334d,#d5ad65,transparent);animation:rfLine2 1.4s .9s ease forwards}
+@keyframes rfLine2{to{width:min(280px,70vw)}}
+@keyframes rfSplashOut{to{opacity:0;visibility:hidden;transform:scale(1.08)}}
 </style>
 </head>
 <body><div class="wrap">
-<header><div class="logo">RF</div><div><div class="brand">ROMERO FAMILY</div><div class="sub">LOYALTY Â· POWER Â· RESPECT</div></div><div class="spacer"></div><button id="logout" class="primary hidden">LOG OUT</button></header>
+<header><div class="logo">RF</div><div><div class="brand">ROMERO FAMILY</div><div class="sub">LOYALTY · POWER · RESPECT</div></div><div class="spacer"></div><button id="logout" class="primary hidden">LOG OUT</button></header>
 <section class="box auth-shell" id="authbox">
-<div class="auth-brand" id="welcome"><div class="auth-crest"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 4 55 13v20c0 16-10 27-23 35C19 60 9 49 9 33V13Z"/><path d="M20 23 32 15 44 23 42 42 32 51 22 42Z"/><path d="M24 29h16M32 22v22"/></svg></div><div class="auth-kicker">LOYALTY Â· POWER Â· RESPECT</div><h1>ROMERO<br>FAMILY</h1><p class="auth-tagline">YOUR FAMILY. YOUR LEGACY.</p><div class="auth-rule"><span></span> PRIVATE MEMBERS ACCESS <span></span></div></div>
+<div class="auth-brand" id="welcome"><div class="auth-crest"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 4 55 13v20c0 16-10 27-23 35C19 60 9 49 9 33V13Z"/><path d="M19 20 26 26h12l7-6-1 12 3 5-6 3-3 7-4 4h-4l-4-4-3-7-6-3 3-5Z"/><path fill="#f0cf8c" stroke="none" d="M24 33l5 2-3 2ZM40 33l-5 2 3 2ZM30 45h4l-2 2.5Z"/></svg></div><div class="auth-kicker">LOYALTY · POWER · RESPECT</div><h1>ROMERO<br>FAMILY</h1><p class="auth-tagline">YOUR FAMILY. YOUR LEGACY.</p><div class="auth-rule"><span></span> PRIVATE MEMBERS ACCESS <span></span></div></div>
 <div class="tabs" id="authTabs" data-m="login" role="tablist"><span class="auth-tab-pill"></span><button type="button" data-auth-mode="login" class="on" aria-selected="true">LOGIN</button><button type="button" data-auth-mode="register" aria-selected="false">JOIN THE FAMILY</button></div>
 <h2 id="authHeading">Welcome back</h2>
 <div id="authUserField" class="auth-field hidden"><label for="username">Username</label><input id="username" placeholder="Your family name" autocomplete="username"></div>
 <div class="auth-field"><label for="email">Email</label><input id="email" type="email" placeholder="name@example.com" autocomplete="email"></div>
-<div class="auth-field"><label for="password">Password</label><div class="auth-password"><input id="password" type="password" placeholder="At least 6 characters" autocomplete="current-password"><button id="authEye" type="button" aria-label="Show password">â</button></div></div>
+<div class="auth-field"><label for="password">Password</label><div class="auth-password"><input id="password" type="password" placeholder="At least 6 characters" autocomplete="current-password"><button id="authEye" type="button" aria-label="Show password">👁</button></div></div>
 <div class="auth-actions"><button id="register" class="primary hidden" type="button">CREATE ACCOUNT</button><button id="login" class="primary" type="button">ENTER THE FAMILY</button></div>
 <button id="reset" class="auth-reset" type="button">Forgot password?</button><p id="status" class="status auth-status">Create an account or sign in.</p>
 <div class="auth-foot"><span class="auth-dot"></span> SECURE FAMILY ACCESS <span class="auth-dot"></span></div></section>
 <main id="main" class="hidden">
 <section class="page active" id="home"><div class="box" style="margin:0;background:linear-gradient(120deg,#2b0d15,#111014)"><div class="sub">THE FAMILY HUB</div><h1>ROMERO<br>FAMILY</h1><p>Respect the name. Protect the family. Build the legacy.</p><div class="row"><button class="primary" onclick="go('roster')">VIEW ROSTER</button><button onclick="go('news')">FAMILY NEWS</button></div></div>
-<div class="grid" style="margin-top:12px"><button class="tile" onclick="go('roster')"><i class="room-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3 3 7l5 5 3-3-4-6Zm10 0 4 4-5 5-3-3 4-6ZM8 12l4 4 4-4 2 2-4 4v3h-4v-3l-4-4 2-2Z" fill="currentColor"/></svg></i><b>Gang Roster</b><span>Members, ranks &amp; hierarchy</span></button><button class="tile" onclick="go('news')"><i class="room-icon">&#9639;</i><b>Family News</b><span>Announcements &amp; updates</span></button><button class="tile" onclick="go('chat')"><i class="room-icon">&#9993;</i><b>Family Chat</b><span>Private family conversation</span></button><button class="tile" onclick="go('gallery')"><i class="room-icon">&#9647;</i><b>Photo Gallery</b><span>Shared family memories</span></button><button class="tile" onclick="go('voice')"><i class="room-icon">&#9835;</i><b>Voice Calls</b><span>Talk with family members</span></button><button class="tile" onclick="go('mvp')"><i class="room-icon">&#9733;</i><b>Member of the Month</b><span>Recognize loyalty &amp; activity</span></button><button id="adminTile" class="tile hidden" onclick="go('admin')"><i class="room-icon">&#9881;</i><b>Admin Command</b><span>Approvals, ranks &amp; management</span></button></div>
+<div class="grid" style="margin-top:12px"><button class="tile" onclick="go('roster')"><i class="room-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" fill="currentColor" d="M3 2l5.5 4h7L21 2l-1 7.5 2 3.5-3.5 2-2.5 4.5-2.5 2.5h-3L8 19.5 5.5 15 2 13l2-3.5ZM7.5 11l3.5 1.2-2.5 1.2ZM16.5 11 13 12.2l2.5 1.2ZM10.5 18h3L12 19.8Z"/></svg></i><b>Gang Roster</b><span>Members, ranks &amp; hierarchy</span></button><button class="tile" onclick="go('news')"><i class="room-icon">&#9639;</i><b>Family News</b><span>Announcements &amp; updates</span></button><button class="tile" onclick="go('chat')"><i class="room-icon">&#9993;</i><b>Family Chat</b><span>Private family conversation</span></button><button class="tile" onclick="go('gallery')"><i class="room-icon">&#9647;</i><b>Photo Gallery</b><span>Shared family memories</span></button><button class="tile" onclick="go('voice')"><i class="room-icon">&#9835;</i><b>Voice Calls</b><span>Talk with family members</span></button><button class="tile" onclick="go('mvp')"><i class="room-icon">&#9733;</i><b>Member of the Month</b><span>Recognize loyalty &amp; activity</span></button><button id="adminTile" class="tile hidden" onclick="go('admin')"><i class="room-icon">&#9881;</i><b>Admin Command</b><span>Approvals, ranks &amp; management</span></button></div>
 <h2>Latest announcements</h2><div id="homeNews"></div><h2>Member of the Month</h2><div class="card"><b id="mvpHome">Romero_Marco</b><p id="mvpReasonHome">Recognized for loyalty and activity.</p></div></section>
 <section class="page" id="roster"><button onclick="go('home')">&#8592; Home</button><h2>Gang Roster</h2><p class="muted">Approved members appear here automatically. New members start at Associate rank.</p><input id="search" placeholder="Search members..." oninput="renderRoster()"><select id="rankFilter" onchange="renderRoster()"><option value="">All ranks</option><option>Boss</option><option>Underboss</option><option>Capo</option><option>Soldier</option><option>Associate</option></select><div id="rosterList"></div></section>
 <section class="page" id="news"><button onclick="go('home')">&#8592; Home</button><h2>Family News</h2><div id="newsList"></div></section>
-<section class="page" id="chat"><button onclick="go('home')">&#8592; Home</button><h2>Family Chat</h2><div id="chatbox" class="chatbox"></div><form id="chatForm"><input id="chatText" maxlength="500" placeholder="Write a message..." required><button class="primary">Send message â¤</button></form></section>
+<section class="page" id="chat"><button onclick="go('home')">&#8592; Home</button><h2>Family Chat</h2><div id="chatbox" class="chatbox"></div><form id="chatForm"><input id="chatText" maxlength="500" placeholder="Write a message..." required><button class="primary">Send message ➤</button></form></section>
 <section class="page" id="gallery"><button onclick="go('home')">&#8592; Home</button><h2>Family Gallery</h2><p>Share family photos with approved members.</p><label for="photoFile">Choose a photo</label><input id="photoFile" type="file" accept="image/*"><button id="uploadPhoto" class="primary" type="button">Upload photo</button><div id="galleryStatus" class="voice-status">Choose a photo to share.</div><div id="galleryGrid" class="gallery-grid"></div></section>
 <section class="page" id="voice"><button onclick="go('home')">&#8592; Home</button><h2>Family Voice Calls</h2><p>Direct voice calls with online family members. Keep this page open while calling.</p><div id="callStatus" class="voice-status">Ready for a call.</div><div id="incomingCall"></div><h3>Call a member</h3><div id="callRoster"></div><button id="hangup" class="danger" type="button">End call</button><audio id="remoteAudio" autoplay playsinline></audio></section>
 <section class="page" id="mvp"><button onclick="go('home')">&#8592; Home</button><h2>Member of the Month</h2><div class="card"><b id="mvpPage">Romero_Marco</b><p id="mvpReasonPage">Recognized for loyalty and activity.</p></div></section>
@@ -300,10 +444,10 @@ button:focus-visible,.tile:focus-visible{outline:2px solid #f0cf8c;outline-offse
 <div id="adminRoster"></div></div>
 <div class="card"><h3>Publish announcement</h3><input id="postTitle" placeholder="Title" maxlength="100"><textarea id="postBody" placeholder="Message" rows="4" maxlength="2000"></textarea><button id="publish" class="primary" type="button">Publish for all members</button></div>
 <div class="card"><h3>Member of the Month</h3><input id="mvpName" placeholder="Member username"><input id="mvpReason" placeholder="Reason"><button id="saveMvp" class="primary" type="button">Save for all members</button></div></section></main>
-<nav id="nav" class="hidden"><div class="navinner"><button class="navbtn active" data-page="home" onclick="go('home')"><span>&#8962;</span><span>HOME</span></button><button class="navbtn" data-page="roster" onclick="go('roster')"><span class="nav-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3 3 7l5 5 3-3-4-6Zm10 0 4 4-5 5-3-3 4-6ZM8 12l4 4 4-4 2 2-4 4v3h-4v-3l-4-4 2-2Z" fill="currentColor"/></svg></span><span>ROSTER</span></button><button class="navbtn" data-page="news" onclick="go('news')"><span>&#9639;</span><span>NEWS</span></button><button class="navbtn" data-page="chat" onclick="go('chat')"><span>&#9993;</span><span>CHAT</span></button><button class="navbtn" data-page="gallery" onclick="go('gallery')"><span>&#9647;</span><span>PHOTOS</span></button><button class="navbtn" data-page="voice" onclick="go('voice')"><span>&#9835;</span><span>VOICE</span></button></div></nav></div>
+<nav id="nav" class="hidden"><div class="navinner"><button class="navbtn active" data-page="home" onclick="go('home')"><span>&#8962;</span><span>HOME</span></button><button class="navbtn" data-page="roster" onclick="go('roster')"><span class="nav-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" fill="currentColor" d="M3 2l5.5 4h7L21 2l-1 7.5 2 3.5-3.5 2-2.5 4.5-2.5 2.5h-3L8 19.5 5.5 15 2 13l2-3.5ZM7.5 11l3.5 1.2-2.5 1.2ZM16.5 11 13 12.2l2.5 1.2ZM10.5 18h3L12 19.8Z"/></svg></span><span>ROSTER</span></button><button class="navbtn" data-page="news" onclick="go('news')"><span>&#9639;</span><span>NEWS</span></button><button class="navbtn" data-page="chat" onclick="go('chat')"><span>&#9993;</span><span>CHAT</span></button><button class="navbtn" data-page="gallery" onclick="go('gallery')"><span>&#9647;</span><span>PHOTOS</span></button><button class="navbtn" data-page="voice" onclick="go('voice')"><span>&#9835;</span><span>VOICE</span></button></div></nav></div>
 <script>
 // Login screen mode switch and password visibility; Firebase actions remain unchanged.
-(()=>{const $=id=>document.getElementById(id);let mode='login';function setAuthMode(next){mode=next;const tabs=$('authTabs');tabs.dataset.m=next;$('authHeading').textContent=next==='login'?'Welcome back':'Join the family';$('authUserField').classList.toggle('hidden',next!=='register');$('login').classList.toggle('hidden',next!=='login');$('register').classList.toggle('hidden',next!=='register');$('password').autocomplete=next==='login'?'current-password':'new-password';document.querySelectorAll('[data-auth-mode]').forEach(b=>{const active=b.dataset.authMode===next;b.classList.toggle('on',active);b.setAttribute('aria-selected',String(active))});$('status').textContent=next==='login'?'Sign in to continue to your family.':'Create your account, then wait for Admin approval.'}document.querySelectorAll('[data-auth-mode]').forEach(b=>b.addEventListener('click',()=>setAuthMode(b.dataset.authMode)));$('authEye').addEventListener('click',()=>{const p=$('password');p.type=p.type==='password'?'text':'password';$('authEye').textContent=p.type==='password'?'â':'â';$('authEye').setAttribute('aria-label',p.type==='password'?'Show password':'Hide password')});setAuthMode('login')})();
+(()=>{const $=id=>document.getElementById(id);let mode='login';function setAuthMode(next){mode=next;const tabs=$('authTabs');tabs.dataset.m=next;$('authHeading').textContent=next==='login'?'Welcome back':'Join the family';$('authUserField').classList.toggle('hidden',next!=='register');$('login').classList.toggle('hidden',next!=='login');$('register').classList.toggle('hidden',next!=='register');$('password').autocomplete=next==='login'?'current-password':'new-password';document.querySelectorAll('[data-auth-mode]').forEach(b=>{const active=b.dataset.authMode===next;b.classList.toggle('on',active);b.setAttribute('aria-selected',String(active))});$('status').textContent=next==='login'?'Sign in to continue to your family.':'Create your account, then wait for Admin approval.'}document.querySelectorAll('[data-auth-mode]').forEach(b=>b.addEventListener('click',()=>setAuthMode(b.dataset.authMode)));$('authEye').addEventListener('click',()=>{const p=$('password');p.type=p.type==='password'?'text':'password';$('authEye').textContent=p.type==='password'?'👁':'🙈';$('authEye').setAttribute('aria-label',p.type==='password'?'Show password':'Hide password')});setAuthMode('login')})();
 </script>
 <script type="module">
 const cfg={
@@ -332,19 +476,19 @@ function renderRoster(){let q=($("search")?.value||"").toLowerCase(),rank=$("ran
 window.renderRoster = renderRoster;
 let pc=null,localStream=null,currentCallId=null,currentCallPeerUid=null,callUnsubs=[];
 function renderGallery(data){const items=Object.entries(data||{}).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));const box=$("galleryGrid");if(!box)return;box.innerHTML=items.map(x=>`<div class="card gallery-item"><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.url)}" alt="Family photo" loading="lazy"></a><div class="muted">${esc(x.username||"Family member")}</div></div>`).join("")||"<p>No photos yet.</p>"}
-function renderCallRoster(){const box=$("callRoster");if(!box)return;box.innerHTML=roster.filter(m=>m.uid&&m.uid!==user?.uid).map(m=>`<div class="card"><b>${esc(m.name)}</b><div class="muted">${esc(m.rank||"Associate")} Â· ${esc(m.status||"Active")}</div><button class="primary" data-call-uid="${esc(m.uid)}">ð Call</button></div>`).join("")||"<p>No other roster members available yet. Each roster entry needs a member UID.</p>";box.querySelectorAll("[data-call-uid]").forEach(b=>b.onclick=()=>startCall(b.dataset.callUid))}
-async function uploadPhoto(){const file=$("photoFile").files?.[0];if(!file)return $("galleryStatus").textContent="Choose a photo first.";if(!user)return; if(!file.type.startsWith("image/"))return $("galleryStatus").textContent="Only image files are allowed.";if(file.size>8*1024*1024)return $("galleryStatus").textContent="Photo must be 8 MB or smaller.";const S=window.__rfStorage;try{$("uploadPhoto").disabled=true;$("galleryStatus").textContent="Uploadingâ¦";const path=`family-gallery/${user.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;const ref=S.ref(window.__rfStorage,path);await S.uploadBytes(ref,file,{contentType:file.type});const url=await S.getDownloadURL(ref);await D.push(D.ref(db,"gallery"),{url,path,uid:user.uid,username:profile?.username||user.email||"Member",createdAt:Date.now()});$("photoFile").value="";$("galleryStatus").textContent="Photo shared successfully."}catch(e){$("galleryStatus").textContent="Upload failed: "+e.message+". Check Firebase Storage setup and rules."}finally{$("uploadPhoto").disabled=false}}
+function renderCallRoster(){const box=$("callRoster");if(!box)return;box.innerHTML=roster.filter(m=>m.uid&&m.uid!==user?.uid).map(m=>`<div class="card"><b>${esc(m.name)}</b><div class="muted">${esc(m.rank||"Associate")} · ${esc(m.status||"Active")}</div><button class="primary" data-call-uid="${esc(m.uid)}">📞 Call</button></div>`).join("")||"<p>No other roster members available yet. Each roster entry needs a member UID.</p>";box.querySelectorAll("[data-call-uid]").forEach(b=>b.onclick=()=>startCall(b.dataset.callUid))}
+async function uploadPhoto(){const file=$("photoFile").files?.[0];if(!file)return $("galleryStatus").textContent="Choose a photo first.";if(!user)return; if(!file.type.startsWith("image/"))return $("galleryStatus").textContent="Only image files are allowed.";if(file.size>8*1024*1024)return $("galleryStatus").textContent="Photo must be 8 MB or smaller.";const S=window.__rfStorage;try{$("uploadPhoto").disabled=true;$("galleryStatus").textContent="Uploading…";const path=`family-gallery/${user.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;const ref=S.ref(window.__rfStorage,path);await S.uploadBytes(ref,file,{contentType:file.type});const url=await S.getDownloadURL(ref);await D.push(D.ref(db,"gallery"),{url,path,uid:user.uid,username:profile?.username||user.email||"Member",createdAt:Date.now()});$("photoFile").value="";$("galleryStatus").textContent="Photo shared successfully."}catch(e){$("galleryStatus").textContent="Upload failed: "+e.message+". Check Firebase Storage setup and rules."}finally{$("uploadPhoto").disabled=false}}
 function stopCallListeners(){callUnsubs.forEach(f=>f());callUnsubs=[]}
 async function setupPeer(){pc=new RTCPeerConnection({iceServers:[{urls:"stun:stun.l.google.com:19302"},{urls:"stun:stun1.l.google.com:19302"}]});localStream=await navigator.mediaDevices.getUserMedia({audio:true,video:false});localStream.getTracks().forEach(t=>pc.addTrack(t,localStream));pc.ontrack=e=>{$("remoteAudio").srcObject=e.streams[0];};pc.onconnectionstatechange=()=>{$("callStatus").textContent="Call status: "+pc.connectionState};return pc}
-async function startCall(targetUid){if(!user||targetUid===user.uid)return;try{if(!navigator.mediaDevices?.getUserMedia)throw Error("Microphone access requires HTTPS and a supported browser.");if(pc)await endCall(false);currentCallId=D.push(D.ref(db,"calls/"+targetUid)).key;currentCallPeerUid=targetUid;await setupPeer();pc.onicecandidate=e=>{if(e.candidate)D.push(D.ref(db,`calls/${targetUid}/${currentCallId}/callerCandidates`),e.candidate.toJSON())};const offer=await pc.createOffer();await pc.setLocalDescription(offer);await D.set(D.ref(db,`calls/${targetUid}/${currentCallId}/offer`),{type:offer.type,sdp:offer.sdp,callerUid:user.uid,callerName:profile?.username||user.email||"Family member",createdAt:Date.now()});$("callStatus").textContent="Callingâ¦ waiting for answer.";const answerRef=D.ref(db,`calls/${targetUid}/${currentCallId}/answer`);const unsub=D.onValue(answerRef,async snap=>{if(snap.exists()&&pc&&!pc.currentRemoteDescription)await pc.setRemoteDescription(new RTCSessionDescription(snap.val()))});callUnsubs.push(()=>D.off(answerRef,"value",unsub));const candRef=D.ref(db,`calls/${targetUid}/${currentCallId}/calleeCandidates`);const uc=D.onChildAdded(candRef,s=>{if(pc&&s.exists())pc.addIceCandidate(new RTCIceCandidate(s.val())).catch(()=>{})});callUnsubs.push(()=>D.off(candRef,"child_added",uc))}catch(e){$("callStatus").textContent="Call failed: "+e.message;await endCall(false)}}
+async function startCall(targetUid){if(!user||targetUid===user.uid)return;try{if(!navigator.mediaDevices?.getUserMedia)throw Error("Microphone access requires HTTPS and a supported browser.");if(pc)await endCall(false);currentCallId=D.push(D.ref(db,"calls/"+targetUid)).key;currentCallPeerUid=targetUid;await setupPeer();pc.onicecandidate=e=>{if(e.candidate)D.push(D.ref(db,`calls/${targetUid}/${currentCallId}/callerCandidates`),e.candidate.toJSON())};const offer=await pc.createOffer();await pc.setLocalDescription(offer);await D.set(D.ref(db,`calls/${targetUid}/${currentCallId}/offer`),{type:offer.type,sdp:offer.sdp,callerUid:user.uid,callerName:profile?.username||user.email||"Family member",createdAt:Date.now()});$("callStatus").textContent="Calling… waiting for answer.";const answerRef=D.ref(db,`calls/${targetUid}/${currentCallId}/answer`);const unsub=D.onValue(answerRef,async snap=>{if(snap.exists()&&pc&&!pc.currentRemoteDescription)await pc.setRemoteDescription(new RTCSessionDescription(snap.val()))});callUnsubs.push(()=>D.off(answerRef,"value",unsub));const candRef=D.ref(db,`calls/${targetUid}/${currentCallId}/calleeCandidates`);const uc=D.onChildAdded(candRef,s=>{if(pc&&s.exists())pc.addIceCandidate(new RTCIceCandidate(s.val())).catch(()=>{})});callUnsubs.push(()=>D.off(candRef,"child_added",uc))}catch(e){$("callStatus").textContent="Call failed: "+e.message;await endCall(false)}}
 async function acceptCall(callerUid,callId,offer){try{currentCallId=callId;currentCallPeerUid=callerUid;await setupPeer();pc.onicecandidate=e=>{if(e.candidate)D.push(D.ref(db,`calls/${user.uid}/${callId}/calleeCandidates`),e.candidate.toJSON())};await pc.setRemoteDescription(new RTCSessionDescription(offer));const answer=await pc.createAnswer();await pc.setLocalDescription(answer);await D.set(D.ref(db,`calls/${user.uid}/${callId}/answer`),{type:answer.type,sdp:answer.sdp});const candRef=D.ref(db,`calls/${callerUid}/${callId}/callerCandidates`);const uc=D.onChildAdded(candRef,s=>{if(pc&&s.exists())pc.addIceCandidate(new RTCIceCandidate(s.val())).catch(()=>{})});callUnsubs.push(()=>D.off(candRef,"child_added",uc));$("incomingCall").innerHTML="";$("callStatus").textContent="Connected call"}catch(e){$("callStatus").textContent="Could not answer: "+e.message;await endCall(false)}}
 async function endCall(remove=true){stopCallListeners();if(localStream)localStream.getTracks().forEach(t=>t.stop());localStream=null;if(pc){pc.close();pc=null}if($("remoteAudio"))$("remoteAudio").srcObject=null;if(remove&&currentCallId&&user){try{await D.remove(D.ref(db,`calls/${currentCallPeerUid||user.uid}/${currentCallId}`))}catch(_){}}currentCallId=null;currentCallPeerUid=null;if($("callStatus"))$("callStatus").textContent="Call ended. Ready for another call."}
 function listenIncomingCalls(){if(!user)return;const r=D.ref(db,"calls/"+user.uid);const fn=D.onChildAdded(r,s=>{const c=s.val();if(!c?.offer||c.answer)return;const box=$("incomingCall");if(!box||box.dataset.call===s.key)return;box.dataset.call=s.key;box.innerHTML=`<div class="card"><b>Incoming call from ${esc(c.offer.callerName||"Family member")}</b><div class="row"><button class="primary" id="answerCall">Answer</button><button id="declineCall">Decline</button></div></div>`;$("answerCall").onclick=()=>acceptCall(c.offer.callerUid,s.key,{type:c.offer.type,sdp:c.offer.sdp});$("declineCall").onclick=async()=>{await D.remove(D.ref(db,`calls/${user.uid}/${s.key}`));box.innerHTML="";box.dataset.call=""}});stops.push(()=>D.off(r,"child_added",fn))}
 $("uploadPhoto").onclick=uploadPhoto;$("hangup").onclick=()=>endCall(true);
 function renderNews(){let card=n=>`<div class="card"><b>${esc(n.title)}</b><div class="muted">${esc(n.date||"Family update")}</div><p>${esc(n.body)}</p></div>`;$("newsList").innerHTML=news.map(card).join("")||'<div class="card">No announcements yet.</div>';$("homeNews").innerHTML=news.slice(0,2).map(card).join("")||'<div class="card">No announcements yet.</div>'}
-function renderChat(){$("chatbox").innerHTML=chat.map(c=>`<div class="bubble ${c.uid===user?.uid?"mine":""}">${esc(c.text)}<small>${esc(c.username)} Â· ${esc(c.timeLabel||"")}</small></div>`).join("")||"<p>No messages yet.</p>";$("chatbox").scrollTop=$("chatbox").scrollHeight}
+function renderChat(){$("chatbox").innerHTML=chat.map(c=>`<div class="bubble ${c.uid===user?.uid?"mine":""}">${esc(c.text)}<small>${esc(c.username)} · ${esc(c.timeLabel||"")}</small></div>`).join("")||"<p>No messages yet.</p>";$("chatbox").scrollTop=$("chatbox").scrollHeight}
 function renderMvp(){["mvpHome","mvpPage"].forEach(id=>$(id).textContent=mvp.name||"Romero_Marco");["mvpReasonHome","mvpReasonPage"].forEach(id=>$(id).textContent=mvp.reason||"Recognized for loyalty and activity.")}
-function renderPending(list){$("pending").innerHTML=list.map(m=>`<div class="card"><b>${esc(m.username||m.email||m.uid)}</b><div class="muted">${esc(m.email||"")} Â· ${esc(m.status||"pending")}</div><div class="row" style="margin-top:10px"><button data-approve="${esc(m.uid)}" class="primary">Approve</button><button data-reject="${esc(m.uid)}" class="danger">Reject</button><button data-delete-member="${esc(m.uid)}" class="danger">Delete profile</button></div></div>`).join("")||"<p>No pending accounts.</p>";
+function renderPending(list){$("pending").innerHTML=list.map(m=>`<div class="card"><b>${esc(m.username||m.email||m.uid)}</b><div class="muted">${esc(m.email||"")} · ${esc(m.status||"pending")}</div><div class="row" style="margin-top:10px"><button data-approve="${esc(m.uid)}" class="primary">Approve</button><button data-reject="${esc(m.uid)}" class="danger">Reject</button><button data-delete-member="${esc(m.uid)}" class="danger">Delete profile</button></div></div>`).join("")||"<p>No pending accounts.</p>";
  $("pending").querySelectorAll("[data-approve]").forEach(b=>b.onclick=async()=>{const uid=b.dataset.approve;const member=list.find(x=>x.uid===uid);const name=member?.username||member?.email?.split("@")[0]||"Member";try{await D.update(D.ref(db,"members/"+uid),{status:"approved"});await D.set(D.ref(db,"roster/"+uid),{name,rank:"Associate",status:"Active",uid,createdAt:member?.createdAt||Date.now(),approvedAt:Date.now()});alert("Member approved and added to Gang Roster.")}catch(e){alert("Member status may have changed, but roster sync failed: "+e.message+". Check Firebase Database rules and retry.")}});
  $("pending").querySelectorAll("[data-reject]").forEach(b=>b.onclick=async()=>{let uid=b.dataset.reject;if(!confirm("Reject this registration?"))return;try{await D.update(D.ref(db,"members/"+uid),{status:"rejected"});await D.remove(D.ref(db,"roster/"+uid));alert("Registration rejected and removed from Gang Roster.")}catch(e){alert("Error: "+e.message)}});
  $("pending").querySelectorAll("[data-delete-member]").forEach(b=>b.onclick=async()=>{let uid=b.dataset.deleteMember;if(!confirm("Delete this member profile from the database? This does not delete the Firebase Authentication login."))return;try{await D.remove(D.ref(db,"members/"+uid));await D.remove(D.ref(db,"roster/"+uid));alert("Member profile and roster entry deleted. The Authentication account remains.")}catch(e){alert("Error: "+e.message)}})}
@@ -357,12 +501,12 @@ function renderAdminRoster(){
    const rank=m.rank||"Associate";
    const initial=(m.name||"M").trim().charAt(0).toUpperCase()||"M";
    return `<div class="admin-member">
-    <div class="admin-member-top"><div class="admin-avatar">${esc(initial)}</div><div style="min-width:0;flex:1"><div class="admin-member-name">${esc(m.name||"Unnamed member")}</div><div class="admin-member-meta">${esc(m.status||"Active")}</div><span class="rank-chip" data-rank="${esc(rank)}">â ${esc(rank)}</span></div></div>
+    <div class="admin-member-top"><div class="admin-avatar">${esc(initial)}</div><div style="min-width:0;flex:1"><div class="admin-member-name">${esc(m.name||"Unnamed member")}</div><div class="admin-member-meta">${esc(m.status||"Active")}</div><span class="rank-chip" data-rank="${esc(rank)}">★ ${esc(rank)}</span></div></div>
     <div class="admin-rank-controls"><select data-rank-for="${esc(m.id)}" aria-label="Rank for ${esc(m.name)}">${rankOptions.map(r=>`<option value="${r}" ${rank===r?"selected":""}>${r}</option>`).join("")}</select><button class="primary" data-save-rank="${esc(m.id)}">Save rank</button></div>
     <div class="admin-actions"><button data-delete="${esc(m.id)}" class="danger">Delete roster entry</button><span class="admin-member-meta" style="align-self:center">Rank changes apply to roster</span></div>
    </div>`;
  }).join("")||'<div class="card">No members match this search or rank filter.</div>';
- $("adminRoster").querySelectorAll("[data-save-rank]").forEach(b=>b.onclick=async()=>{if(!admin)return alert("Admin access required.");const id=b.dataset.saveRank;const select=$("adminRoster").querySelector(`[data-rank-for="${CSS.escape(id)}"]`);if(!select)return;try{b.disabled=true;b.textContent="Savingâ¦";await D.update(D.ref(db,"roster/"+id),{rank:select.value,updatedAt:Date.now(),updatedBy:user.uid});b.textContent="Saved â";setTimeout(()=>{if(b.isConnected){b.textContent="Save rank";b.disabled=false}},1000)}catch(e){alert("Could not update rank: "+e.message);b.textContent="Save rank";b.disabled=false}});
+ $("adminRoster").querySelectorAll("[data-save-rank]").forEach(b=>b.onclick=async()=>{if(!admin)return alert("Admin access required.");const id=b.dataset.saveRank;const select=$("adminRoster").querySelector(`[data-rank-for="${CSS.escape(id)}"]`);if(!select)return;try{b.disabled=true;b.textContent="Saving…";await D.update(D.ref(db,"roster/"+id),{rank:select.value,updatedAt:Date.now(),updatedBy:user.uid});b.textContent="Saved ✓";setTimeout(()=>{if(b.isConnected){b.textContent="Save rank";b.disabled=false}},1000)}catch(e){alert("Could not update rank: "+e.message);b.textContent="Save rank";b.disabled=false}});
  $("adminRoster").querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(!admin)return alert("Admin access required.");if(confirm("Delete this roster entry? This does not delete the member's login."))try{await D.remove(D.ref(db,"roster/"+b.dataset.delete))}catch(e){alert(e.message)}});
 }
 $("adminRosterSearch")?.addEventListener("input",renderAdminRoster);
@@ -379,5 +523,94 @@ $("addRoster").onclick=async()=>{if(!admin)return;let name=$("newName").value.tr
 $("publish").onclick=async()=>{if(!admin)return;let title=$("postTitle").value.trim(),body=$("postBody").value.trim();if(!title||!body)return alert("Enter title and message.");try{await D.push(D.ref(db,"announcements"),{title,body,date:new Date().toLocaleDateString(),createdAt:Date.now(),authorUid:user.uid});$("postTitle").value="";$("postBody").value=""}catch(e){alert(e.message)}};
 $("saveMvp").onclick=async()=>{if(!admin)return;let name=$("mvpName").value.trim();if(!name)return alert("Enter member name.");try{await D.set(D.ref(db,"mvp"),{name,reason:$("mvpReason").value.trim()||"Recognized for loyalty and activity."})}catch(e){alert(e.message)}};
 boot();
-</script></body></html>
+</script><script id="rf-anim-js">
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+ 
+/* 1) جمرات حمراء وذهبية تطفو في الخلفية */
+if(!reduce){
+ const c=document.createElement('canvas');c.id='rfEmbers';document.body.prepend(c);
+ const x=c.getContext('2d');let W,H,P=[];
+ const size=()=>{W=c.width=innerWidth;H=c.height=innerHeight};size();addEventListener('resize',size);
+ const mk=init=>({x:Math.random()*W,y:init?Math.random()*H:H+10,r:Math.random()*2.2+.4,v:Math.random()*.6+.2,d:Math.random()*Math.PI*2,gold:Math.random()<.25,a:Math.random()*.6+.2});
+ for(let i=0;i<Math.min(70,W/14);i++)P.push(mk(true));
+ (function loop(){x.clearRect(0,0,W,H);
+  for(const p of P){p.y-=p.v;p.d+=.015;p.x+=Math.sin(p.d)*.4;
+   if(p.y<-10)Object.assign(p,mk(false));
+   const fade=Math.min(1,p.y/(H*.35));
+   x.beginPath();x.arc(p.x,p.y,p.r,0,7);
+   x.fillStyle=(p.gold?'rgba(213,173,101,':'rgba(255,51,77,')+(p.a*fade)+')';
+   x.shadowBlur=12;x.shadowColor=p.gold?'#d5ad65':'#ff334d';x.fill()}
+  requestAnimationFrame(loop)})();
+}
+ 
+/* 2) ترتيب الدخول المتتابع للعناصر (يعمل أيضًا على العناصر الجديدة) */
+const stagger=el=>{[...el.children].forEach((ch,i)=>{if(!ch.style.getPropertyValue('--i'))ch.style.setProperty('--i',Math.min(i,14))})};
+['#rosterList','#newsList','#homeNews','#galleryGrid','#adminRoster','#callRoster','#pending','.grid'].forEach(s=>{
+ const el=$(s);if(!el)return;stagger(el);
+ new MutationObserver(()=>{[...el.children].forEach((ch,i)=>ch.style.setProperty('--i',Math.min(i,14)))}).observe(el,{childList:true})});
+ 
+/* 3) تأثير الموجة عند الضغط على أي زر */
+document.addEventListener('pointerdown',e=>{
+ const b=e.target.closest('button,.btn');if(!b||b.disabled)return;
+ const r=b.getBoundingClientRect(),s=Math.max(r.width,r.height)*2,d=document.createElement('span');
+ d.className='rf-ripple';d.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;
+ b.appendChild(d);setTimeout(()=>d.remove(),650)});
+ 
+/* 4) إمالة ثلاثية الأبعاد للبلاطات مع حركة الماوس */
+if(!reduce&&matchMedia('(hover:hover)').matches){
+ document.addEventListener('pointermove',e=>{
+  const t=e.target.closest('.tile');if(!t)return;
+  const r=t.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+  t.style.setProperty('--ry',(px*10)+'deg');t.style.setProperty('--rx',(-py*10)+'deg')});
+ document.addEventListener('pointerout',e=>{const t=e.target.closest('.tile');if(t){t.style.setProperty('--rx','0deg');t.style.setProperty('--ry','0deg')}});
+}
+ 
+/* 5) حالة المكالمة: نبض + موجات صوت عند الاتصال */
+const cs=$('#callStatus');
+if(cs)new MutationObserver(()=>{const t=cs.textContent;cs.classList.toggle('live',/Calling|connected|Connected/.test(t)&&!/ended|failed/i.test(t))}).observe(cs,{childList:true,characterData:true,subtree:true});
+ 
+/* 6) ظهور العناصر عند التمرير */
+if('IntersectionObserver' in window&&!reduce){
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('rf-on');io.unobserve(e.target)}}),{threshold:.12});
+ const watch=()=>$$('.page h2,.page h3,#home .card').forEach(el=>{if(!el.dataset.rf){el.dataset.rf=1;el.classList.add('rf-reveal');io.observe(el)}});
+ watch();setInterval(watch,1500);
+}
+ 
+/* 7) شريط تقدّم التمرير */
+const pb=document.createElement('div');pb.id='rfProgress';document.body.appendChild(pb);
+addEventListener('scroll',()=>{const h=document.documentElement;pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+ 
+/* 8) العدّ التصاعدي لعدد الأعضاء في الرتب (اختياري: يظهر بجانب عنوان القائمة) */
+const rl=$('#rosterList');
+if(rl){const lbl=document.createElement('span');lbl.className='pill';lbl.style.cssText='margin-inline-start:auto;font-size:11px';
+ const h=$('#roster>h2');if(h){h.appendChild(lbl);
+  new MutationObserver(()=>{const n=rl.querySelectorAll('.member').length,from=+lbl.dataset.n||0;lbl.dataset.n=n;
+   const t0=performance.now();(function tick(t){const k=Math.min(1,(t-t0)/600);lbl.textContent=Math.round(from+(n-from)*k)+' MEMBERS';if(k<1)requestAnimationFrame(tick)})(t0)}).observe(rl,{childList:true})}}
+})();
+</script>
+<script id="rf-splash-js">
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const main=document.getElementById('main');if(!main)return;
+let was=main.classList.contains('hidden');
+new MutationObserver(()=>{
+ const hidden=main.classList.contains('hidden');
+ if(was&&!hidden&&!reduce){
+  document.body.classList.add('rf-first');
+  const u=window.__rfUser&&window.__rfUser();
+  const name=((u&&(u.displayName||(u.email||'').split('@')[0]))||'Family').toUpperCase().replace(/[<>&"]/g,'');
+  const d=document.createElement('div');d.id='rfSplash';
+  d.innerHTML='<div><svg viewBox="0 0 64 72"><path d="M19 20 26 26h12l7-6-1 12 3 5-6 3-3 7-4 4h-4l-4-4-3-7-6-3 3-5Z"/><path d="M24 33l5 2-3 2ZM40 33l-5 2 3 2ZM30 45h4l-2 2.5Z"/></svg><small>WELCOME BACK</small><h2>'+name+'</h2><i></i></div>';
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),2900);
+  setTimeout(()=>document.body.classList.remove('rf-first'),4600);
+ }
+ was=hidden;
+}).observe(main,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body></html>
+ 
 

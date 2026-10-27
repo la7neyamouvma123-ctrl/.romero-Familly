@@ -2,7 +2,7 @@
 {
   "appId": "com.romerofamily.app",
   "appName": "ROMERO FAMILY",
-  "webDir": ".",
+  "webDir": "www",
   "server": {
     "androidScheme": "https"
   }

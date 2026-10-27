@@ -23,14 +23,13 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Install Capacitor
-        run: |
-          npm init -y
-          npm install @capacitor/core @capacitor/cli @capacitor/android
-          npx cap init "ROMERO FAMILY" "com.romerofamily.app" --web-dir=.
-          npx cap add android
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build Android APK
+      - name: Install Android platform
+        run: npx cap add android
+
+      - name: Build APK
         run: |
           cd android
           chmod +x gradlew
@@ -42,3 +41,4 @@ jobs:
           name: ROMERO-FAMILY-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+

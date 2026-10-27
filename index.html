@@ -181,6 +181,91 @@ header{transition:background .25s ease,border-color .25s ease}
   *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
 }
 
+
+/* ROMERO FAMILY â post-login interface upgraded to match the premium login screen */
+:root{
+  --rf-red:#c8192e;
+  --rf-red-hot:#ff334d;
+  --rf-gold:#d5ad65;
+  --rf-glass:rgba(18,11,16,.88);
+}
+.wrap{max-width:920px;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+header{min-height:72px;padding:13px 17px;gap:13px;border-bottom:1px solid #7e26384d;background:linear-gradient(110deg,rgba(16,8,13,.97),rgba(9,8,12,.94));}
+.logo{width:45px;height:45px;display:grid;place-items:center;padding:0;border-radius:14px;font-size:19px;letter-spacing:1px;color:#f7e8c7;border-color:#c94a5c;background:linear-gradient(145deg,#641326,#170b11);animation:rfLogoBreathe 4s ease-in-out infinite}
+@keyframes rfLogoBreathe{0%,100%{box-shadow:0 0 0 3px #c8192e12,0 0 13px #c8192e24}50%{box-shadow:0 0 0 5px #c8192e15,0 0 26px #c8192e48}}
+.brand{font-size:clamp(15px,4vw,20px);line-height:1.2}
+header .sub{margin-top:5px;font-size:9px;letter-spacing:2.2px;color:#d5ad65}
+#main{margin:14px auto;padding:0;border:0;background:transparent;box-shadow:none}
+.page{padding:0 1px 12px}
+#home>.box{margin:0!important;min-height:235px;padding:26px 21px;border-radius:24px;border:1px solid #713044;background:radial-gradient(ellipse at 90% 10%,#8e10253b,transparent 42%),linear-gradient(135deg,#2b0d17 0%,#171017 56%,#0e0b10 100%);box-shadow:0 18px 45px #0006, inset 0 1px #ffffff0c;animation:rfHeroEnter .65s ease both}
+@keyframes rfHeroEnter{from{opacity:0;transform:translateY(13px) scale(.99)}to{opacity:1;transform:none}}
+#home>.box .sub{font-size:9px;letter-spacing:3px;color:#f0788a;font-weight:900}
+#home>.box h1{font-size:clamp(36px,10vw,54px);line-height:.96;letter-spacing:-1.2px;margin:17px 0 12px;color:#fff5f6;text-shadow:0 0 16px #c8192e45,0 4px 0 #4a0d19}
+#home>.box p{max-width:440px;color:#d6c1c9;font-size:13px}
+#home>.box .row{margin-top:20px;max-width:430px}
+#home>.box .row button{min-height:46px}
+.page>h2{font-size:17px;letter-spacing:1px;text-transform:uppercase;color:#f0cf8c;margin:24px 2px 12px}
+.page>h2:before{height:25px;width:3px}
+.page>h3,.card h3{color:#f0cf8c;letter-spacing:.4px}
+.grid{margin-top:19px!important;gap:12px}
+.tile{min-height:135px;padding:17px 15px;border-radius:17px;background:linear-gradient(145deg,rgba(39,21,31,.97),rgba(14,11,15,.98));border-color:#512a37;box-shadow:inset 0 1px #ffffff0a,0 9px 24px #0004}
+.tile:before{height:2px;opacity:.9}
+.tile .room-icon{width:40px;height:40px;border-radius:13px;color:#ff8192;background:linear-gradient(145deg,#581427,#1b0b12);border-color:#984054;box-shadow:inset 0 1px #ffffff14,0 0 18px #c8192e1c}
+.tile b{font-size:12px;line-height:1.35;letter-spacing:.75px}
+.tile span{font-size:10px;line-height:1.5;color:#c1b0b8}
+.card{padding:15px;border-radius:16px;border-color:#492631;background:linear-gradient(145deg,rgba(29,17,24,.96),rgba(13,11,15,.98));box-shadow:0 8px 23px #0003,inset 0 1px #ffffff05}
+.card b{color:#f7e8ec}
+.card p{font-size:13px}
+.page>button:first-child{border-color:#63303e;background:linear-gradient(145deg,#24151d,#100c11);color:#f4cbd3}
+#rosterList .card{min-height:70px}
+#rosterList .card b{font-size:14px}
+.pill{border:1px solid #713044;background:linear-gradient(135deg,#4a1422,#241018);color:#ffadba;font-weight:900;letter-spacing:.3px}
+#newsList .card b,#homeNews .card b{display:block;color:#f2cf8b;font-size:14px;margin-bottom:5px}
+#chatbox{height:min(46vh,430px);min-height:240px;border:1px solid #512b38;border-radius:17px;background:linear-gradient(180deg,#0b090d,#120b10);padding:12px}
+.bubble{border-color:#4a2a35;border-radius:14px;background:linear-gradient(135deg,#281822,#171017);padding:11px 13px;line-height:1.45}
+.bubble.mine{background:linear-gradient(135deg,#651629,#35101b);border-color:#9a3449}
+#chatForm{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;margin-top:10px}
+#chatForm input{min-width:0;margin:0}
+#chatForm button{min-height:44px;padding-inline:12px}
+.gallery-grid{gap:12px}
+.gallery-item{padding:9px}
+.gallery-item img{border:1px solid #512b38;border-radius:12px}
+.voice-status{background:linear-gradient(135deg,#21151d,#100d12);border-color:#633041;border-radius:14px;padding:13px}
+#callRoster .card{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#callRoster .card b{min-width:0;overflow-wrap:anywhere}
+#admin .card{padding:16px}
+#admin .card h3{margin-top:2px;font-size:14px;text-transform:uppercase;letter-spacing:1px}
+#pending .card{border-color:#663041}
+.admin-toolbar{margin-top:13px}
+nav{padding:9px 5px calc(9px + env(safe-area-inset-bottom));background:rgba(8,7,10,.93);border-top:1px solid #67263a;box-shadow:0 -10px 30px #0004}
+.navinner{max-width:920px}
+.navbtn{min-width:0;gap:5px;color:#a99aa3;font-size:9px;letter-spacing:.7px}
+.navbtn>span:first-child{font-size:17px;line-height:1.1}
+.navbtn.active{background:linear-gradient(145deg,#4a1422,#210d15);border-color:#8d3449;color:#ff8a9b;box-shadow:inset 0 1px #ffffff10,0 0 18px #c8192e22}
+#status:not(.auth-status){padding:9px 11px;border:1px solid #60303e;border-radius:11px;background:#1b1016}
+button:focus-visible,.tile:focus-visible{outline:2px solid #f0cf8c;outline-offset:3px}
+@media(min-width:600px){
+  #main{margin:20px auto}
+  #home>.box{padding:34px 32px;min-height:270px}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .tile{min-height:148px}
+  .page{padding-inline:4px}
+}
+@media(max-width:390px){
+  header{padding:11px 12px}
+  .logo{width:40px;height:40px}
+  .brand{letter-spacing:1.5px}
+  #home>.box{padding:22px 17px}
+  #home>.box .row{flex-direction:column}
+  #chatForm{grid-template-columns:1fr}
+  #chatForm button{width:100%}
+  .tile{min-height:125px;padding:13px}
+  .navbtn{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .logo,#home>.box{animation:none!important}
+}
+
 </style>
 </head>
 <body><div class="wrap">

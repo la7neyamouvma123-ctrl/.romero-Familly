@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#09090b">
+<meta name="color-scheme" content="dark">
 <title>ROMERO FAMILY</title>
 <style>
 :root{--bg:#09090b;--panel:#171317;--red:#c8192e;--gold:#d5ad65;--line:#3b3037;--muted:#b5aab0}
@@ -95,17 +96,105 @@ button:active{transform:scale(.975);filter:brightness(1.12)}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
 
 .icon-svg{display:block;width:1em;height:1em;fill:currentColor}.room-icon .icon-svg{width:30px;height:30px}.nav-icon .icon-svg{width:19px;height:19px}.room-icon{display:flex;align-items:center;justify-content:center}
+
+/* Login screen: developed cinematic motion, no extra particle effects */
+.auth-shell{width:calc(100% - 28px);max-width:470px;margin:clamp(20px,5vh,54px) auto 36px;padding:26px 22px 22px;position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(155deg,#1c1118f5,#100d12f8 62%,#160b10f5);border:1px solid #693040;box-shadow:0 26px 75px #0009,0 0 0 1px #c8192e12,0 0 34px #c8192e13;animation:authEnter .9s cubic-bezier(.2,.8,.2,1) both}
+.auth-shell:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,#ff334d,#d5ad65,#ff334d,transparent);background-size:220% 100%;animation:authSweep 7s linear infinite}
+@keyframes authEnter{from{opacity:0;transform:translateY(28px) scale(.975)}to{opacity:1;transform:none}}
+@keyframes authSweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.auth-brand{text-align:center;padding:8px 0 20px}.auth-crest{width:70px;height:78px;margin:0 auto 12px;filter:drop-shadow(0 0 14px #c8192e45)}.auth-crest svg{width:100%;height:100%;fill:none;stroke:#d5ad65;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.auth-crest svg path:first-child{stroke-dasharray:240;stroke-dashoffset:240;animation:authDraw 1.7s .15s ease forwards}.auth-crest svg path:nth-child(2){stroke:#c8192e;stroke-width:2.5}.auth-crest svg path:nth-child(3){stroke:#f0cf8c;stroke-width:2.5}@keyframes authDraw{to{stroke-dashoffset:0}}
+.auth-kicker{font-size:9px;font-weight:900;letter-spacing:3px;color:#e95b70}.auth-brand h1{font-size:clamp(32px,9vw,45px);line-height:.98;letter-spacing:1px;margin:13px 0 10px;text-align:center;color:#fff4f5;text-shadow:0 0 9px #c8192e70,0 3px 0 #5c101e;animation:redPulse 4s ease-in-out infinite}.auth-tagline{font-size:11px!important;letter-spacing:2.8px;color:#d5ad65!important;margin:0!important;font-weight:800}.auth-rule{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:19px;color:#91818a;font-size:8px;letter-spacing:1.8px}.auth-rule span{height:1px;width:30px;background:linear-gradient(90deg,transparent,#8b3445)}
+#authTabs.tabs{display:grid;grid-template-columns:1fr 1fr;position:relative;isolation:isolate;background:#0b090d;border:1px solid #38232c;border-radius:13px;padding:4px;margin:0 0 20px;overflow:hidden}#authTabs .auth-tab-pill{position:absolute;z-index:-1;left:4px;top:4px;bottom:4px;width:calc(50% - 4px);border-radius:9px;background:linear-gradient(135deg,#e32842,#790e20);box-shadow:0 4px 16px #c8192e45;transition:transform .42s cubic-bezier(.7,0,.2,1)}#authTabs[data-m="register"] .auth-tab-pill{transform:translateX(100%)}#authTabs button{background:transparent;border:0;box-shadow:none;min-height:40px;padding:9px 4px;color:#a99aa2;font-size:10px;letter-spacing:.8px}#authTabs button.on{color:#fff}
+#authHeading{font-size:21px;color:#f0cf8c;margin:0 0 14px}.auth-field{margin:0 0 13px}.auth-field label{display:block;margin:0 0 6px;color:#d7c7ce;font-size:11px;letter-spacing:.5px}.auth-field input{margin:0;min-height:49px;padding:13px 14px;border-radius:12px;background:#0b090d;border-color:#402631;font-size:14px}.auth-field input:focus{border-color:#c8192e;box-shadow:0 0 0 3px #c8192e24}.auth-password{position:relative}.auth-password input{padding-right:52px}.auth-password #authEye{position:absolute;right:5px;top:4px;min-width:40px;width:40px;height:40px;min-height:40px;padding:0;border:0;background:transparent;box-shadow:none;color:#cbb8c1;font-size:18px}.auth-actions{display:grid;grid-template-columns:1fr}.auth-actions button{width:100%;min-height:49px;border-radius:12px;letter-spacing:1px;font-size:11px}.auth-reset{display:block;margin:13px auto 0;background:transparent;border:0;box-shadow:none;color:#c6aeb8;text-decoration:underline;text-underline-offset:3px;font-size:11px;min-height:32px}.auth-status{text-align:center;min-height:24px;margin:13px 0 0;font-size:11px}.auth-foot{display:flex;justify-content:center;align-items:center;gap:8px;color:#786b73;font-size:8px;letter-spacing:1.7px;margin-top:18px}.auth-dot{width:4px;height:4px;border-radius:50%;background:#c8192e;box-shadow:0 0 8px #c8192e}@media(min-width:600px){.auth-shell{padding:30px 32px 25px}}@media(prefers-reduced-motion:reduce){.auth-shell,.auth-shell:before,.auth-brand h1,.auth-crest svg path:first-child{animation:none!important}.auth-crest svg path:first-child{stroke-dashoffset:0}}
+
+
+/* ROMERO FAMILY â refined cinematic motion, matching the supplied developed style */
+:root{
+  --rf-red-glow: rgba(200,25,46,.24);
+  --rf-line-hot: rgba(220,53,78,.62);
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh}
+body:before{will-change:transform;transform:translateZ(0)}
+body:after{pointer-events:none}
+header{transition:background .25s ease,border-color .25s ease}
+.logo{animation:rfLogoBreath 4.5s ease-in-out infinite;transition:transform .25s ease,box-shadow .25s ease}
+@keyframes rfLogoBreath{
+  0%,100%{box-shadow:0 0 0 4px #c8192e10,0 0 18px #c8192e1c}
+  50%{box-shadow:0 0 0 5px #c8192e18,0 0 28px #c8192e38}
+}
+.brand{animation:redPulse 4s ease-in-out infinite}
+#authbox{
+  position:relative;isolation:isolate;overflow:hidden;
+  animation:rfAuthEnter .65s cubic-bezier(.2,.75,.25,1) both;
+  box-shadow:0 18px 55px #0006,0 0 34px #c8192e0b;
+}
+#authbox:before{
+  content:"";position:absolute;inset:0 0 auto;height:2px;z-index:-1;
+  background:linear-gradient(90deg,transparent,#d5ad65,#ff334d,#d5ad65,transparent);
+  background-size:200% 100%;animation:rfAuthLine 7s linear infinite;
+}
+#authbox:after{
+  content:"RF";position:absolute;right:-12px;bottom:-45px;z-index:-1;
+  font-size:clamp(100px,25vw,180px);font-weight:1000;letter-spacing:-.1em;
+  line-height:1;color:#fff;opacity:.025;pointer-events:none;
+}
+@keyframes rfAuthEnter{from{opacity:0;transform:translateY(16px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes rfAuthLine{0%{background-position:100% 0}100%{background-position:-100% 0}}
+#authbox h1{animation:rfTitleEnter .7s .08s both}
+@keyframes rfTitleEnter{from{opacity:0;transform:translateY(8px);letter-spacing:1px}to{opacity:1;transform:translateY(0);letter-spacing:-1px}}
+#authbox input{transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#authbox input:focus{border-color:#c8192e;box-shadow:0 0 0 3px #c8192e20, inset 0 2px 5px #0005}
+#authbox button{position:relative;overflow:hidden}
+#authbox button.primary:after{
+  content:"";position:absolute;top:-50%;bottom:-50%;left:-65%;width:35%;
+  transform:skewX(-22deg);background:linear-gradient(90deg,transparent,#ffffff35,transparent);
+  animation:rfButtonSweep 5.5s ease-in-out infinite;
+}
+@keyframes rfButtonSweep{0%,55%{left:-65%}85%,100%{left:140%}}
+.page.active{animation:pageEnter .28s cubic-bezier(.2,.7,.25,1) both}
+.tile{will-change:transform}
+.tile:focus-visible{outline:2px solid #ff536b;outline-offset:3px}
+.card{animation:rfCardEnter .32s ease both}
+@keyframes rfCardEnter{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.status{transition:color .2s ease}
+#nav{transform:translateY(0);transition:transform .25s ease,background .25s ease}
+.navbtn{transition:color .2s ease,background .2s ease,transform .2s ease}
+.navbtn.active{animation:rfNavGlow 2.8s ease-in-out infinite}
+@keyframes rfNavGlow{0%,100%{box-shadow:inset 0 0 0 1px #7b2637,0 0 8px #c8192e12}50%{box-shadow:inset 0 0 0 1px #a6384c,0 0 17px #c8192e25}}
+#home>.box:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(110deg,transparent 25%,#ffffff05 45%,transparent 62%);
+  background-size:220% 100%;animation:lightSweep 12s linear infinite;
+}
+#home>.box>*{position:relative}
+@media(max-width:420px){
+  .wrap{padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+  header{gap:10px;padding:13px 12px}
+  .logo{padding:8px}
+  #authbox{margin:12px;padding:15px}
+  #authbox .row{gap:7px}
+  #authbox .row button{padding:10px 8px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
+}
+
 </style>
 </head>
 <body><div class="wrap">
 <header><div class="logo">RF</div><div><div class="brand">ROMERO FAMILY</div><div class="sub">LOYALTY Â· POWER Â· RESPECT</div></div><div class="spacer"></div><button id="logout" class="primary hidden">LOG OUT</button></header>
-<section class="box" id="authbox">
-<div id="welcome"><div class="sub">WELCOME TO THE FAMILY</div><h1>ROMERO FAMILY RP</h1><p>A family. A legacy. One code. Sign in or create an account to enter.</p></div>
-<h2>Enter the family</h2><label>Username (for new accounts)</label><input id="username" placeholder="RP username" autocomplete="username">
-<label>Email</label><input id="email" type="email" placeholder="name@example.com" autocomplete="email">
-<label>Password</label><input id="password" type="password" placeholder="At least 6 characters" autocomplete="current-password">
-<div class="row"><button id="register" class="primary" type="button">CREATE ACCOUNT</button><button id="login" type="button">LOGIN</button></div>
-<button id="reset" style="margin-top:8px" type="button">RESET PASSWORD</button><p id="status" class="status">Create an account or sign in.</p></section>
+<section class="box auth-shell" id="authbox">
+<div class="auth-brand" id="welcome"><div class="auth-crest"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 4 55 13v20c0 16-10 27-23 35C19 60 9 49 9 33V13Z"/><path d="M20 23 32 15 44 23 42 42 32 51 22 42Z"/><path d="M24 29h16M32 22v22"/></svg></div><div class="auth-kicker">LOYALTY Â· POWER Â· RESPECT</div><h1>ROMERO<br>FAMILY</h1><p class="auth-tagline">YOUR FAMILY. YOUR LEGACY.</p><div class="auth-rule"><span></span> PRIVATE MEMBERS ACCESS <span></span></div></div>
+<div class="tabs" id="authTabs" data-m="login" role="tablist"><span class="auth-tab-pill"></span><button type="button" data-auth-mode="login" class="on" aria-selected="true">LOGIN</button><button type="button" data-auth-mode="register" aria-selected="false">JOIN THE FAMILY</button></div>
+<h2 id="authHeading">Welcome back</h2>
+<div id="authUserField" class="auth-field hidden"><label for="username">Username</label><input id="username" placeholder="Your family name" autocomplete="username"></div>
+<div class="auth-field"><label for="email">Email</label><input id="email" type="email" placeholder="name@example.com" autocomplete="email"></div>
+<div class="auth-field"><label for="password">Password</label><div class="auth-password"><input id="password" type="password" placeholder="At least 6 characters" autocomplete="current-password"><button id="authEye" type="button" aria-label="Show password">â</button></div></div>
+<div class="auth-actions"><button id="register" class="primary hidden" type="button">CREATE ACCOUNT</button><button id="login" class="primary" type="button">ENTER THE FAMILY</button></div>
+<button id="reset" class="auth-reset" type="button">Forgot password?</button><p id="status" class="status auth-status">Create an account or sign in.</p>
+<div class="auth-foot"><span class="auth-dot"></span> SECURE FAMILY ACCESS <span class="auth-dot"></span></div></section>
 <main id="main" class="hidden">
 <section class="page active" id="home"><div class="box" style="margin:0;background:linear-gradient(120deg,#2b0d15,#111014)"><div class="sub">THE FAMILY HUB</div><h1>ROMERO<br>FAMILY</h1><p>Respect the name. Protect the family. Build the legacy.</p><div class="row"><button class="primary" onclick="go('roster')">VIEW ROSTER</button><button onclick="go('news')">FAMILY NEWS</button></div></div>
 <div class="grid" style="margin-top:12px"><button class="tile" onclick="go('roster')"><i class="room-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3 3 7l5 5 3-3-4-6Zm10 0 4 4-5 5-3-3 4-6ZM8 12l4 4 4-4 2 2-4 4v3h-4v-3l-4-4 2-2Z" fill="currentColor"/></svg></i><b>Gang Roster</b><span>Members, ranks &amp; hierarchy</span></button><button class="tile" onclick="go('news')"><i class="room-icon">&#9639;</i><b>Family News</b><span>Announcements &amp; updates</span></button><button class="tile" onclick="go('chat')"><i class="room-icon">&#9993;</i><b>Family Chat</b><span>Private family conversation</span></button><button class="tile" onclick="go('gallery')"><i class="room-icon">&#9647;</i><b>Photo Gallery</b><span>Shared family memories</span></button><button class="tile" onclick="go('voice')"><i class="room-icon">&#9835;</i><b>Voice Calls</b><span>Talk with family members</span></button><button class="tile" onclick="go('mvp')"><i class="room-icon">&#9733;</i><b>Member of the Month</b><span>Recognize loyalty &amp; activity</span></button><button id="adminTile" class="tile hidden" onclick="go('admin')"><i class="room-icon">&#9881;</i><b>Admin Command</b><span>Approvals, ranks &amp; management</span></button></div>
@@ -117,10 +206,20 @@ button:active{transform:scale(.975);filter:brightness(1.12)}
 <section class="page" id="voice"><button onclick="go('home')">&#8592; Home</button><h2>Family Voice Calls</h2><p>Direct voice calls with online family members. Keep this page open while calling.</p><div id="callStatus" class="voice-status">Ready for a call.</div><div id="incomingCall"></div><h3>Call a member</h3><div id="callRoster"></div><button id="hangup" class="danger" type="button">End call</button><audio id="remoteAudio" autoplay playsinline></audio></section>
 <section class="page" id="mvp"><button onclick="go('home')">&#8592; Home</button><h2>Member of the Month</h2><div class="card"><b id="mvpPage">Romero_Marco</b><p id="mvpReasonPage">Recognized for loyalty and activity.</p></div></section>
 <section class="page" id="admin"><button onclick="go('home')">&#8592; Home</button><h2>Admin Panel</h2><div class="card"><h3>Pending accounts</h3><div id="pending"></div></div>
-<div class="card"><h3>Add roster member</h3><input id="newName" placeholder="Username"><select id="newRank"><option>Associate</option><option>Soldier</option><option>Capo</option><option>Underboss</option><option>Boss</option></select><input id="newStatus" placeholder="Status (e.g. Active)"><button id="addRoster" class="primary" type="button">Add member</button><div id="adminRoster"></div></div>
+<div class="card"><h3>Add roster member</h3><input id="newName" placeholder="Username"><select id="newRank"><option>Associate</option><option>Soldier</option><option>Capo</option><option>Underboss</option><option>Boss</option></select><input id="newStatus" placeholder="Status (e.g. Active)"><button id="addRoster" class="primary" type="button">Add member</button><div class="admin-toolbar">
+<input id="adminRosterSearch" placeholder="Search roster members..." aria-label="Search roster members">
+<select id="adminRankFilter" aria-label="Filter roster by rank">
+<option value="">All ranks</option><option>Boss</option><option>Underboss</option><option>Capo</option><option>Soldier</option><option>Associate</option>
+</select>
+</div>
+<div id="adminRoster"></div></div>
 <div class="card"><h3>Publish announcement</h3><input id="postTitle" placeholder="Title" maxlength="100"><textarea id="postBody" placeholder="Message" rows="4" maxlength="2000"></textarea><button id="publish" class="primary" type="button">Publish for all members</button></div>
 <div class="card"><h3>Member of the Month</h3><input id="mvpName" placeholder="Member username"><input id="mvpReason" placeholder="Reason"><button id="saveMvp" class="primary" type="button">Save for all members</button></div></section></main>
 <nav id="nav" class="hidden"><div class="navinner"><button class="navbtn active" data-page="home" onclick="go('home')"><span>&#8962;</span><span>HOME</span></button><button class="navbtn" data-page="roster" onclick="go('roster')"><span class="nav-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3 3 7l5 5 3-3-4-6Zm10 0 4 4-5 5-3-3 4-6ZM8 12l4 4 4-4 2 2-4 4v3h-4v-3l-4-4 2-2Z" fill="currentColor"/></svg></span><span>ROSTER</span></button><button class="navbtn" data-page="news" onclick="go('news')"><span>&#9639;</span><span>NEWS</span></button><button class="navbtn" data-page="chat" onclick="go('chat')"><span>&#9993;</span><span>CHAT</span></button><button class="navbtn" data-page="gallery" onclick="go('gallery')"><span>&#9647;</span><span>PHOTOS</span></button><button class="navbtn" data-page="voice" onclick="go('voice')"><span>&#9835;</span><span>VOICE</span></button></div></nav></div>
+<script>
+// Login screen mode switch and password visibility; Firebase actions remain unchanged.
+(()=>{const $=id=>document.getElementById(id);let mode='login';function setAuthMode(next){mode=next;const tabs=$('authTabs');tabs.dataset.m=next;$('authHeading').textContent=next==='login'?'Welcome back':'Join the family';$('authUserField').classList.toggle('hidden',next!=='register');$('login').classList.toggle('hidden',next!=='login');$('register').classList.toggle('hidden',next!=='register');$('password').autocomplete=next==='login'?'current-password':'new-password';document.querySelectorAll('[data-auth-mode]').forEach(b=>{const active=b.dataset.authMode===next;b.classList.toggle('on',active);b.setAttribute('aria-selected',String(active))});$('status').textContent=next==='login'?'Sign in to continue to your family.':'Create your account, then wait for Admin approval.'}document.querySelectorAll('[data-auth-mode]').forEach(b=>b.addEventListener('click',()=>setAuthMode(b.dataset.authMode)));$('authEye').addEventListener('click',()=>{const p=$('password');p.type=p.type==='password'?'text':'password';$('authEye').textContent=p.type==='password'?'â':'â';$('authEye').setAttribute('aria-label',p.type==='password'?'Show password':'Hide password')});setAuthMode('login')})();
+</script>
 <script type="module">
 const cfg={
  apiKey:"AIzaSyAtRYSd148kdfC-XZ5r1IrwHXO5lMPuHAE",

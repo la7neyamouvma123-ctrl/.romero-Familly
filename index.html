@@ -61,6 +61,7 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 function msg(s){$("status").textContent=s}
 function error(e){const m={"auth/email-already-in-use":"Email already registered. Log in instead.","auth/invalid-credential":"Email or password incorrect.","auth/weak-password":"Password needs at least 6 characters.","auth/invalid-email":"Invalid email.","auth/unauthorized-domain":"Add this website domain in Firebase Authentication settings.","auth/api-key-not-valid.-please-pass-a-valid-api-key.":"Firebase rejected the API key. Verify the Web API key in Firebase Project Settings."};msg(m[e.code]||e.message||"Something went wrong.")}
 function go(id){if(!user||(!admin&&profile?.status!=="approved")||(id==="admin"&&!admin))return;document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===id));window.scrollTo(0,0)}
+window.go = go;
 function showApp(){const ok=!!user&&(admin||profile?.status==="approved");$("main").classList.toggle("hidden",!ok);$("nav").classList.toggle("hidden",!ok);$("authbox").classList.toggle("hidden",ok);$("logout").classList.toggle("hidden",!user);$("adminTile").classList.toggle("hidden",!admin);
  if(!user){stops.forEach(f=>f());stops=[];$("authbox").classList.remove("hidden");$("welcome").classList.remove("hidden");msg("Create an account or sign in.");return}
  if(!ok){$("authbox").classList.remove("hidden");$("welcome").classList.remove("hidden");msg(profile?.status==="rejected"?"Your registration was rejected. Contact an administrator.":"Your account is waiting for Admin approval. Please wait.");return}
@@ -68,6 +69,7 @@ function showApp(){const ok=!!user&&(admin||profile?.status==="approved");$("mai
 function listen(path,cb){const r=D.ref(db,path),fn=D.onValue(r,s=>cb(s.val()),e=>msg("Database error: "+e.message));stops.push(()=>D.off(r,"value",fn))}
 function listenData(){stops.forEach(f=>f());stops=[];listen("roster",v=>{roster=v?Object.entries(v).map(([id,x])=>({id,...x})):[];renderRoster();if(admin)renderAdminRoster()});listen("announcements",v=>{news=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)):[];renderNews()});listen("chat",v=>{chat=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).slice(-100):[];renderChat()});listen("mvp",v=>{if(v)mvp=v;renderMvp()});if(admin)listen("members",v=>renderPending(v?Object.entries(v).map(([uid,x])=>({uid,...x})).filter(x=>x.status==="pending"):[]))}
 function renderRoster(){let q=($("search")?.value||"").toLowerCase(),rank=$("rankFilter")?.value||"",list=roster.filter(m=>(m.name||"").toLowerCase().includes(q)&&(!rank||m.rank===rank));$("rosterList").innerHTML=list.map(m=>`<div class="card member"><div><b>${esc(m.name)}</b><div class="muted">${esc(m.status||"Active")}</div></div><span class="pill">${esc(m.rank||"Associate")}</span></div>`).join("")||'<div class="card">No members found.</div>'}
+window.renderRoster = renderRoster;
 function renderNews(){let card=n=>`<div class="card"><b>${esc(n.title)}</b><div class="muted">${esc(n.date||"Family update")}</div><p>${esc(n.body)}</p></div>`;$("newsList").innerHTML=news.map(card).join("")||'<div class="card">No announcements yet.</div>';$("homeNews").innerHTML=news.slice(0,2).map(card).join("")||'<div class="card">No announcements yet.</div>'}
 function renderChat(){$("chatbox").innerHTML=chat.map(c=>`<div class="bubble ${c.uid===user?.uid?"mine":""}">${esc(c.text)}<small>${esc(c.username)} Â· ${esc(c.timeLabel||"")}</small></div>`).join("")||"<p>No messages yet.</p>";$("chatbox").scrollTop=$("chatbox").scrollHeight}
 function renderMvp(){["mvpHome","mvpPage"].forEach(id=>$(id).textContent=mvp.name||"Romero_Marco");["mvpReasonHome","mvpReasonPage"].forEach(id=>$(id).textContent=mvp.reason||"Recognized for loyalty and activity.")}
@@ -89,5 +91,4 @@ $("publish").onclick=async()=>{if(!admin)return;let title=$("postTitle").value.t
 $("saveMvp").onclick=async()=>{if(!admin)return;let name=$("mvpName").value.trim();if(!name)return alert("Enter member name.");try{await D.set(D.ref(db,"mvp"),{name,reason:$("mvpReason").value.trim()||"Recognized for loyalty and activity."})}catch(e){alert(e.message)}};
 boot();
 </script></body></html>
-
 

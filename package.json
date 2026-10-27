@@ -1,0 +1,16 @@
+
+{
+  "name": "romero-family",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ROMERO FAMILY mobile app",
+  "scripts": {
+    "build": "echo \"ROMERO FAMILY web app\""
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3"
+  }
+}

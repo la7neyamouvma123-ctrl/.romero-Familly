@@ -23,17 +23,21 @@ jobs:
           distribution: temurin
           java-version: 21
 
+ 
       - name: Install dependencies
         run: npm install
 
-      - name: Verify Capacitor config
+      - name: Prepare web directory
         run: |
-          test -f capacitor.config.json
-          test -f index.html
-          npx cap --version
+          mkdir -p www
+          cp index.html www/
+          cp manifest.json www/
+          cp sw.js www/
+          cp -r assets www/assets
 
       - name: Add Android platform
         run: npx cap add android
+
 
       - name: Copy web app
         run: npx cap copy android

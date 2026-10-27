@@ -17,9 +17,28 @@ jobs:
         with:
           node-version: 22
 
-      - name: Check project files
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install Capacitor
         run: |
-          echo "Checking ROMERO FAMILY project"
-          test -f index.html
-          test -f manifest.json
-          echo "Project files found"
+          npm init -y
+          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npx cap init "ROMERO FAMILY" "com.romerofamily.app" --web-dir=.
+          npx cap add android
+
+      - name: Build Android APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ROMERO-FAMILY-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

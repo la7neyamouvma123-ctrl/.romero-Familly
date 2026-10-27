@@ -17,7 +17,7 @@
 <section class="page" id="admin"><button onclick="go('home')">â Home</button><h2>Admin Panel</h2><div class="card"><h3>Pending accounts</h3><div id="pending"></div></div><div class="card"><h3>Add roster member</h3><input id="newName" placeholder="Username"><select id="newRank"><option>Associate</option><option>Soldier</option><option>Capo</option><option>Underboss</option><option>Boss</option></select><input id="newStatus" placeholder="Status (e.g. Active)"><button id="addRoster" class="primary">Add member</button><div id="adminRoster"></div></div><div class="card"><h3>Publish announcement</h3><input id="postTitle" placeholder="Title" maxlength="100"><textarea id="postBody" placeholder="Message" rows="4" maxlength="2000"></textarea><button id="publish" class="primary">Publish for all members</button></div><div class="card"><h3>Member of the Month</h3><input id="mvpName" placeholder="Member username"><input id="mvpReason" placeholder="Reason"><button id="saveMvp" class="primary">Save for all members</button></div></section>
 </main><nav id="nav" class="hidden"><div class="navinner"><button class="navbtn active" data-page="home" onclick="go('home')">â HOME</button><button class="navbtn" data-page="roster" onclick="go('roster')">â ROSTER</button><button class="navbtn" data-page="news" onclick="go('news')">â¤ NEWS</button><button class="navbtn" data-page="chat" onclick="go('chat')">â CHAT</button></div></nav></div>
 <script>
-const cfg={apiKey:"AIzaSyAtRYSd148kdfC-XZ5r1IrwHXO5lMPuHAE",authDomain:"romero-familly-48377.firebaseapp.com",databaseURL:"https://romero-familly-48377-default-rtdb.firebaseio.com",projectId:"romero-familly-48377",storageBucket:"romero-familly-48377.firebasestorage.app",messagingSenderId:"560912404098",appId:"1:560912404098:web:e7f8330f1d8b1a3be7ae9b",measurementId:"G-0H2N8LFHDQ"};
+const cfg={apiKey:"AIzaSyAtRYSd148kdfC-X5Zr1IrwHXO5lMPuHAE",authDomain:"romero-familly-48377.firebaseapp.com",databaseURL:"https://romero-familly-48377-default-rtdb.firebaseio.com",projectId:"romero-familly-48377",storageBucket:"romero-familly-48377.firebasestorage.app",messagingSenderId:"560912404098",appId:"1:560912404098:web:e7f8330f1d8b1a3be7ae9b",measurementId:"G-0H2N8LFHDQ"};
 const $=x=>document.getElementById(x);let A,D,auth,db,user=null,admin=false,profile=null,roster=[],news=[],chat=[],mvp={name:"Romero_Marco",reason:"Recognized for loyalty and activity."},stops=[];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function msg(s){$("status").textContent=s}
@@ -30,7 +30,50 @@ function renderRoster(){let q=($("search")?.value||"").toLowerCase(),rank=$("ran
 function renderNews(){let card=n=>`<div class="card"><b>${esc(n.title)}</b><div class="muted">${esc(n.date||"Family update")}</div><p>${esc(n.body)}</p></div>`;$("newsList").innerHTML=news.map(card).join("")||'<div class="card">No announcements yet.</div>';$("homeNews").innerHTML=news.slice(0,2).map(card).join("")||'<div class="card">No announcements yet.</div>'}
 function renderChat(){$("chatbox").innerHTML=chat.map(c=>`<div class="bubble ${c.uid===user?.uid?"mine":""}">${esc(c.text)}<small>${esc(c.username)} Â· ${esc(c.timeLabel||"")}</small></div>`).join("")||'<p>No messages yet.</p>';$("chatbox").scrollTop=$("chatbox").scrollHeight}
 function renderMvp(){["mvpHome","mvpPage"].forEach(id=>$(id).textContent=mvp.name||"Romero_Marco");["mvpReasonHome","mvpReasonPage"].forEach(id=>$(id).textContent=mvp.reason||"Recognized for loyalty and activity.")}
-function renderPending(list){$("pending").innerHTML=list.map(m=>`<div class="card member"><div><b>${esc(m.username||m.email||m.uid)}</b><div class="muted">${esc(m.email)} Â· Pending</div></div><button data-approve="${esc(m.uid)}" class="primary">Approve</button></div>`).join("")||'<p>No pending accounts.</p>';$("pending").querySelectorAll("[data-approve]").forEach(b=>b.onclick=async()=>{try{await D.update(D.ref(db,"members/"+b.dataset.approve),{status:"approved"});alert("Approved")}catch(e){alert(e.message)}})}
+function renderPending(list){
+  $("pending").innerHTML=list.map(m=>`
+    <div class="card">
+      <b>${esc(m.username || m.email || m.uid)}</b>
+      <div class="muted">${esc(m.email || "")} Â· ${esc(m.status || "pending")}</div>
+      <div class="row" style="margin-top:10px">
+        <button data-approve="${esc(m.uid)}" class="primary">Approve</button>
+        <button data-reject="${esc(m.uid)}" class="danger">Reject</button>
+        <button data-delete-member="${esc(m.uid)}" class="danger">Delete</button>
+      </div>
+    </div>
+  `).join("") || "<p>No pending accounts.</p>";
+
+  $("pending").querySelectorAll("[data-approve]").forEach(b=>{
+    b.onclick=async()=>{
+      try{
+        await D.update(D.ref(db,"members/"+b.dataset.approve),{status:"approved"});
+        alert("Member approved.");
+      }catch(e){alert("Error: "+e.message)}
+    };
+  });
+
+  $("pending").querySelectorAll("[data-reject]").forEach(b=>{
+    b.onclick=async()=>{
+      const uid=b.dataset.reject;
+      if(!confirm("Reject this registration?"))return;
+      try{
+        await D.update(D.ref(db,"members/"+uid),{status:"rejected"});
+        alert("Registration rejected.");
+      }catch(e){alert("Error: "+e.message)}
+    };
+  });
+
+  $("pending").querySelectorAll("[data-delete-member]").forEach(b=>{
+    b.onclick=async()=>{
+      const uid=b.dataset.deleteMember;
+      if(!confirm("Delete this member profile from the database?"))return;
+      try{
+        await D.remove(D.ref(db,"members/"+uid));
+        alert("Member profile deleted.");
+      }catch(e){alert("Error: "+e.message)}
+    };
+  });
+}
 function renderAdminRoster(){$("adminRoster").innerHTML=roster.map(m=>`<div class="member"><div>${esc(m.name)} Â· ${esc(m.rank)}</div><button data-delete="${esc(m.id)}">Delete</button></div>`).join("");$("adminRoster").querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(confirm("Delete this member?"))try{await D.remove(D.ref(db,"roster/"+b.dataset.delete))}catch(e){alert(e.message)}})}
 async function boot(){try{const appSdk=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js");A=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js");D=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js");const app=appSdk.initializeApp(cfg);auth=A.getAuth(app);db=D.getDatabase(app);
 $("register").onclick=async()=>{let name=$("username").value.trim(),email=$("email").value.trim(),password=$("password").value;if(name.length<2||!email||password.length<6)return msg("Enter username, valid email, and password of at least 6 characters.");try{let c=await A.createUserWithEmailAndPassword(auth,email,password);await D.set(D.ref(db,"members/"+c.user.uid),{username:name,email:c.user.email,status:"pending",createdAt:Date.now()});msg("Account created. Wait for Admin approval.")}catch(e){error(e)}};
@@ -45,5 +88,6 @@ $("publish").onclick=async()=>{if(!admin)return;let title=$("postTitle").value.t
 $("saveMvp").onclick=async()=>{if(!admin)return;let name=$("mvpName").value.trim();if(!name)return alert("Enter member name.");try{await D.set(D.ref(db,"mvp"),{name,reason:$("mvpReason").value.trim()||"Recognized for loyalty and activity."})}catch(e){alert(e.message)}};
 boot();
 </script></body></html>
+
 
 

@@ -477,6 +477,38 @@ body.rf-first #home>.box{animation-delay:1.3s}
 .meet-mini{display:flex;gap:14px;align-items:center;cursor:pointer;margin:0 2px 14px;border-color:#713044}
 a.btn{display:inline-block;text-decoration:none;text-align:center;line-height:20px}
 @media(prefers-reduced-motion:reduce){.flame-fire,.flame-glow,.flame:before,.flame:after,.radar:before,.war-scan{animation:none!important}}
+
+/* ======== WAR BOARD ======== */
+.wb-card{padding:16px}
+.wb-ctrl{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 12px}.wb-ctrl button{flex:1 1 auto;min-width:96px}
+.wb-ctrl button.on{background:linear-gradient(135deg,#ffd27a,#c97a10);color:#1a0f05;border-color:#ffd27a}
+.wb-stage{position:relative;border:1px solid #7b2637;border-radius:16px;overflow:hidden;box-shadow:0 0 34px #c8192e33,inset 0 0 40px #0008;background:#0a080c}
+.wb-stage:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 44%,#ff334d22 50%,transparent 56%);background-size:100% 240%;animation:rfScan 4.5s linear infinite}
+#wbSvg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+#wbSvg.editing{touch-action:none}#wbSvg.editing .wb-unit{cursor:grab}
+.wb-lbl{font:900 10px system-ui,sans-serif;letter-spacing:2px}
+.wb-num{font:950 14px system-ui,sans-serif}
+.wb-unit{will-change:transform}
+.wb-halo{animation:rfHalo 2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes rfHalo{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.35);opacity:.3}}
+.wb-pulse{animation:rfEnPulse 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes rfEnPulse{0%,100%{transform:scale(.85);opacity:.9}50%{transform:scale(1.15);opacity:.5}}
+.wb-ring{animation:rfDash 1.2s linear infinite}.wb-links{animation:rfDash 2s linear infinite}
+.wb-arrow{fill:none;stroke:#ffd27a;stroke-width:2;stroke-dasharray:7 7;stroke-opacity:.8;animation:rfDash .8s linear infinite}
+@keyframes rfDash{to{stroke-dashoffset:-28}}
+.wb-esc{fill:none;stroke:#ff334d;stroke-width:2;stroke-dasharray:5 4;animation:rfEsc 1s ease-in-out infinite;transition:opacity .6s}
+@keyframes rfEsc{0%,100%{opacity:.35}50%{opacity:1}}
+.trapped .wb-esc{animation:none;opacity:.08}
+.wb-trap{opacity:0;transition:opacity .6s .5s}.trapped .wb-trap{opacity:1;animation:rfBlinkTxt 1s steps(2) infinite}
+.wb-caption{display:flex;flex-direction:column;gap:3px;margin:12px 0;padding:11px 13px;border-left:3px solid #ff334d;background:#1a0f14;border-radius:0 12px 12px 0}
+.wb-caption b{color:#f0cf8c;font-size:12px;letter-spacing:1.5px}.wb-caption span{font-size:13px;color:#d6c1c9;line-height:1.5}
+.wb-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media(min-width:600px){.wb-legend{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.wb-chip{display:flex;gap:8px;align-items:center;padding:8px;border:1px solid color-mix(in srgb,var(--c) 50%,#2a1a22);border-radius:12px;background:#100d11}
+.wb-chip b{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--c);color:var(--c);font-size:12px}
+.wb-chip span{display:block;font-size:11px;font-weight:900;color:#f4e6ea}.wb-chip small{display:block;font-size:9px;color:#b9aab1;line-height:1.35}
+.wb-rules{margin:14px 0 0;padding-left:20px;color:#d6c1c9;font-size:13px;line-height:1.7}.wb-rules b{color:#f0cf8c}
+@media(prefers-reduced-motion:reduce){.wb-stage:after,.wb-halo,.wb-pulse,.wb-ring,.wb-links,.wb-arrow,.wb-esc{animation:none!important}}
 </style>
 </head>
 <body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rfFlame" x="-20%" y="-30%" width="140%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.06" numOctaves="2" seed="3" result="n"><animate attributeName="baseFrequency" dur="4s" values="0.015 0.06;0.022 0.1;0.015 0.06" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="wrap">
@@ -504,6 +536,12 @@ a.btn{display:inline-block;text-decoration:none;text-align:center;line-height:20
 <section class="page" id="voice"><button onclick="go('home')">&#8592; Home</button><h2>Family Voice Calls</h2><p>Direct voice calls with online family members. Keep this page open while calling.</p><div id="callStatus" class="voice-status">Ready for a call.</div><div id="incomingCall"></div><h3>Call a member</h3><div id="callRoster"></div><button id="hangup" class="danger" type="button">End call</button><audio id="remoteAudio" autoplay playsinline></audio></section>
 <section class="page" id="mvp"><button onclick="go('home')">&#8592; Home</button><h2>Member of the Month</h2><div class="card"><b id="mvpPage">Romero_Marco</b><p id="mvpReasonPage">Recognized for loyalty and activity.</p></div></section>
 <section class="page" id="war"><button onclick="go('home')">&#8592; Home</button><h2>War Tactique</h2><p class="muted">Animated tactical maps. Open a map to zoom and see live markers.</p>
+<div class="card wb-card"><h3>War Map — Encirclement Plan</h3>
+<div class="wb-ctrl"><button class="primary" id="wbPlay" type="button">▶ Play</button><button data-wb-ph="1" type="button">1 · Approach</button><button data-wb-ph="2" type="button">2 · Position</button><button data-wb-ph="3" type="button">3 · Encircle</button><button id="wbEdit" class="hidden" type="button">✎ Edit positions</button><button id="wbReset" class="danger hidden" type="button">Reset</button></div>
+<div class="wb-stage"><svg id="wbSvg" viewBox="0 0 600 400" role="img" aria-label="Tactical map with 10 positions encircling the enemy"></svg></div>
+<div id="wbCaption" class="wb-caption"></div>
+<div id="wbLegend" class="wb-legend"></div>
+<ol class="wb-rules"><li><b>Scout first</b> — fix the enemy position before anyone moves.</li><li><b>Cut the exits</b> — units 3, 6 and 9 take the roads before the ring closes.</li><li><b>Flankers</b> (2, 4, 8, 10) arc around the sides — never walk straight in.</li><li><b>Overwatch</b> (5, 7) stay back and cover the gaps.</li><li><b>Close evenly</b> — no gap wider than one unit; Commander (1) calls the final push.</li></ol></div>
 <div id="warAdmin" class="card hidden"><h3>Upload a map (admin)</h3><input id="warTitle" placeholder="Map title (e.g. Port raid)" maxlength="80"><label for="warFile">GIF / PNG / JPG / WEBP / MP4 / WEBM — max 25 MB</label><input id="warFile" type="file" accept="image/*,video/mp4,video/webm"><button id="warUpload" class="primary" type="button">Upload map</button><div id="warStatus" class="voice-status">Choose a map file.</div></div>
 <div id="warGrid" class="war-grid"></div></section>
 <section class="page" id="meeting"><button onclick="go('home')">&#8592; Home</button><h2>Meeting Point</h2><div id="meetView"></div>
@@ -546,7 +584,7 @@ function showApp(){const ok=!!user&&(admin||profile?.status==="approved");$("mai
  if(!ok){$("authbox").classList.remove("hidden");$("welcome").classList.remove("hidden");msg(profile?.status==="rejected"?"Your registration was rejected. Contact an administrator.":"Your account is waiting for Admin approval. Please wait.");return}
  msg(admin?"Signed in as Admin.":"Signed in successfully.");listenData();listenIncomingCalls();go("home")}
 function listen(path,cb){const r=D.ref(db,path),fn=D.onValue(r,s=>cb(s.val()),e=>msg("Database error: "+e.message));stops.push(()=>D.off(r,"value",fn))}
-function listenData(){stops.forEach(f=>f());stops=[];listen("roster",v=>{roster=v?Object.entries(v).map(([id,x])=>({id,...x})):[];renderRoster();renderCallRoster();if(admin)renderAdminRoster()});listen("announcements",v=>{news=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)):[];renderNews()});listen("chat",v=>{chat=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).slice(-100):[];renderChat()});listen("mvp",v=>{if(v)mvp=v;renderMvp()});listen("gallery",v=>renderGallery(v||{}));listen("warmaps",v=>renderWar(v||{}));listen("meeting",v=>renderMeeting(v));renderCallRoster();if(admin)listen("members",v=>{const members=v||{};const entries=Object.entries(members).map(([uid,x])=>({uid,...x}));renderPending(entries.filter(x=>x.status==="pending"));const existingIds=new Set(roster.map(x=>x.uid||x.id));entries.filter(m=>m.status==="approved"&&!existingIds.has(m.uid)).forEach(m=>{const name=m.username||m.email?.split("@")[0]||"Member";D.set(D.ref(db,"roster/"+m.uid),{uid:m.uid,name,rank:m.rank||"Associate",status:"Active",createdAt:m.createdAt||Date.now(),approvedAt:m.approvedAt||Date.now()}).catch(e=>msg("Roster sync failed: "+e.message))})})}
+function listenData(){stops.forEach(f=>f());stops=[];listen("roster",v=>{roster=v?Object.entries(v).map(([id,x])=>({id,...x})):[];renderRoster();renderCallRoster();if(admin)renderAdminRoster()});listen("announcements",v=>{news=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)):[];renderNews()});listen("chat",v=>{chat=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).slice(-100):[];renderChat()});listen("mvp",v=>{if(v)mvp=v;renderMvp()});listen("gallery",v=>renderGallery(v||{}));listen("warmaps",v=>renderWar(v||{}));listen("warplan",v=>{WB.custom=v||{};wbAdmin();if(WB.drag==null)wbGo(WB.phase,true)});listen("meeting",v=>renderMeeting(v));renderCallRoster();if(admin)listen("members",v=>{const members=v||{};const entries=Object.entries(members).map(([uid,x])=>({uid,...x}));renderPending(entries.filter(x=>x.status==="pending"));const existingIds=new Set(roster.map(x=>x.uid||x.id));entries.filter(m=>m.status==="approved"&&!existingIds.has(m.uid)).forEach(m=>{const name=m.username||m.email?.split("@")[0]||"Member";D.set(D.ref(db,"roster/"+m.uid),{uid:m.uid,name,rank:m.rank||"Associate",status:"Active",createdAt:m.createdAt||Date.now(),approvedAt:m.approvedAt||Date.now()}).catch(e=>msg("Roster sync failed: "+e.message))})})}
 function renderRoster(){let q=($("search")?.value||"").toLowerCase(),rank=$("rankFilter")?.value||"",list=roster.filter(m=>(m.name||"").toLowerCase().includes(q)&&(!rank||m.rank===rank));$("rosterList").innerHTML=list.map(m=>`<div class="card member"><div><b>${esc(m.name)}</b><div class="muted">${esc(m.status||"Active")}</div></div><span class="pill">${esc(m.rank||"Associate")}</span></div>`).join("")||'<div class="card">No members found.</div>'}
 window.renderRoster = renderRoster;
 let pc=null,localStream=null,currentCallId=null,currentCallPeerUid=null,callUnsubs=[];
@@ -600,7 +638,7 @@ $("saveMvp").onclick=async()=>{if(!admin)return;let name=$("mvpName").value.trim
 /* ===== WAR TACTIQUE ===== */
 let warData={},wvId=null,markerMode=false,zoom=1;
 const mediaTag=x=>x.kind==="video"?`<video src="${esc(x.url)}" autoplay loop muted playsinline></video>`:`<img src="${esc(x.url)}" alt="Tactical map" draggable="false">`;
-function renderWar(data){warData=data||{};$("warAdmin").classList.toggle("hidden",!admin);
+function renderWar(data){warData=data||{};wbAdmin();$("warAdmin").classList.toggle("hidden",!admin);
  const items=Object.entries(warData).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
  $("warGrid").innerHTML=items.map(x=>`<div class="card war-card" data-war="${esc(x.id)}"><div class="war-media">${mediaTag(x)}<span class="war-scan"></span><span class="war-live">● LIVE</span></div><b>${esc(x.title||"Map")}</b><div class="muted">${esc(x.username||"")} · ${x.pins?Object.keys(x.pins).length:0} markers</div>${admin?`<button class="danger" style="margin-top:8px;width:100%" data-war-del="${esc(x.id)}">Delete map</button>`:""}</div>`).join("")||"<p>No tactical maps yet.</p>";
  $("warGrid").querySelectorAll("[data-war]").forEach(c=>c.onclick=e=>{if(e.target.closest("[data-war-del]"))return;openWar(c.dataset.war)});
@@ -622,6 +660,46 @@ $("warUpload").onclick=async()=>{if(!admin)return;const file=$("warFile").files?
  try{$("warUpload").disabled=true;st.textContent="Uploading…";const path=`war-maps/${user.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;const ref=S.ref(window.__rfStorage,path);await S.uploadBytes(ref,file,{contentType:file.type});const url=await S.getDownloadURL(ref);
   await D.push(D.ref(db,"warmaps"),{title,url,path,kind:video?"video":"image",uid:user.uid,username:profile?.username||user.email||"Admin",createdAt:Date.now()});$("warFile").value="";$("warTitle").value="";st.textContent="Map uploaded."}
  catch(e){st.textContent="Upload failed: "+e.message+". Check Storage rules for war-maps/."}finally{$("warUpload").disabled=false}};
+
+/* ===== WAR BOARD: 10 positions + encirclement ===== */
+const WB={cx:300,cy:200,phase:3,custom:{},edit:false,drag:null,timer:null,tm:[],ring:[270,176]};
+const ROLES=[["Commander","North · gives the signal","#f0cf8c"],["Flanker","Closes the NE side","#ff334d"],["Road Block","East exit","#ff8a2e"],["Flanker","Closes the SE side","#ff334d"],["Overwatch","Covers the south-east","#5fe0c8"],["Road Block","South exit","#ff8a2e"],["Overwatch","Covers the south-west","#5fe0c8"],["Flanker","Closes the SW side","#ff334d"],["Road Block","West exit","#ff8a2e"],["Flanker","Closes the NW side","#ff334d"]];
+const RINGS={1:[270,176],2:[205,132],3:[112,72]};
+const CAPS={1:["PHASE 1 — APPROACH","The team arrives from the outer zone. Stay out of sight, keep radio silence."],2:["PHASE 2 — POSITION","Take the 10 positions around the target. Block the exits first (3, 6, 9)."],3:["PHASE 3 — ENCIRCLE","Close the ring slowly. No gaps, cover your neighbours, Commander (1) gives the final signal."]};
+let cur=[],wbRaf=0;
+function wbPos(i,ph){const c=WB.custom?.["p"+ph]?.[i];if(c&&isFinite(c.x)&&isFinite(c.y))return{x:+c.x,y:+c.y};const[rx,ry]=RINGS[ph],a=(-90+i*36)*Math.PI/180;return{x:+(WB.cx+rx*Math.cos(a)).toFixed(1),y:+(WB.cy+ry*Math.sin(a)).toFixed(1)}}
+function buildWB(){const svg=$("wbSvg");if(!svg)return;
+ const bld=[[40,40,70,50],[130,60,60,90],[420,35,80,60],[510,70,50,80],[60,260,80,70],[150,320,70,50],[430,270,90,60],[520,320,60,55],[210,250,50,40],[360,110,45,50],[220,90,40,35],[330,290,50,45]];
+ const esc8=[0,45,90,135,180,225,270,315].map(d=>{const a=d*Math.PI/180,c=Math.cos(a),s=Math.sin(a);return`<path class="wb-esc" d="M${(c*34).toFixed(1)} ${(s*34).toFixed(1)}L${(c*66).toFixed(1)} ${(s*66).toFixed(1)}" marker-end="url(#wbArrR)"/>`}).join("");
+ const units=ROLES.map((r,i)=>`<g class="wb-unit" data-i="${i}"><circle class="wb-halo" r="19" fill="${r[2]}" fill-opacity=".2"/><circle r="15" fill="#140a0f" stroke="${r[2]}" stroke-width="2.5"/><text y="5" text-anchor="middle" class="wb-num" fill="${r[2]}">${i+1}</text></g>`).join("");
+ svg.innerHTML=`<defs><pattern id="wbGrid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#ff334d" stroke-opacity=".13"/></pattern><marker id="wbArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ffd27a"/></marker><marker id="wbArrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff334d"/></marker><radialGradient id="wbEn"><stop offset="0" stop-color="#ff334d" stop-opacity=".6"/><stop offset="1" stop-color="#ff334d" stop-opacity="0"/></radialGradient></defs>
+<rect width="600" height="400" fill="#0a080c"/><rect width="600" height="400" fill="url(#wbGrid)"/>
+${bld.map(b=>`<rect x="${b[0]}" y="${b[1]}" width="${b[2]}" height="${b[3]}" rx="4" fill="#1a1016" stroke="#3b2230"/>`).join("")}
+<path d="M0 200H600M300 0V400" stroke="#241820" stroke-width="30"/><path d="M0 200H600M300 0V400" stroke="#5a3a46" stroke-width="1.5" stroke-dasharray="10 10"/>
+<g id="wbArrows"></g><ellipse id="wbRing" cx="300" cy="200" rx="100" ry="70" fill="none" stroke="#ffd27a" stroke-width="2" stroke-dasharray="8 6" class="wb-ring"/>
+<polygon id="wbLinks" class="wb-links" fill="#ff334d" fill-opacity=".07" stroke="#ff7184" stroke-width="1.5" stroke-dasharray="4 5"/>
+<g transform="translate(300 200)"><circle r="62" fill="url(#wbEn)" class="wb-pulse"/>${esc8}<circle r="26" fill="#2b0710" stroke="#ff334d" stroke-width="2.5"/><path d="M-11-11 11 11M11-11-11 11" stroke="#ff334d" stroke-width="4" stroke-linecap="round"/><text y="46" text-anchor="middle" class="wb-lbl" fill="#ff8a98">ENEMY</text><text id="wbTrap" y="-40" text-anchor="middle" class="wb-lbl wb-trap" fill="#ffd27a">TRAPPED</text></g>
+<g id="wbUnits">${units}</g><g transform="translate(560 38)"><circle r="19" fill="none" stroke="#7b2637"/><path d="M0-13 5 5 0 1-5 5Z" fill="#ff7184"/><text y="-24" text-anchor="middle" class="wb-lbl" fill="#ff9aa8">N</text></g>`;
+ $("wbLegend").innerHTML=ROLES.map((r,i)=>`<div class="wb-chip" style="--c:${r[2]}"><b>${i+1}</b><div><span>${r[0]}</span><small>${r[1]}</small></div></div>`).join("");
+ cur=[...Array(10)].map((_,i)=>wbPos(i,1));WB.ring=[...RINGS[1]];wbDraw()}
+function wbDraw(){document.querySelectorAll("#wbUnits .wb-unit").forEach((u,i)=>{if(cur[i])u.setAttribute("transform",`translate(${cur[i].x} ${cur[i].y})`)});
+ $("wbLinks").setAttribute("points",cur.map(p=>p.x+","+p.y).join(" "));const r=$("wbRing");r.setAttribute("rx",WB.ring[0]);r.setAttribute("ry",WB.ring[1]);
+ $("wbArrows").innerHTML=cur.map((p,i)=>{const s=wbPos(i,1);return Math.hypot(p.x-s.x,p.y-s.y)<8?"":`<path class="wb-arrow" d="M${s.x} ${s.y}L${p.x} ${p.y}" marker-end="url(#wbArr)"/>`}).join("")}
+function wbGo(ph,instant){WB.phase=ph;const from=cur.map(p=>({...p})),to=[...Array(10)].map((_,i)=>wbPos(i,ph)),rf=[...WB.ring],rt=RINGS[ph],t0=performance.now(),dur=instant?1:1200;
+ document.querySelectorAll("[data-wb-ph]").forEach(b=>b.classList.toggle("on",+b.dataset.wbPh===ph));$("wbCaption").innerHTML=`<b>${CAPS[ph][0]}</b><span>${CAPS[ph][1]}</span>`;$("wbSvg").classList.toggle("trapped",ph===3);
+ cancelAnimationFrame(wbRaf);const step=t=>{const k=Math.min(1,(t-t0)/dur),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;cur=to.map((p,i)=>({x:from[i].x+(p.x-from[i].x)*e,y:from[i].y+(p.y-from[i].y)*e}));WB.ring=[rf[0]+(rt[0]-rf[0])*e,rf[1]+(rt[1]-rf[1])*e];wbDraw();if(k<1)wbRaf=requestAnimationFrame(step)};wbRaf=requestAnimationFrame(step)}
+function wbStop(){clearInterval(WB.timer);WB.timer=null;WB.tm.forEach(clearTimeout);WB.tm=[];$("wbPlay").textContent="▶ Play"}
+function wbPlay(){if(WB.timer){wbStop();return}wbStop();$("wbPlay").textContent="⏸ Pause";let ph=0;const tick=()=>{ph=ph%3+1;wbGo(ph)};tick();WB.timer=setInterval(tick,3400)}
+function wbIntro(){wbStop();cur=[...Array(10)].map((_,i)=>wbPos(i,1));WB.ring=[...RINGS[1]];wbGo(1,true);WB.tm=[setTimeout(()=>wbGo(2),900),setTimeout(()=>wbGo(3),4200)]}
+function wbAdmin(){["wbEdit","wbReset"].forEach(id=>$(id)&&$(id).classList.toggle("hidden",!admin))}
+buildWB();wbGo(3,true);
+$("wbPlay").onclick=wbPlay;document.querySelectorAll("[data-wb-ph]").forEach(b=>b.onclick=()=>{wbStop();wbGo(+b.dataset.wbPh)});
+$("wbEdit").onclick=()=>{WB.edit=!WB.edit;wbStop();$("wbEdit").classList.toggle("on",WB.edit);$("wbEdit").textContent=WB.edit?"✔ Done editing":"✎ Edit positions";$("wbSvg").classList.toggle("editing",WB.edit)};
+$("wbReset").onclick=async()=>{if(!admin||!confirm("Reset all 10 positions to the default formation?"))return;try{await D.remove(D.ref(db,"warplan"))}catch(e){alert(e.message)}};
+$("wbSvg").addEventListener("pointerdown",e=>{if(!WB.edit||!admin)return;const u=e.target.closest(".wb-unit");if(!u)return;cancelAnimationFrame(wbRaf);WB.drag=+u.dataset.i;$("wbSvg").setPointerCapture(e.pointerId);e.preventDefault()});
+$("wbSvg").addEventListener("pointermove",e=>{if(WB.drag==null)return;const svg=$("wbSvg"),pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());cur[WB.drag]={x:Math.max(16,Math.min(584,Math.round(p.x))),y:Math.max(16,Math.min(384,Math.round(p.y)))};wbDraw()});
+$("wbSvg").addEventListener("pointerup",async()=>{if(WB.drag==null)return;const i=WB.drag,p=cur[i];WB.drag=null;WB.custom=WB.custom||{};(WB.custom["p"+WB.phase]??={})[i]=p;try{await D.set(D.ref(db,`warplan/p${WB.phase}/${i}`),p)}catch(e){alert(e.message)}});
+{const war=$("war");let was=war.classList.contains("active");new MutationObserver(()=>{const on=war.classList.contains("active");if(on&&!was)wbIntro();if(!on)wbStop();was=on}).observe(war,{attributes:true,attributeFilter:["class"]})}
 
 /* ===== MEETING POINT ===== */
 const PINSVG='<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>';

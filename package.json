@@ -8,9 +8,11 @@
     "build": "echo \"ROMERO FAMILY web app\""
   },
   "dependencies": {
-    "@capacitor/core": "^7.4.3"
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/android": "^7.4.3"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.4.3"
   }
 }
+

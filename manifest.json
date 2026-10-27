@@ -1,11 +1,13 @@
+
 {
   "name": "ROMERO FAMILY",
   "short_name": "ROMERO",
   "description": "ROMERO FAMILY roleplay community app",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#09090b",
-  "theme_color": "#09090b",
+  "theme_color": "#c8192e",
   "orientation": "portrait",
   "icons": []
 }

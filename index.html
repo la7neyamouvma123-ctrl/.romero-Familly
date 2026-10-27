@@ -22,7 +22,7 @@ h1{font-size:clamp(30px,7vw,45px);line-height:1.05}h2{font-size:20px;color:var(-
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.tile{text-align:left;min-height:90px;border:1px solid var(--line);background:#171317}.tile b,.tile span{display:block}.tile span{font-size:11px;color:var(--muted);margin-top:5px}
 nav{position:fixed;bottom:0;left:0;right:0;background:#0c0b0df5;border-top:1px solid #38252c;display:flex;justify-content:center;padding:7px 3px calc(7px + env(safe-area-inset-bottom));z-index:8}.navinner{width:min(850px,100%);display:flex;justify-content:space-around}.navbtn{background:none;color:#9d9198;padding:5px 3px;font-size:10px}.navbtn.active{color:#ff7184}
 .status{font-size:12px;color:#f49aa8;overflow-wrap:anywhere}.danger{background:#70202c}@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
- 
+
 /* ROMERO FAMILY — polished interface layer */
 :root{--panel:#151116;--line:#42232d;--muted:#b9aab1;--red-bright:#ff334d;--gold-soft:#f0cf8c}
 body{background:radial-gradient(ellipse at 50% -12%,#48101d 0%,#160b10 35%,#08080a 72%);background-attachment:fixed;letter-spacing:.1px}
@@ -53,8 +53,8 @@ h2{letter-spacing:.3px;text-shadow:0 0 16px #d5ad651a}
 #adminRosterSearch{margin-top:12px} .admin-toolbar{display:grid;grid-template-columns:1fr;gap:7px}
 @media(min-width:520px){.admin-member{grid-template-columns:minmax(0,1fr) minmax(250px,1fr);align-items:center}.admin-member-top{grid-column:1}.admin-rank-controls,.admin-actions{grid-column:2}.admin-actions{grid-template-columns:1fr 1fr}.admin-toolbar{grid-template-columns:1fr 190px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
- 
- 
+
+
 /* FINAL CINEMATIC UI — animated background, room icons, premium spacing */
 body{position:relative;isolation:isolate;background:#080709;overflow-x:hidden}
 body:before,body:after{content:"";position:fixed;inset:-25%;pointer-events:none;z-index:-1}
@@ -94,9 +94,9 @@ button:active{transform:scale(.975);filter:brightness(1.12)}
 #rosterList .card{display:flex;align-items:center;justify-content:space-between;gap:12px}
 @media(max-width:380px){.grid{gap:8px}.tile{min-height:116px;padding:13px}.navbtn{font-size:8px}.brand{letter-spacing:1.5px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
- 
+
 .icon-svg{display:block;width:1em;height:1em;fill:currentColor}.room-icon .icon-svg{width:30px;height:30px}.nav-icon .icon-svg{width:19px;height:19px}.room-icon{display:flex;align-items:center;justify-content:center}
- 
+
 /* Login screen: developed cinematic motion, no extra particle effects */
 .auth-shell{width:calc(100% - 28px);max-width:470px;margin:clamp(20px,5vh,54px) auto 36px;padding:26px 22px 22px;position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(155deg,#1c1118f5,#100d12f8 62%,#160b10f5);border:1px solid #693040;box-shadow:0 26px 75px #0009,0 0 0 1px #c8192e12,0 0 34px #c8192e13;animation:authEnter .9s cubic-bezier(.2,.8,.2,1) both}
 .auth-shell:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,#ff334d,#d5ad65,#ff334d,transparent);background-size:220% 100%;animation:authSweep 7s linear infinite}
@@ -106,8 +106,8 @@ button:active{transform:scale(.975);filter:brightness(1.12)}
 .auth-kicker{font-size:9px;font-weight:900;letter-spacing:3px;color:#e95b70}.auth-brand h1{font-size:clamp(32px,9vw,45px);line-height:.98;letter-spacing:1px;margin:13px 0 10px;text-align:center;color:#fff4f5;text-shadow:0 0 9px #c8192e70,0 3px 0 #5c101e;animation:redPulse 4s ease-in-out infinite}.auth-tagline{font-size:11px!important;letter-spacing:2.8px;color:#d5ad65!important;margin:0!important;font-weight:800}.auth-rule{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:19px;color:#91818a;font-size:8px;letter-spacing:1.8px}.auth-rule span{height:1px;width:30px;background:linear-gradient(90deg,transparent,#8b3445)}
 #authTabs.tabs{display:grid;grid-template-columns:1fr 1fr;position:relative;isolation:isolate;background:#0b090d;border:1px solid #38232c;border-radius:13px;padding:4px;margin:0 0 20px;overflow:hidden}#authTabs .auth-tab-pill{position:absolute;z-index:-1;left:4px;top:4px;bottom:4px;width:calc(50% - 4px);border-radius:9px;background:linear-gradient(135deg,#e32842,#790e20);box-shadow:0 4px 16px #c8192e45;transition:transform .42s cubic-bezier(.7,0,.2,1)}#authTabs[data-m="register"] .auth-tab-pill{transform:translateX(100%)}#authTabs button{background:transparent;border:0;box-shadow:none;min-height:40px;padding:9px 4px;color:#a99aa2;font-size:10px;letter-spacing:.8px}#authTabs button.on{color:#fff}
 #authHeading{font-size:21px;color:#f0cf8c;margin:0 0 14px}.auth-field{margin:0 0 13px}.auth-field label{display:block;margin:0 0 6px;color:#d7c7ce;font-size:11px;letter-spacing:.5px}.auth-field input{margin:0;min-height:49px;padding:13px 14px;border-radius:12px;background:#0b090d;border-color:#402631;font-size:14px}.auth-field input:focus{border-color:#c8192e;box-shadow:0 0 0 3px #c8192e24}.auth-password{position:relative}.auth-password input{padding-right:52px}.auth-password #authEye{position:absolute;right:5px;top:4px;min-width:40px;width:40px;height:40px;min-height:40px;padding:0;border:0;background:transparent;box-shadow:none;color:#cbb8c1;font-size:18px}.auth-actions{display:grid;grid-template-columns:1fr}.auth-actions button{width:100%;min-height:49px;border-radius:12px;letter-spacing:1px;font-size:11px}.auth-reset{display:block;margin:13px auto 0;background:transparent;border:0;box-shadow:none;color:#c6aeb8;text-decoration:underline;text-underline-offset:3px;font-size:11px;min-height:32px}.auth-status{text-align:center;min-height:24px;margin:13px 0 0;font-size:11px}.auth-foot{display:flex;justify-content:center;align-items:center;gap:8px;color:#786b73;font-size:8px;letter-spacing:1.7px;margin-top:18px}.auth-dot{width:4px;height:4px;border-radius:50%;background:#c8192e;box-shadow:0 0 8px #c8192e}@media(min-width:600px){.auth-shell{padding:30px 32px 25px}}@media(prefers-reduced-motion:reduce){.auth-shell,.auth-shell:before,.auth-brand h1,.auth-crest svg path:first-child{animation:none!important}.auth-crest svg path:first-child{stroke-dashoffset:0}}
- 
- 
+
+
 /* ROMERO FAMILY — refined cinematic motion */
 :root{
   --rf-red-glow: rgba(200,25,46,.24);
@@ -180,8 +180,8 @@ header{transition:background .25s ease,border-color .25s ease}
   html{scroll-behavior:auto}
   *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
 }
- 
- 
+
+
 /* ROMERO FAMILY — post-login interface upgraded to match the premium login screen */
 :root{
   --rf-red:#c8192e;
@@ -265,26 +265,26 @@ button:focus-visible,.tile:focus-visible{outline:2px solid #f0cf8c;outline-offse
 @media(prefers-reduced-motion:reduce){
   .logo,#home>.box{animation:none!important}
 }
- 
+
 /* ======== ANIMATION LAYER ======== */
 /* ---------- خلفية الجمرات (canvas) ---------- */
 #rfEmbers{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
- 
+
 /* ---------- دخول متتابع للعناصر ---------- */
 @keyframes rfIn{from{opacity:0;transform:translateY(20px) scale(.96);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
 .card,.admin-member,.gallery-item,.tile{animation:rfIn .6s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0)*70ms)}
- 
+
 /* ---------- أيقونات الغرف عائمة ---------- */
 @keyframes rfFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-4deg)}}
 .tile .room-icon{animation:rfFloat 4.5s ease-in-out infinite;animation-delay:calc(var(--i,0)*-.6s)}
 .tile:hover .room-icon{animation-duration:1.4s;color:#ffd0d7;box-shadow:0 0 26px #ff334d66}
- 
+
 /* ---------- إمالة ثلاثية الأبعاد للبلاطات ---------- */
 .tile{transform-style:preserve-3d;transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
 .tile:hover,.tile:focus-visible{transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-4px)}
 .tile:before{background-size:200% 100%;animation:rfSweep 4s linear infinite}
 @keyframes rfSweep{to{background-position:-200% 0}}
- 
+
 /* ---------- البطل (Hero) ---------- */
 @keyframes rfHeroGlow{0%,100%{box-shadow:0 18px 45px #0006,0 0 0 #c8192e00}50%{box-shadow:0 18px 45px #0006,0 0 38px #c8192e44}}
 #home>.box{animation:rfHeroEnter .65s ease both,rfHeroGlow 5s ease-in-out infinite}
@@ -292,59 +292,59 @@ button:focus-visible,.tile:focus-visible{outline:2px solid #f0cf8c;outline-offse
 @keyframes rfTitleShine{0%,20%{background-position:120% 0}70%,100%{background-position:-60% 0}}
 #home>.box p{animation:rfIn .8s .35s backwards}
 #home>.box .row{animation:rfIn .8s .5s backwards}
- 
+
 /* ---------- عناوين الصفحات ---------- */
 .page>h2{position:relative}
 .page>h2:after{content:"";position:absolute;left:0;bottom:-8px;height:1px;width:0;background:linear-gradient(90deg,#ff334d,#d5ad65,transparent);animation:rfLine 1s .2s ease forwards}
 @keyframes rfLine{to{width:100%}}
 .page.active{animation:rfPage .45s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rfPage{from{opacity:0;transform:translateX(24px) scale(.99);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
- 
+
 /* ---------- الرتب ---------- */
 .rank-chip[data-rank="Boss"],.pill{position:relative;overflow:hidden}
 .rank-chip[data-rank="Boss"]:after,.pill:after{content:"";position:absolute;top:0;bottom:0;left:-80%;width:50%;background:linear-gradient(90deg,transparent,#ffffff40,transparent);transform:skewX(-20deg);animation:rfChip 3.5s ease-in-out infinite}
 @keyframes rfChip{0%,50%{left:-80%}100%{left:160%}}
- 
+
 /* ---------- الدردشة ---------- */
 @keyframes rfPopL{from{opacity:0;transform:translateX(-26px) scale(.9)}to{opacity:1;transform:none}}
 @keyframes rfPopR{from{opacity:0;transform:translateX(26px) scale(.9)}to{opacity:1;transform:none}}
 .bubble{animation:rfPopL .4s cubic-bezier(.2,1.2,.3,1) backwards;transform-origin:left bottom}
 .bubble.mine{animation-name:rfPopR;transform-origin:right bottom}
 #chatForm button:active{transform:scale(.9) rotate(-6deg)}
- 
+
 /* ---------- المكالمات ---------- */
 @keyframes rfRing{0%{box-shadow:0 0 0 0 #c8192e88}100%{box-shadow:0 0 0 22px #c8192e00}}
 @keyframes rfBars{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
 #callStatus.live{animation:rfRing 1.3s ease-out infinite;border-color:#ff334d;position:relative;padding-left:56px}
 #callStatus.live:before{content:"";position:absolute;left:18px;top:50%;width:4px;height:22px;margin-top:-11px;background:#ff5870;border-radius:3px;box-shadow:8px 0 #d5ad65,16px 0 #ff5870,24px 0 #d5ad65;animation:rfBars .9s ease-in-out infinite;transform-origin:center}
 #incomingCall .card{animation:rfRing 1.2s ease-out infinite,rfIn .5s backwards;border-color:#ff334d}
- 
+
 /* ---------- شريط التنقل ---------- */
 .navbtn{position:relative}
 .navbtn.active>span:first-child{animation:rfBounce .6s cubic-bezier(.2,1.6,.3,1)}
 @keyframes rfBounce{0%{transform:translateY(6px) scale(.7)}60%{transform:translateY(-5px) scale(1.2)}100%{transform:none}}
 .navbtn.active:after{content:"";position:absolute;top:-9px;left:30%;right:30%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#ff334d,transparent);box-shadow:0 0 10px #ff334d;animation:rfIn .4s backwards}
- 
+
 /* ---------- تأثير الموجة عند الضغط ---------- */
 button,.btn{position:relative;overflow:hidden}
 .rf-ripple{position:absolute;border-radius:50%;background:#ffffff40;transform:scale(0);animation:rfRipple .6s ease-out forwards;pointer-events:none}
 @keyframes rfRipple{to{transform:scale(1);opacity:0}}
- 
+
 /* ---------- شعار وشارة ---------- */
 .brand:hover{animation:rfGlitch .4s steps(2) 2}
 @keyframes rfGlitch{0%{transform:translate(0)}25%{transform:translate(-2px,1px);text-shadow:2px 0 #0ff3,-2px 0 #f0f6}50%{transform:translate(2px,-1px)}100%{transform:none}}
 .logo{animation:rfLogoBreathe 4s ease-in-out infinite,rfSpinIn 1s cubic-bezier(.2,1.3,.3,1) backwards}
 @keyframes rfSpinIn{from{transform:rotate(-180deg) scale(0);opacity:0}}
- 
+
 /* ---------- ظهور عند التمرير ---------- */
 .rf-reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .rf-reveal.rf-on{opacity:1;transform:none}
- 
+
 /* ---------- شريط تقدّم القراءة ---------- */
 #rfProgress{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;background:linear-gradient(90deg,#c8192e,#ff334d,#d5ad65);box-shadow:0 0 12px #ff334d;transition:width .12s}
- 
+
 @media(prefers-reduced-motion:reduce){#rfEmbers{display:none}.rf-reveal{opacity:1;transform:none}}
- 
+
 /* ---------- حركات شاشة الدخول ---------- */
 .auth-field,.auth-actions,.auth-reset,#authTabs,#authHeading{animation:rfIn .7s cubic-bezier(.2,.8,.2,1) backwards}
 #authTabs{animation-delay:.25s}#authHeading{animation-delay:.35s}
@@ -353,14 +353,14 @@ button,.btn{position:relative;overflow:hidden}
 .auth-crest{animation:rfFloat 5s ease-in-out infinite}
 .auth-tagline{background:linear-gradient(90deg,#d5ad65 30%,#fff3d0 50%,#d5ad65 70%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:rfTitleShine 5s ease-in-out infinite}
 #status.auth-status{animation:rfIn .4s backwards}
- 
+
 /* ======== ROOMS + ENTRY + WOLF ======== */
 .auth-crest svg path:nth-child(2){stroke-dasharray:320;stroke-dashoffset:320;animation:authDraw 2s .6s ease forwards}
 .auth-crest svg path:nth-child(3){opacity:0;animation:rfEyes 1s 2.2s forwards,rfBlink 5s 4s infinite}
 @keyframes rfEyes{to{opacity:1}}
 @keyframes rfBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
 .auth-crest svg path:nth-child(3){transform-origin:center 36px;transform-box:fill-box}
- 
+
 /* الرومات: ألوان مميزة لكل غرفة بنفس الترتيب */
 .tile:nth-child(1){--ac:#ff334d}.tile:nth-child(2){--ac:#f0cf8c}.tile:nth-child(3){--ac:#ff6a7e}
 .tile:nth-child(4){--ac:#e0a15a}.tile:nth-child(5){--ac:#ff4d6d}.tile:nth-child(6){--ac:#ffd27a}.tile:nth-child(7){--ac:#b89cff}
@@ -371,7 +371,7 @@ button,.btn{position:relative;overflow:hidden}
 .tile b:after{content:"\2192";display:inline-block;margin-left:8px;opacity:0;transform:translateX(-10px);transition:.28s}
 .tile:hover b:after,.tile:focus-visible b:after{opacity:1;transform:none}
 .tile:active{transform:scale(.95)!important}
- 
+
 /* دخول الرومات: تطير من اليمين واليسار بالتناوب */
 @keyframes rfFlyL{from{opacity:0;transform:perspective(700px) translate3d(-70px,34px,0) rotate(-7deg) scale(.78)}60%{transform:perspective(700px) translate3d(6px,-4px,0) rotate(1deg) scale(1.03)}to{opacity:1;transform:perspective(700px)}}
 @keyframes rfFlyR{from{opacity:0;transform:perspective(700px) translate3d(70px,34px,0) rotate(7deg) scale(.78)}60%{transform:perspective(700px) translate3d(-6px,-4px,0) rotate(-1deg) scale(1.03)}to{opacity:1;transform:perspective(700px)}}
@@ -379,12 +379,12 @@ button,.btn{position:relative;overflow:hidden}
 .tile:nth-child(even){animation:rfFlyR .85s cubic-bezier(.2,.9,.3,1) backwards;animation-delay:calc(var(--i,0)*110ms)}
 body.rf-first .tile{animation-delay:calc(1.7s + var(--i,0)*120ms)}
 body.rf-first #home>.box{animation-delay:1.3s}
- 
+
 /* أيقونة الذئب تعوي */
 @keyframes rfHowl{0%,70%,100%{transform:translateY(0) rotate(0) scale(1)}78%{transform:translateY(-3px) rotate(-10deg) scale(1.12)}88%{transform:translateY(-2px) rotate(6deg) scale(1.08)}}
 .tile:nth-child(1) .room-icon{animation:rfHowl 4.5s ease-in-out infinite}
 .navbtn[data-page="roster"].active .nav-icon{animation:rfHowl 1.2s ease-in-out}
- 
+
 /* كل تطبيق/صفحة بحركة دخول خاصة */
 @keyframes rfFromL{from{opacity:0;transform:translateX(-50px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
 @keyframes rfFromB{from{opacity:0;transform:translateY(60px) scale(.97);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
@@ -399,7 +399,7 @@ body.rf-first #home>.box{animation-delay:1.3s}
 #mvp .card{position:relative;overflow:hidden}
 #mvp .card:before{content:"\2605";position:absolute;right:14px;top:6px;font-size:44px;color:#d5ad65;opacity:.25;animation:rfSpin 6s linear infinite}
 @keyframes rfSpin{to{transform:rotate(360deg)}}
- 
+
 /* شاشة الدخول الافتتاحية بعد تسجيل الدخول */
 #rfSplash{position:fixed;inset:0;z-index:200;display:grid;place-items:center;text-align:center;background:radial-gradient(ellipse at 50% 40%,#4a0f1d,#09080b 70%);animation:rfSplashOut .7s 2.1s ease forwards}
 #rfSplash svg{width:120px;height:130px;margin:0 auto 18px;display:block;filter:drop-shadow(0 0 22px #c8192e)}
@@ -410,9 +410,76 @@ body.rf-first #home>.box{animation-delay:1.3s}
 #rfSplash i{display:block;width:0;height:2px;margin:16px auto 0;background:linear-gradient(90deg,transparent,#ff334d,#d5ad65,transparent);animation:rfLine2 1.4s .9s ease forwards}
 @keyframes rfLine2{to{width:min(280px,70vw)}}
 @keyframes rfSplashOut{to{opacity:0;visibility:hidden;transform:scale(1.08)}}
+
+/* ======== FLAME ANNOUNCEMENT + WAR + MEETING ======== */
+@property --fa{syntax:"<angle>";inherits:false;initial-value:0deg}
+.flame{position:relative;isolation:isolate;margin:34px 2px 20px;padding:5px;border-radius:22px;cursor:pointer;animation:rfDrop .8s cubic-bezier(.2,.8,.2,1) backwards}
+.flame-fire{position:absolute;inset:-7px;z-index:-1;border-radius:28px;background:conic-gradient(from var(--fa),#ff2a00,#ff9d00,#ffe36b,#ff5a00,#c8192e,#ffb300,#ff2a00);filter:url(#rfFlame) saturate(1.3);animation:rfFireSpin 4s linear infinite}
+@keyframes rfFireSpin{to{--fa:360deg}}
+.flame-glow{position:absolute;inset:-16px;z-index:-2;border-radius:36px;background:radial-gradient(closest-side,#ff5a0066,transparent);filter:blur(16px);animation:rfGlow 1.4s ease-in-out infinite alternate}
+@keyframes rfGlow{from{opacity:.55;transform:scale(.97)}to{opacity:1;transform:scale(1.04)}}
+.flame:before,.flame:after{content:"";position:absolute;left:6%;right:6%;top:-30px;height:38px;z-index:-1;pointer-events:none;transform-origin:bottom;filter:blur(1.6px);background:radial-gradient(ellipse 13px 30px at 6% 100%,#ff9d00,transparent 72%),radial-gradient(ellipse 17px 38px at 24% 100%,#ffe36b,transparent 72%),radial-gradient(ellipse 13px 28px at 44% 100%,#ff5a00,transparent 72%),radial-gradient(ellipse 18px 40px at 64% 100%,#ffb300,transparent 72%),radial-gradient(ellipse 14px 30px at 82% 100%,#ff2a00,transparent 72%),radial-gradient(ellipse 12px 26px at 96% 100%,#ffe36b,transparent 72%);animation:rfTongue .8s ease-in-out infinite alternate}
+.flame:after{left:12%;right:0;top:-22px;opacity:.8;animation-duration:1.15s;animation-direction:alternate-reverse}
+@keyframes rfTongue{0%{transform:scaleY(.7) skewX(-5deg)}50%{transform:scaleY(1.1) skewX(4deg)}100%{transform:scaleY(.85) skewX(-3deg)}}
+.flame-inner{position:relative;padding:17px 18px;border-radius:19px;background:linear-gradient(145deg,#1c0d12,#0d0a0d);box-shadow:inset 0 0 22px #ff5a0022}
+.flame-tag{font-size:10px;font-weight:900;letter-spacing:3px;color:#ffb347;text-shadow:0 0 12px #ff5a00;margin-bottom:8px}
+.flame-inner b{display:block;font-size:18px;color:#ffe9b0;text-shadow:0 0 14px #ff7a2e66}
+.flame-inner p{margin:8px 0 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:13px}
+
+/* rooms */
+.tile:nth-child(7){--ac:#ff7a2e}.tile:nth-child(8){--ac:#5fe0c8}.tile:nth-child(9){--ac:#b89cff}
+.tile:nth-child(7) .room-icon svg{animation:rfSpin 9s linear infinite}
+.tile:nth-child(8) .room-icon svg{animation:rfPinHop 1.6s ease-in-out infinite}
+@keyframes rfPinHop{0%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}60%{transform:translateY(0)}}
+#war.page.active{animation:rfZoom .55s cubic-bezier(.2,.8,.2,1) both}
+#meeting.page.active{animation:rfDrop .55s cubic-bezier(.2,.8,.2,1) both}
+
+/* war tactique */
+.war-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.war-card{cursor:pointer;padding:10px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.war-card:hover{transform:translateY(-4px);border-color:#ff7a2e;box-shadow:0 12px 30px #0006,0 0 22px #ff7a2e22}
+.war-media{position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;border:1px solid #512b38;background:#0b090d;margin-bottom:9px}
+.war-media img,.war-media video{width:100%;height:100%;object-fit:cover;display:block}
+.war-media:after,.wv-grid{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(#ff334d16 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,#ff334d16 1px,transparent 1px) 0 0/28px 28px}
+.war-scan{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 42%,#ff334d38 50%,transparent 58%);background-size:100% 220%;animation:rfScan 3.2s linear infinite;mix-blend-mode:screen}
+@keyframes rfScan{0%{background-position:0 130%}100%{background-position:0 -130%}}
+.war-live{position:absolute;top:8px;left:8px;z-index:2;font-size:9px;font-weight:900;letter-spacing:1.5px;color:#ff6a7e;background:#000a;padding:3px 7px;border-radius:6px;animation:rfBlinkTxt 1.2s steps(2) infinite}
+@keyframes rfBlinkTxt{50%{opacity:.35}}
+#warViewer{position:fixed;inset:0;z-index:150;display:flex;flex-direction:column;background:#050406f5;animation:rfZoom .3s both}
+.wv-bar{display:flex;align-items:center;gap:8px;padding:10px 12px;padding-top:calc(10px + env(safe-area-inset-top));border-bottom:1px solid #4b202a}
+.wv-bar b{flex:1;min-width:0;color:#f0cf8c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wv-bar button{min-width:42px;padding:8px 12px}
+#wvAdd.on{background:linear-gradient(135deg,#ffd27a,#c97a10);color:#000;border-color:#ffd27a}
+#wvStage{flex:1;overflow:auto;padding:12px;-webkit-overflow-scrolling:touch}
+#wvMap{position:relative;margin:0 auto;border:1px solid #7b2637;border-radius:12px;overflow:hidden;box-shadow:0 0 40px #c8192e44;transition:width .3s}
+#wvMap img,#wvMap video{display:block;width:100%;height:auto;user-select:none}
+#wvMap.marking{cursor:crosshair;outline:2px dashed #ffd27a}
+.pin{position:absolute;transform:translate(-50%,-50%);z-index:3}
+.pin i{display:block;position:relative;width:16px;height:16px;border-radius:50%;background:#ff334d;border:2px solid #fff;box-shadow:0 0 14px #ff334d}
+.pin i:before,.pin i:after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #ff334d;animation:rfPing 1.8s ease-out infinite}
+.pin i:after{animation-delay:.9s}
+@keyframes rfPing{to{transform:scale(3.2);opacity:0}}
+.pin span{position:absolute;left:50%;top:22px;transform:translateX(-50%);white-space:nowrap;font-size:10px;font-weight:900;background:#000c;border:1px solid #ff334d;color:#ffd0d7;padding:2px 6px;border-radius:6px}
+
+/* meeting point */
+.meet-card{display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:20px;border:1px solid #713044;border-radius:20px;background:radial-gradient(ellipse at 10% 0,#8e102530,transparent 50%),linear-gradient(145deg,#24121a,#100d12);margin-bottom:12px}
+.radar{position:relative;width:88px;height:88px;flex:0 0 88px;border-radius:50%;border:1px solid #7b2637;display:grid;place-items:center;color:#ff7184;background:repeating-radial-gradient(circle,transparent 0 13px,#ff334d26 14px 15px)}
+.radar:before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#ff334d70,transparent 30%);animation:rfSpin 3s linear infinite}
+.radar svg{position:relative;z-index:2;width:34px;height:34px;fill:currentColor;animation:rfPinHop 1.6s ease-in-out infinite}
+.radar i{position:absolute;inset:0;border-radius:50%;border:2px solid #ff334d;animation:rfPingR 2.7s ease-out infinite}
+.radar i:nth-child(2){animation-delay:.9s}.radar i:nth-child(3){animation-delay:1.8s}
+@keyframes rfPingR{to{transform:scale(1.7);opacity:0}}
+.radar.sm{width:54px;height:54px;flex-basis:54px}.radar.sm svg{width:22px;height:22px}
+.meet-tag{font-size:9px;letter-spacing:3px;color:#f0788a;font-weight:900}
+.meet-when{margin-top:6px;font-size:13px;color:#f0cf8c}
+.countdown{font-size:clamp(24px,7vw,34px);font-weight:950;letter-spacing:2px;color:#ffd27a;text-shadow:0 0 16px #ff7a2e66;font-variant-numeric:tabular-nums;margin:6px 0 10px}
+.meet-map{display:block;width:100%;height:300px;border:1px solid #512b38;border-radius:16px;margin-bottom:12px;filter:invert(.92) hue-rotate(180deg) saturate(.7) brightness(.9)}
+.meet-mini{display:flex;gap:14px;align-items:center;cursor:pointer;margin:0 2px 14px;border-color:#713044}
+a.btn{display:inline-block;text-decoration:none;text-align:center;line-height:20px}
+@media(prefers-reduced-motion:reduce){.flame-fire,.flame-glow,.flame:before,.flame:after,.radar:before,.war-scan{animation:none!important}}
 </style>
 </head>
-<body><div class="wrap">
+<body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rfFlame" x="-20%" y="-30%" width="140%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.06" numOctaves="2" seed="3" result="n"><animate attributeName="baseFrequency" dur="4s" values="0.015 0.06;0.022 0.1;0.015 0.06" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="wrap">
 <header><div class="logo">RF</div><div><div class="brand">ROMERO FAMILY</div><div class="sub">LOYALTY · POWER · RESPECT</div></div><div class="spacer"></div><button id="logout" class="primary hidden">LOG OUT</button></header>
 <section class="box auth-shell" id="authbox">
 <div class="auth-brand" id="welcome"><div class="auth-crest"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 4 55 13v20c0 16-10 27-23 35C19 60 9 49 9 33V13Z"/><path d="M19 20 26 26h12l7-6-1 12 3 5-6 3-3 7-4 4h-4l-4-4-3-7-6-3 3-5Z"/><path fill="#f0cf8c" stroke="none" d="M24 33l5 2-3 2ZM40 33l-5 2 3 2ZM30 45h4l-2 2.5Z"/></svg></div><div class="auth-kicker">LOYALTY · POWER · RESPECT</div><h1>ROMERO<br>FAMILY</h1><p class="auth-tagline">YOUR FAMILY. YOUR LEGACY.</p><div class="auth-rule"><span></span> PRIVATE MEMBERS ACCESS <span></span></div></div>
@@ -425,15 +492,22 @@ body.rf-first #home>.box{animation-delay:1.3s}
 <button id="reset" class="auth-reset" type="button">Forgot password?</button><p id="status" class="status auth-status">Create an account or sign in.</p>
 <div class="auth-foot"><span class="auth-dot"></span> SECURE FAMILY ACCESS <span class="auth-dot"></span></div></section>
 <main id="main" class="hidden">
-<section class="page active" id="home"><div class="box" style="margin:0;background:linear-gradient(120deg,#2b0d15,#111014)"><div class="sub">THE FAMILY HUB</div><h1>ROMERO<br>FAMILY</h1><p>Respect the name. Protect the family. Build the legacy.</p><div class="row"><button class="primary" onclick="go('roster')">VIEW ROSTER</button><button onclick="go('news')">FAMILY NEWS</button></div></div>
-<div class="grid" style="margin-top:12px"><button class="tile" onclick="go('roster')"><i class="room-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" fill="currentColor" d="M3 2l5.5 4h7L21 2l-1 7.5 2 3.5-3.5 2-2.5 4.5-2.5 2.5h-3L8 19.5 5.5 15 2 13l2-3.5ZM7.5 11l3.5 1.2-2.5 1.2ZM16.5 11 13 12.2l2.5 1.2ZM10.5 18h3L12 19.8Z"/></svg></i><b>Gang Roster</b><span>Members, ranks &amp; hierarchy</span></button><button class="tile" onclick="go('news')"><i class="room-icon">&#9639;</i><b>Family News</b><span>Announcements &amp; updates</span></button><button class="tile" onclick="go('chat')"><i class="room-icon">&#9993;</i><b>Family Chat</b><span>Private family conversation</span></button><button class="tile" onclick="go('gallery')"><i class="room-icon">&#9647;</i><b>Photo Gallery</b><span>Shared family memories</span></button><button class="tile" onclick="go('voice')"><i class="room-icon">&#9835;</i><b>Voice Calls</b><span>Talk with family members</span></button><button class="tile" onclick="go('mvp')"><i class="room-icon">&#9733;</i><b>Member of the Month</b><span>Recognize loyalty &amp; activity</span></button><button id="adminTile" class="tile hidden" onclick="go('admin')"><i class="room-icon">&#9881;</i><b>Admin Command</b><span>Approvals, ranks &amp; management</span></button></div>
-<h2>Latest announcements</h2><div id="homeNews"></div><h2>Member of the Month</h2><div class="card"><b id="mvpHome">Romero_Marco</b><p id="mvpReasonHome">Recognized for loyalty and activity.</p></div></section>
+<section class="page active" id="home"><div class="flame" onclick="go('news')" role="button" tabindex="0" aria-label="Open announcements"><div class="flame-glow"></div><div class="flame-fire"></div><div class="flame-inner"><div class="flame-tag">🔥 ANNOUNCEMENT</div><b id="topNewsTitle">No announcements yet</b><div class="muted" id="topNewsDate"></div><p id="topNewsBody">The boss will post news here.</p></div></div>
+<div id="homeMeet" class="card meet-mini hidden" onclick="go('meeting')"></div>
+<div class="box" style="margin:0;background:linear-gradient(120deg,#2b0d15,#111014)"><div class="sub">THE FAMILY HUB</div><h1>ROMERO<br>FAMILY</h1><p>Respect the name. Protect the family. Build the legacy.</p><div class="row"><button class="primary" onclick="go('roster')">VIEW ROSTER</button><button onclick="go('news')">FAMILY NEWS</button></div></div>
+<div class="grid" style="margin-top:12px"><button class="tile" onclick="go('roster')"><i class="room-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" fill="currentColor" d="M3 2l5.5 4h7L21 2l-1 7.5 2 3.5-3.5 2-2.5 4.5-2.5 2.5h-3L8 19.5 5.5 15 2 13l2-3.5ZM7.5 11l3.5 1.2-2.5 1.2ZM16.5 11 13 12.2l2.5 1.2ZM10.5 18h3L12 19.8Z"/></svg></i><b>Gang Roster</b><span>Members, ranks &amp; hierarchy</span></button><button class="tile" onclick="go('news')"><i class="room-icon">&#9639;</i><b>Family News</b><span>Announcements &amp; updates</span></button><button class="tile" onclick="go('chat')"><i class="room-icon">&#9993;</i><b>Family Chat</b><span>Private family conversation</span></button><button class="tile" onclick="go('gallery')"><i class="room-icon">&#9647;</i><b>Photo Gallery</b><span>Shared family memories</span></button><button class="tile" onclick="go('voice')"><i class="room-icon">&#9835;</i><b>Voice Calls</b><span>Talk with family members</span></button><button class="tile" onclick="go('mvp')"><i class="room-icon">&#9733;</i><b>Member of the Month</b><span>Recognize loyalty &amp; activity</span></button><button class="tile" onclick="go('war')"><i class="room-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 2.06A8 8 0 0 1 19.94 11H17v2h2.94A8 8 0 0 1 13 19.94V17h-2v2.94A8 8 0 0 1 4.06 13H7v-2H4.06A8 8 0 0 1 11 4.06V7h2V4.06ZM12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg></i><b>War Tactique</b><span>Animated tactical maps &amp; markers</span></button><button class="tile" onclick="go('meeting')"><i class="room-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></i><b>Meeting Point</b><span>Where &amp; when the family meets</span></button><button id="adminTile" class="tile hidden" onclick="go('admin')"><i class="room-icon">&#9881;</i><b>Admin Command</b><span>Approvals, ranks &amp; management</span></button></div>
+<h2 id="homeNewsH">Earlier announcements</h2><div id="homeNews"></div><h2>Member of the Month</h2><div class="card"><b id="mvpHome">Romero_Marco</b><p id="mvpReasonHome">Recognized for loyalty and activity.</p></div></section>
 <section class="page" id="roster"><button onclick="go('home')">&#8592; Home</button><h2>Gang Roster</h2><p class="muted">Approved members appear here automatically. New members start at Associate rank.</p><input id="search" placeholder="Search members..." oninput="renderRoster()"><select id="rankFilter" onchange="renderRoster()"><option value="">All ranks</option><option>Boss</option><option>Underboss</option><option>Capo</option><option>Soldier</option><option>Associate</option></select><div id="rosterList"></div></section>
 <section class="page" id="news"><button onclick="go('home')">&#8592; Home</button><h2>Family News</h2><div id="newsList"></div></section>
 <section class="page" id="chat"><button onclick="go('home')">&#8592; Home</button><h2>Family Chat</h2><div id="chatbox" class="chatbox"></div><form id="chatForm"><input id="chatText" maxlength="500" placeholder="Write a message..." required><button class="primary">Send message ➤</button></form></section>
 <section class="page" id="gallery"><button onclick="go('home')">&#8592; Home</button><h2>Family Gallery</h2><p>Share family photos with approved members.</p><label for="photoFile">Choose a photo</label><input id="photoFile" type="file" accept="image/*"><button id="uploadPhoto" class="primary" type="button">Upload photo</button><div id="galleryStatus" class="voice-status">Choose a photo to share.</div><div id="galleryGrid" class="gallery-grid"></div></section>
 <section class="page" id="voice"><button onclick="go('home')">&#8592; Home</button><h2>Family Voice Calls</h2><p>Direct voice calls with online family members. Keep this page open while calling.</p><div id="callStatus" class="voice-status">Ready for a call.</div><div id="incomingCall"></div><h3>Call a member</h3><div id="callRoster"></div><button id="hangup" class="danger" type="button">End call</button><audio id="remoteAudio" autoplay playsinline></audio></section>
 <section class="page" id="mvp"><button onclick="go('home')">&#8592; Home</button><h2>Member of the Month</h2><div class="card"><b id="mvpPage">Romero_Marco</b><p id="mvpReasonPage">Recognized for loyalty and activity.</p></div></section>
+<section class="page" id="war"><button onclick="go('home')">&#8592; Home</button><h2>War Tactique</h2><p class="muted">Animated tactical maps. Open a map to zoom and see live markers.</p>
+<div id="warAdmin" class="card hidden"><h3>Upload a map (admin)</h3><input id="warTitle" placeholder="Map title (e.g. Port raid)" maxlength="80"><label for="warFile">GIF / PNG / JPG / WEBP / MP4 / WEBM — max 25 MB</label><input id="warFile" type="file" accept="image/*,video/mp4,video/webm"><button id="warUpload" class="primary" type="button">Upload map</button><div id="warStatus" class="voice-status">Choose a map file.</div></div>
+<div id="warGrid" class="war-grid"></div></section>
+<section class="page" id="meeting"><button onclick="go('home')">&#8592; Home</button><h2>Meeting Point</h2><div id="meetView"></div>
+<div id="meetAdmin" class="card hidden"><h3>Set meeting place (admin)</h3><input id="meetName" placeholder="Place name" maxlength="80"><input id="meetAddr" placeholder="Address / description" maxlength="160"><label for="meetWhen">Date &amp; time</label><input id="meetWhen" type="datetime-local"><div class="row"><input id="meetLat" placeholder="Latitude (optional)" inputmode="decimal"><input id="meetLng" placeholder="Longitude (optional)" inputmode="decimal"></div><textarea id="meetNotes" rows="3" placeholder="Notes / rules" maxlength="500"></textarea><div class="row"><button id="saveMeet" class="primary" type="button">Save meeting</button><button id="clearMeet" class="danger" type="button">Clear</button></div></div></section>
 <section class="page" id="admin"><button onclick="go('home')">&#8592; Home</button><h2>Admin Panel</h2><div class="card"><h3>Pending accounts</h3><div id="pending"></div></div>
 <div class="card"><h3>Add roster member</h3><input id="newName" placeholder="Username"><select id="newRank"><option>Associate</option><option>Soldier</option><option>Capo</option><option>Underboss</option><option>Boss</option></select><input id="newStatus" placeholder="Status (e.g. Active)"><button id="addRoster" class="primary" type="button">Add member</button><div class="admin-toolbar">
 <input id="adminRosterSearch" placeholder="Search roster members..." aria-label="Search roster members">
@@ -445,6 +519,7 @@ body.rf-first #home>.box{animation-delay:1.3s}
 <div class="card"><h3>Publish announcement</h3><input id="postTitle" placeholder="Title" maxlength="100"><textarea id="postBody" placeholder="Message" rows="4" maxlength="2000"></textarea><button id="publish" class="primary" type="button">Publish for all members</button></div>
 <div class="card"><h3>Member of the Month</h3><input id="mvpName" placeholder="Member username"><input id="mvpReason" placeholder="Reason"><button id="saveMvp" class="primary" type="button">Save for all members</button></div></section></main>
 <nav id="nav" class="hidden"><div class="navinner"><button class="navbtn active" data-page="home" onclick="go('home')"><span>&#8962;</span><span>HOME</span></button><button class="navbtn" data-page="roster" onclick="go('roster')"><span class="nav-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" fill="currentColor" d="M3 2l5.5 4h7L21 2l-1 7.5 2 3.5-3.5 2-2.5 4.5-2.5 2.5h-3L8 19.5 5.5 15 2 13l2-3.5ZM7.5 11l3.5 1.2-2.5 1.2ZM16.5 11 13 12.2l2.5 1.2ZM10.5 18h3L12 19.8Z"/></svg></span><span>ROSTER</span></button><button class="navbtn" data-page="news" onclick="go('news')"><span>&#9639;</span><span>NEWS</span></button><button class="navbtn" data-page="chat" onclick="go('chat')"><span>&#9993;</span><span>CHAT</span></button><button class="navbtn" data-page="gallery" onclick="go('gallery')"><span>&#9647;</span><span>PHOTOS</span></button><button class="navbtn" data-page="voice" onclick="go('voice')"><span>&#9835;</span><span>VOICE</span></button></div></nav></div>
+<div id="warViewer" class="hidden"><div class="wv-bar"><b id="wvTitle"></b><button id="wvAdd" class="hidden" type="button">📍 Add marker</button><button id="wvOut" type="button">−</button><button id="wvIn" type="button">+</button><button id="wvClose" class="danger" type="button">✕</button></div><div id="wvStage"><div id="wvMap"></div></div></div>
 <script>
 // Login screen mode switch and password visibility; Firebase actions remain unchanged.
 (()=>{const $=id=>document.getElementById(id);let mode='login';function setAuthMode(next){mode=next;const tabs=$('authTabs');tabs.dataset.m=next;$('authHeading').textContent=next==='login'?'Welcome back':'Join the family';$('authUserField').classList.toggle('hidden',next!=='register');$('login').classList.toggle('hidden',next!=='login');$('register').classList.toggle('hidden',next!=='register');$('password').autocomplete=next==='login'?'current-password':'new-password';document.querySelectorAll('[data-auth-mode]').forEach(b=>{const active=b.dataset.authMode===next;b.classList.toggle('on',active);b.setAttribute('aria-selected',String(active))});$('status').textContent=next==='login'?'Sign in to continue to your family.':'Create your account, then wait for Admin approval.'}document.querySelectorAll('[data-auth-mode]').forEach(b=>b.addEventListener('click',()=>setAuthMode(b.dataset.authMode)));$('authEye').addEventListener('click',()=>{const p=$('password');p.type=p.type==='password'?'text':'password';$('authEye').textContent=p.type==='password'?'👁':'🙈';$('authEye').setAttribute('aria-label',p.type==='password'?'Show password':'Hide password')});setAuthMode('login')})();
@@ -471,13 +546,13 @@ function showApp(){const ok=!!user&&(admin||profile?.status==="approved");$("mai
  if(!ok){$("authbox").classList.remove("hidden");$("welcome").classList.remove("hidden");msg(profile?.status==="rejected"?"Your registration was rejected. Contact an administrator.":"Your account is waiting for Admin approval. Please wait.");return}
  msg(admin?"Signed in as Admin.":"Signed in successfully.");listenData();listenIncomingCalls();go("home")}
 function listen(path,cb){const r=D.ref(db,path),fn=D.onValue(r,s=>cb(s.val()),e=>msg("Database error: "+e.message));stops.push(()=>D.off(r,"value",fn))}
-function listenData(){stops.forEach(f=>f());stops=[];listen("roster",v=>{roster=v?Object.entries(v).map(([id,x])=>({id,...x})):[];renderRoster();renderCallRoster();if(admin)renderAdminRoster()});listen("announcements",v=>{news=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)):[];renderNews()});listen("chat",v=>{chat=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).slice(-100):[];renderChat()});listen("mvp",v=>{if(v)mvp=v;renderMvp()});listen("gallery",v=>renderGallery(v||{}));renderCallRoster();if(admin)listen("members",v=>{const members=v||{};const entries=Object.entries(members).map(([uid,x])=>({uid,...x}));renderPending(entries.filter(x=>x.status==="pending"));const existingIds=new Set(roster.map(x=>x.uid||x.id));entries.filter(m=>m.status==="approved"&&!existingIds.has(m.uid)).forEach(m=>{const name=m.username||m.email?.split("@")[0]||"Member";D.set(D.ref(db,"roster/"+m.uid),{uid:m.uid,name,rank:m.rank||"Associate",status:"Active",createdAt:m.createdAt||Date.now(),approvedAt:m.approvedAt||Date.now()}).catch(e=>msg("Roster sync failed: "+e.message))})})}
+function listenData(){stops.forEach(f=>f());stops=[];listen("roster",v=>{roster=v?Object.entries(v).map(([id,x])=>({id,...x})):[];renderRoster();renderCallRoster();if(admin)renderAdminRoster()});listen("announcements",v=>{news=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)):[];renderNews()});listen("chat",v=>{chat=v?Object.entries(v).map(([id,x])=>({id,...x})).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).slice(-100):[];renderChat()});listen("mvp",v=>{if(v)mvp=v;renderMvp()});listen("gallery",v=>renderGallery(v||{}));listen("warmaps",v=>renderWar(v||{}));listen("meeting",v=>renderMeeting(v));renderCallRoster();if(admin)listen("members",v=>{const members=v||{};const entries=Object.entries(members).map(([uid,x])=>({uid,...x}));renderPending(entries.filter(x=>x.status==="pending"));const existingIds=new Set(roster.map(x=>x.uid||x.id));entries.filter(m=>m.status==="approved"&&!existingIds.has(m.uid)).forEach(m=>{const name=m.username||m.email?.split("@")[0]||"Member";D.set(D.ref(db,"roster/"+m.uid),{uid:m.uid,name,rank:m.rank||"Associate",status:"Active",createdAt:m.createdAt||Date.now(),approvedAt:m.approvedAt||Date.now()}).catch(e=>msg("Roster sync failed: "+e.message))})})}
 function renderRoster(){let q=($("search")?.value||"").toLowerCase(),rank=$("rankFilter")?.value||"",list=roster.filter(m=>(m.name||"").toLowerCase().includes(q)&&(!rank||m.rank===rank));$("rosterList").innerHTML=list.map(m=>`<div class="card member"><div><b>${esc(m.name)}</b><div class="muted">${esc(m.status||"Active")}</div></div><span class="pill">${esc(m.rank||"Associate")}</span></div>`).join("")||'<div class="card">No members found.</div>'}
 window.renderRoster = renderRoster;
 let pc=null,localStream=null,currentCallId=null,currentCallPeerUid=null,callUnsubs=[];
 function renderGallery(data){const items=Object.entries(data||{}).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));const box=$("galleryGrid");if(!box)return;box.innerHTML=items.map(x=>`<div class="card gallery-item"><a href="${esc(x.url)}" target="_blank" rel="noopener"><img src="${esc(x.url)}" alt="Family photo" loading="lazy"></a><div class="muted">${esc(x.username||"Family member")}</div></div>`).join("")||"<p>No photos yet.</p>"}
 function renderCallRoster(){const box=$("callRoster");if(!box)return;box.innerHTML=roster.filter(m=>m.uid&&m.uid!==user?.uid).map(m=>`<div class="card"><b>${esc(m.name)}</b><div class="muted">${esc(m.rank||"Associate")} · ${esc(m.status||"Active")}</div><button class="primary" data-call-uid="${esc(m.uid)}">📞 Call</button></div>`).join("")||"<p>No other roster members available yet. Each roster entry needs a member UID.</p>";box.querySelectorAll("[data-call-uid]").forEach(b=>b.onclick=()=>startCall(b.dataset.callUid))}
-async function uploadPhoto(){const file=$("photoFile").files?.[0];if(!file)return $("galleryStatus").textContent="Choose a photo first.";if(!user)return; if(!file.type.startsWith("image/"))return $("galleryStatus").textContent="Only image files are allowed.";if(file.size>8*1024*1024)return $("galleryStatus").textContent="Photo must be 8 MB or smaller.";const S=window.__rfStorage;try{$("uploadPhoto").disabled=true;$("galleryStatus").textContent="Uploading…";const path=`family-gallery/${user.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;const ref=S.ref(window.__rfStorage,path);await S.uploadBytes(ref,file,{contentType:file.type});const url=await S.getDownloadURL(ref);await D.push(D.ref(db,"gallery"),{url,path,uid:user.uid,username:profile?.username||user.email||"Member",createdAt:Date.now()});$("photoFile").value="";$("galleryStatus").textContent="Photo shared successfully."}catch(e){$("galleryStatus").textContent="Upload failed: "+e.message+". Check Firebase Storage setup and rules."}finally{$("uploadPhoto").disabled=false}}
+async function uploadPhoto(){const file=$("photoFile").files?.[0];if(!file)return $("galleryStatus").textContent="Choose a photo first.";if(!user)return; if(!file.type.startsWith("image/"))return $("galleryStatus").textContent="Only image files are allowed.";if(file.size>8*1024*1024)return $("galleryStatus").textContent="Photo must be 8 MB or smaller.";const S=window.__rfSM;try{$("uploadPhoto").disabled=true;$("galleryStatus").textContent="Uploading…";const path=`family-gallery/${user.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;const ref=S.ref(window.__rfStorage,path);await S.uploadBytes(ref,file,{contentType:file.type});const url=await S.getDownloadURL(ref);await D.push(D.ref(db,"gallery"),{url,path,uid:user.uid,username:profile?.username||user.email||"Member",createdAt:Date.now()});$("photoFile").value="";$("galleryStatus").textContent="Photo shared successfully."}catch(e){$("galleryStatus").textContent="Upload failed: "+e.message+". Check Firebase Storage setup and rules."}finally{$("uploadPhoto").disabled=false}}
 function stopCallListeners(){callUnsubs.forEach(f=>f());callUnsubs=[]}
 async function setupPeer(){pc=new RTCPeerConnection({iceServers:[{urls:"stun:stun.l.google.com:19302"},{urls:"stun:stun1.l.google.com:19302"}]});localStream=await navigator.mediaDevices.getUserMedia({audio:true,video:false});localStream.getTracks().forEach(t=>pc.addTrack(t,localStream));pc.ontrack=e=>{$("remoteAudio").srcObject=e.streams[0];};pc.onconnectionstatechange=()=>{$("callStatus").textContent="Call status: "+pc.connectionState};return pc}
 async function startCall(targetUid){if(!user||targetUid===user.uid)return;try{if(!navigator.mediaDevices?.getUserMedia)throw Error("Microphone access requires HTTPS and a supported browser.");if(pc)await endCall(false);currentCallId=D.push(D.ref(db,"calls/"+targetUid)).key;currentCallPeerUid=targetUid;await setupPeer();pc.onicecandidate=e=>{if(e.candidate)D.push(D.ref(db,`calls/${targetUid}/${currentCallId}/callerCandidates`),e.candidate.toJSON())};const offer=await pc.createOffer();await pc.setLocalDescription(offer);await D.set(D.ref(db,`calls/${targetUid}/${currentCallId}/offer`),{type:offer.type,sdp:offer.sdp,callerUid:user.uid,callerName:profile?.username||user.email||"Family member",createdAt:Date.now()});$("callStatus").textContent="Calling… waiting for answer.";const answerRef=D.ref(db,`calls/${targetUid}/${currentCallId}/answer`);const unsub=D.onValue(answerRef,async snap=>{if(snap.exists()&&pc&&!pc.currentRemoteDescription)await pc.setRemoteDescription(new RTCSessionDescription(snap.val()))});callUnsubs.push(()=>D.off(answerRef,"value",unsub));const candRef=D.ref(db,`calls/${targetUid}/${currentCallId}/calleeCandidates`);const uc=D.onChildAdded(candRef,s=>{if(pc&&s.exists())pc.addIceCandidate(new RTCIceCandidate(s.val())).catch(()=>{})});callUnsubs.push(()=>D.off(candRef,"child_added",uc))}catch(e){$("callStatus").textContent="Call failed: "+e.message;await endCall(false)}}
@@ -485,7 +560,7 @@ async function acceptCall(callerUid,callId,offer){try{currentCallId=callId;curre
 async function endCall(remove=true){stopCallListeners();if(localStream)localStream.getTracks().forEach(t=>t.stop());localStream=null;if(pc){pc.close();pc=null}if($("remoteAudio"))$("remoteAudio").srcObject=null;if(remove&&currentCallId&&user){try{await D.remove(D.ref(db,`calls/${currentCallPeerUid||user.uid}/${currentCallId}`))}catch(_){}}currentCallId=null;currentCallPeerUid=null;if($("callStatus"))$("callStatus").textContent="Call ended. Ready for another call."}
 function listenIncomingCalls(){if(!user)return;const r=D.ref(db,"calls/"+user.uid);const fn=D.onChildAdded(r,s=>{const c=s.val();if(!c?.offer||c.answer)return;const box=$("incomingCall");if(!box||box.dataset.call===s.key)return;box.dataset.call=s.key;box.innerHTML=`<div class="card"><b>Incoming call from ${esc(c.offer.callerName||"Family member")}</b><div class="row"><button class="primary" id="answerCall">Answer</button><button id="declineCall">Decline</button></div></div>`;$("answerCall").onclick=()=>acceptCall(c.offer.callerUid,s.key,{type:c.offer.type,sdp:c.offer.sdp});$("declineCall").onclick=async()=>{await D.remove(D.ref(db,`calls/${user.uid}/${s.key}`));box.innerHTML="";box.dataset.call=""}});stops.push(()=>D.off(r,"child_added",fn))}
 $("uploadPhoto").onclick=uploadPhoto;$("hangup").onclick=()=>endCall(true);
-function renderNews(){let card=n=>`<div class="card"><b>${esc(n.title)}</b><div class="muted">${esc(n.date||"Family update")}</div><p>${esc(n.body)}</p></div>`;$("newsList").innerHTML=news.map(card).join("")||'<div class="card">No announcements yet.</div>';$("homeNews").innerHTML=news.slice(0,2).map(card).join("")||'<div class="card">No announcements yet.</div>'}
+function renderNews(){let card=n=>`<div class="card"><b>${esc(n.title)}</b><div class="muted">${esc(n.date||"Family update")}</div><p>${esc(n.body)}</p></div>`;$("newsList").innerHTML=news.map(card).join("")||'<div class="card">No announcements yet.</div>';const n0=news[0],rest=news.slice(1,3);$("topNewsTitle").textContent=n0?n0.title:"No announcements yet";$("topNewsDate").textContent=n0?(n0.date||"Family update"):"";$("topNewsBody").textContent=n0?n0.body:"The boss will post news here.";$("homeNews").innerHTML=rest.map(card).join("");$("homeNewsH").classList.toggle("hidden",!rest.length)}
 function renderChat(){$("chatbox").innerHTML=chat.map(c=>`<div class="bubble ${c.uid===user?.uid?"mine":""}">${esc(c.text)}<small>${esc(c.username)} · ${esc(c.timeLabel||"")}</small></div>`).join("")||"<p>No messages yet.</p>";$("chatbox").scrollTop=$("chatbox").scrollHeight}
 function renderMvp(){["mvpHome","mvpPage"].forEach(id=>$(id).textContent=mvp.name||"Romero_Marco");["mvpReasonHome","mvpReasonPage"].forEach(id=>$(id).textContent=mvp.reason||"Recognized for loyalty and activity.")}
 function renderPending(list){$("pending").innerHTML=list.map(m=>`<div class="card"><b>${esc(m.username||m.email||m.uid)}</b><div class="muted">${esc(m.email||"")} · ${esc(m.status||"pending")}</div><div class="row" style="margin-top:10px"><button data-approve="${esc(m.uid)}" class="primary">Approve</button><button data-reject="${esc(m.uid)}" class="danger">Reject</button><button data-delete-member="${esc(m.uid)}" class="danger">Delete profile</button></div></div>`).join("")||"<p>No pending accounts.</p>";
@@ -511,7 +586,7 @@ function renderAdminRoster(){
 }
 $("adminRosterSearch")?.addEventListener("input",renderAdminRoster);
 $("adminRankFilter")?.addEventListener("change",renderAdminRoster);
-async function boot(){try{const appSdk=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js");A=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js");D=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js");const S=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-storage.js");const app=appSdk.initializeApp(cfg);auth=A.getAuth(app);db=D.getDatabase(app);window.__rfStorage=S.getStorage(app);window.__rfDb=D;window.__rfUser=()=>user;
+async function boot(){try{const appSdk=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js");A=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js");D=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js");const S=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-storage.js");const app=appSdk.initializeApp(cfg);auth=A.getAuth(app);db=D.getDatabase(app);window.__rfStorage=S.getStorage(app);window.__rfSM=S;window.__rfDb=D;window.__rfUser=()=>user;
  $("register").onclick=async()=>{let name=$("username").value.trim(),email=$("email").value.trim(),password=$("password").value;if(name.length<2||!email||password.length<6)return msg("Enter username, valid email, and password of at least 6 characters.");try{let c=await A.createUserWithEmailAndPassword(auth,email,password);await D.set(D.ref(db,"members/"+c.user.uid),{username:name,email:c.user.email,status:"pending",createdAt:Date.now()});msg("Account created. Wait for Admin approval.")}catch(e){error(e)}};
  $("login").onclick=async()=>{try{await A.signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);$("password").value=""}catch(e){error(e)}};
  $("reset").onclick=async()=>{if(!$("email").value.trim())return msg("Enter your email first.");try{await A.sendPasswordResetEmail(auth,$("email").value.trim());msg("If the account exists, a reset email has been sent.")}catch(e){error(e)}};
@@ -522,12 +597,54 @@ $("chatForm").onsubmit=async e=>{e.preventDefault();let text=$("chatText").value
 $("addRoster").onclick=async()=>{if(!admin)return;let name=$("newName").value.trim();if(!name)return alert("Enter a name.");try{await D.push(D.ref(db,"roster"),{name,rank:$("newRank").value,status:$("newStatus").value.trim()||"Active",createdAt:Date.now()});$("newName").value="";$("newStatus").value=""}catch(e){alert(e.message)}};
 $("publish").onclick=async()=>{if(!admin)return;let title=$("postTitle").value.trim(),body=$("postBody").value.trim();if(!title||!body)return alert("Enter title and message.");try{await D.push(D.ref(db,"announcements"),{title,body,date:new Date().toLocaleDateString(),createdAt:Date.now(),authorUid:user.uid});$("postTitle").value="";$("postBody").value=""}catch(e){alert(e.message)}};
 $("saveMvp").onclick=async()=>{if(!admin)return;let name=$("mvpName").value.trim();if(!name)return alert("Enter member name.");try{await D.set(D.ref(db,"mvp"),{name,reason:$("mvpReason").value.trim()||"Recognized for loyalty and activity."})}catch(e){alert(e.message)}};
+/* ===== WAR TACTIQUE ===== */
+let warData={},wvId=null,markerMode=false,zoom=1;
+const mediaTag=x=>x.kind==="video"?`<video src="${esc(x.url)}" autoplay loop muted playsinline></video>`:`<img src="${esc(x.url)}" alt="Tactical map" draggable="false">`;
+function renderWar(data){warData=data||{};$("warAdmin").classList.toggle("hidden",!admin);
+ const items=Object.entries(warData).map(([id,x])=>({id,...x})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+ $("warGrid").innerHTML=items.map(x=>`<div class="card war-card" data-war="${esc(x.id)}"><div class="war-media">${mediaTag(x)}<span class="war-scan"></span><span class="war-live">● LIVE</span></div><b>${esc(x.title||"Map")}</b><div class="muted">${esc(x.username||"")} · ${x.pins?Object.keys(x.pins).length:0} markers</div>${admin?`<button class="danger" style="margin-top:8px;width:100%" data-war-del="${esc(x.id)}">Delete map</button>`:""}</div>`).join("")||"<p>No tactical maps yet.</p>";
+ $("warGrid").querySelectorAll("[data-war]").forEach(c=>c.onclick=e=>{if(e.target.closest("[data-war-del]"))return;openWar(c.dataset.war)});
+ $("warGrid").querySelectorAll("[data-war-del]").forEach(b=>b.onclick=async()=>{if(!admin||!confirm("Delete this map?"))return;const id=b.dataset.warDel,x=warData[id];try{await D.remove(D.ref(db,"warmaps/"+id));if(x?.path&&window.__rfSM)window.__rfSM.deleteObject(window.__rfSM.ref(window.__rfStorage,x.path)).catch(()=>{})}catch(e){alert(e.message)}});
+ if(wvId){if(warData[wvId])drawWar();else closeWar()}}
+function openWar(id){const x=warData[id];if(!x)return;wvId=id;zoom=1;markerMode=false;$("wvMap").innerHTML=mediaTag(x)+'<span class="war-scan"></span><div class="wv-grid"></div><div id="wvPins"></div>';$("warViewer").classList.remove("hidden");drawWar()}
+function drawWar(){const x=warData[wvId];if(!x)return;$("wvTitle").textContent=x.title||"Map";$("wvMap").style.width=(zoom*100)+"%";
+ $("wvPins").innerHTML=Object.entries(x.pins||{}).map(([pid,p])=>`<div class="pin" style="left:${+p.x||0}%;top:${+p.y||0}%" data-pin="${esc(pid)}"><i></i><span>${esc(p.label||"")}</span></div>`).join("");
+ $("wvAdd").classList.toggle("hidden",!admin);$("wvAdd").classList.toggle("on",markerMode);$("wvMap").classList.toggle("marking",markerMode)}
+function closeWar(){wvId=null;markerMode=false;$("warViewer").classList.add("hidden");$("wvMap").innerHTML=""}
+$("wvClose").onclick=closeWar;$("wvIn").onclick=()=>{zoom=Math.min(4,zoom+.5);drawWar()};$("wvOut").onclick=()=>{zoom=Math.max(1,zoom-.5);drawWar()};$("wvAdd").onclick=()=>{markerMode=!markerMode;drawWar()};
+addEventListener("keydown",e=>{if(e.key==="Escape"&&wvId)closeWar()});
+$("wvMap").onclick=async e=>{if(!admin||!wvId)return;const pin=e.target.closest("[data-pin]");try{if(pin){if(confirm("Remove this marker?"))await D.remove(D.ref(db,`warmaps/${wvId}/pins/${pin.dataset.pin}`));return}
+ if(!markerMode)return;const r=$("wvMap").getBoundingClientRect(),px=Math.round((e.clientX-r.left)/r.width*1000)/10,py=Math.round((e.clientY-r.top)/r.height*1000)/10;const label=prompt("Marker label (e.g. Entry, Sniper, Exit):");if(label===null)return;await D.push(D.ref(db,`warmaps/${wvId}/pins`),{x:px,y:py,label:label.trim().slice(0,30),createdAt:Date.now()})}catch(err){alert(err.message)}};
+$("warUpload").onclick=async()=>{if(!admin)return;const file=$("warFile").files?.[0],title=$("warTitle").value.trim(),st=$("warStatus");
+ if(!title)return st.textContent="Enter a title first.";if(!file)return st.textContent="Choose a file first.";
+ const video=file.type.startsWith("video/");if(!video&&!file.type.startsWith("image/"))return st.textContent="Only images, GIFs or videos.";
+ if(file.size>25*1024*1024)return st.textContent="File must be 25 MB or smaller.";const S=window.__rfSM;
+ try{$("warUpload").disabled=true;st.textContent="Uploading…";const path=`war-maps/${user.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;const ref=S.ref(window.__rfStorage,path);await S.uploadBytes(ref,file,{contentType:file.type});const url=await S.getDownloadURL(ref);
+  await D.push(D.ref(db,"warmaps"),{title,url,path,kind:video?"video":"image",uid:user.uid,username:profile?.username||user.email||"Admin",createdAt:Date.now()});$("warFile").value="";$("warTitle").value="";st.textContent="Map uploaded."}
+ catch(e){st.textContent="Upload failed: "+e.message+". Check Storage rules for war-maps/."}finally{$("warUpload").disabled=false}};
+
+/* ===== MEETING POINT ===== */
+const PINSVG='<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>';
+const radar=(sm)=>`<div class="radar${sm?" sm":""}"><i></i><i></i><i></i>${PINSVG}</div>`;
+function fmtWhen(w){const d=new Date(w);return isNaN(d)?"Time to be announced":d.toLocaleString([],{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}
+function mapLinks(m){const lat=parseFloat(m.lat),lng=parseFloat(m.lng),ok=isFinite(lat)&&isFinite(lng);const q=ok?`${lat},${lng}`:encodeURIComponent(m.address||m.name||"");return{link:"https://www.google.com/maps/search/?api=1&query="+q,embed:ok?`https://www.openstreetmap.org/export/embed.html?bbox=${lng-.004}%2C${lat-.003}%2C${lng+.004}%2C${lat+.003}&layer=mapnik&marker=${lat}%2C${lng}`:""}}
+function renderMeeting(v){const m=v&&v.name?v:null;$("meetAdmin").classList.toggle("hidden",!admin);
+ if(admin&&m&&!$("meetAdmin").contains(document.activeElement)){$("meetName").value=m.name||"";$("meetAddr").value=m.address||"";$("meetWhen").value=m.when||"";$("meetLat").value=m.lat||"";$("meetLng").value=m.lng||"";$("meetNotes").value=m.notes||""}
+ if(!m){$("meetView").innerHTML='<div class="card">No meeting place has been set yet.</div>';$("homeMeet").classList.add("hidden");$("homeMeet").innerHTML="";return}
+ const L=mapLinks(m);
+ $("meetView").innerHTML=`<div class="meet-card">${radar(false)}<div style="flex:1;min-width:200px"><div class="meet-tag">NEXT MEETING</div><h3 style="margin:6px 0 2px">${esc(m.name)}</h3><div class="muted">${esc(m.address||"")}</div><div class="meet-when">${esc(fmtWhen(m.when))}</div><div class="countdown" data-countdown="${esc(m.when||"")}">--</div>${m.notes?`<p>${esc(m.notes)}</p>`:""}<a class="btn primary" target="_blank" rel="noopener" href="${L.link}">📍 Open in Maps</a></div></div>${L.embed?`<iframe class="meet-map" src="${L.embed}" loading="lazy" title="Meeting map"></iframe>`:""}`;
+ $("homeMeet").innerHTML=`${radar(true)}<div style="flex:1;min-width:0"><div class="meet-tag">NEXT MEETING</div><b>${esc(m.name)}</b><div class="countdown" style="font-size:18px" data-countdown="${esc(m.when||"")}">--</div></div>`;$("homeMeet").classList.remove("hidden");tickMeet()}
+function tickMeet(){document.querySelectorAll("[data-countdown]").forEach(el=>{const t=new Date(el.dataset.countdown).getTime();if(isNaN(t)){el.textContent="TBA";return}const d=t-Date.now();if(d<=0){el.textContent=d>-3600000?"⚔ MEETING IN PROGRESS":"Meeting ended";return}const days=Math.floor(d/864e5),h=Math.floor(d%864e5/36e5),mi=Math.floor(d%36e5/6e4),s=Math.floor(d%6e4/1e3);el.textContent=(days?days+"d ":"")+[h,mi,s].map(n=>String(n).padStart(2,"0")).join(":")})}
+setInterval(tickMeet,1000);
+$("saveMeet").onclick=async()=>{if(!admin)return;const name=$("meetName").value.trim();if(!name)return alert("Enter the place name.");try{await D.set(D.ref(db,"meeting"),{name,address:$("meetAddr").value.trim(),when:$("meetWhen").value,lat:$("meetLat").value.trim(),lng:$("meetLng").value.trim(),notes:$("meetNotes").value.trim(),updatedAt:Date.now(),updatedBy:user.uid});alert("Meeting place saved.")}catch(e){alert(e.message)}};
+$("clearMeet").onclick=async()=>{if(!admin||!confirm("Clear the meeting place?"))return;try{await D.remove(D.ref(db,"meeting"));["meetName","meetAddr","meetWhen","meetLat","meetLng","meetNotes"].forEach(i=>$(i).value="")}catch(e){alert(e.message)}};
+
 boot();
 </script><script id="rf-anim-js">
 (()=>{
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
- 
+
 /* 1) جمرات حمراء وذهبية تطفو في الخلفية */
 if(!reduce){
  const c=document.createElement('canvas');c.id='rfEmbers';document.body.prepend(c);
@@ -544,20 +661,20 @@ if(!reduce){
    x.shadowBlur=12;x.shadowColor=p.gold?'#d5ad65':'#ff334d';x.fill()}
   requestAnimationFrame(loop)})();
 }
- 
+
 /* 2) ترتيب الدخول المتتابع للعناصر (يعمل أيضًا على العناصر الجديدة) */
 const stagger=el=>{[...el.children].forEach((ch,i)=>{if(!ch.style.getPropertyValue('--i'))ch.style.setProperty('--i',Math.min(i,14))})};
 ['#rosterList','#newsList','#homeNews','#galleryGrid','#adminRoster','#callRoster','#pending','.grid'].forEach(s=>{
  const el=$(s);if(!el)return;stagger(el);
  new MutationObserver(()=>{[...el.children].forEach((ch,i)=>ch.style.setProperty('--i',Math.min(i,14)))}).observe(el,{childList:true})});
- 
+
 /* 3) تأثير الموجة عند الضغط على أي زر */
 document.addEventListener('pointerdown',e=>{
  const b=e.target.closest('button,.btn');if(!b||b.disabled)return;
  const r=b.getBoundingClientRect(),s=Math.max(r.width,r.height)*2,d=document.createElement('span');
  d.className='rf-ripple';d.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;
  b.appendChild(d);setTimeout(()=>d.remove(),650)});
- 
+
 /* 4) إمالة ثلاثية الأبعاد للبلاطات مع حركة الماوس */
 if(!reduce&&matchMedia('(hover:hover)').matches){
  document.addEventListener('pointermove',e=>{
@@ -566,22 +683,22 @@ if(!reduce&&matchMedia('(hover:hover)').matches){
   t.style.setProperty('--ry',(px*10)+'deg');t.style.setProperty('--rx',(-py*10)+'deg')});
  document.addEventListener('pointerout',e=>{const t=e.target.closest('.tile');if(t){t.style.setProperty('--rx','0deg');t.style.setProperty('--ry','0deg')}});
 }
- 
+
 /* 5) حالة المكالمة: نبض + موجات صوت عند الاتصال */
 const cs=$('#callStatus');
 if(cs)new MutationObserver(()=>{const t=cs.textContent;cs.classList.toggle('live',/Calling|connected|Connected/.test(t)&&!/ended|failed/i.test(t))}).observe(cs,{childList:true,characterData:true,subtree:true});
- 
+
 /* 6) ظهور العناصر عند التمرير */
 if('IntersectionObserver' in window&&!reduce){
  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('rf-on');io.unobserve(e.target)}}),{threshold:.12});
  const watch=()=>$$('.page h2,.page h3,#home .card').forEach(el=>{if(!el.dataset.rf){el.dataset.rf=1;el.classList.add('rf-reveal');io.observe(el)}});
  watch();setInterval(watch,1500);
 }
- 
+
 /* 7) شريط تقدّم التمرير */
 const pb=document.createElement('div');pb.id='rfProgress';document.body.appendChild(pb);
 addEventListener('scroll',()=>{const h=document.documentElement;pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
- 
+
 /* 8) العدّ التصاعدي لعدد الأعضاء في الرتب (اختياري: يظهر بجانب عنوان القائمة) */
 const rl=$('#rosterList');
 if(rl){const lbl=document.createElement('span');lbl.className='pill';lbl.style.cssText='margin-inline-start:auto;font-size:11px';
@@ -612,5 +729,3 @@ new MutationObserver(()=>{
 })();
 </script>
 </body></html>
- 
-

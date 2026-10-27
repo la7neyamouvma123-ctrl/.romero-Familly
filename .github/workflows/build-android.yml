@@ -23,19 +23,22 @@ jobs:
           distribution: temurin
           java-version: 21
 
- 
       - name: Install dependencies
         run: npm install
-- name: Prepare web directory
-  run: |
-    mkdir -p www
-    cp index.html www/
-    cp manifest.json www/ || true
-    cp sw.js www/ || true
+
+      - name: Prepare web directory
+        run: |
+          mkdir -p www
+          cp index.html www/
+          cp manifest.json www/ || true
+          cp sw.js www/ || true
+
+      - name: Configure Capacitor
+        run: |
+          npx cap init "ROMERO FAMILY" "com.romerofamily.app" --web-dir=www
 
       - name: Add Android platform
         run: npx cap add android
-
 
       - name: Copy web app
         run: npx cap copy android
@@ -52,3 +55,4 @@ jobs:
           name: ROMERO-FAMILY-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+

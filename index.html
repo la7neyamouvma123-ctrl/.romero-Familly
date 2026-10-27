@@ -21,6 +21,79 @@ h1{font-size:clamp(30px,7vw,45px);line-height:1.05}h2{font-size:20px;color:var(-
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.tile{text-align:left;min-height:90px;border:1px solid var(--line);background:#171317}.tile b,.tile span{display:block}.tile span{font-size:11px;color:var(--muted);margin-top:5px}
 nav{position:fixed;bottom:0;left:0;right:0;background:#0c0b0df5;border-top:1px solid #38252c;display:flex;justify-content:center;padding:7px 3px calc(7px + env(safe-area-inset-bottom));z-index:8}.navinner{width:min(850px,100%);display:flex;justify-content:space-around}.navbtn{background:none;color:#9d9198;padding:5px 3px;font-size:10px}.navbtn.active{color:#ff7184}
 .status{font-size:12px;color:#f49aa8;overflow-wrap:anywhere}.danger{background:#70202c}@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ROMERO FAMILY â polished interface layer */
+:root{--panel:#151116;--line:#42232d;--muted:#b9aab1;--red-bright:#ff334d;--gold-soft:#f0cf8c}
+body{background:radial-gradient(ellipse at 50% -12%,#48101d 0%,#160b10 35%,#08080a 72%);background-attachment:fixed;letter-spacing:.1px}
+header{backdrop-filter:blur(18px);box-shadow:0 8px 30px #0005;padding:15px 16px}
+.brand{font-size:clamp(15px,4vw,20px);letter-spacing:2.5px}
+button,.btn{min-height:42px;border:1px solid #57404a;border-radius:12px;padding:11px 15px;background:linear-gradient(180deg,#352830,#21191f);box-shadow:inset 0 1px #ffffff0b,0 5px 14px #0003;font-size:12px;letter-spacing:.35px}
+button.primary,.primary{background:linear-gradient(135deg,#ff334d 0%,#c8192e 48%,#780b1c 100%);border:1px solid #ff6679;box-shadow:0 5px 20px #c8192e38,inset 0 1px #ffffff30}
+button.danger,.danger{background:linear-gradient(135deg,#8c1b2c,#48101b);border:1px solid #a53a4a}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #ff536b;outline-offset:2px}
+button:disabled{opacity:.55;filter:grayscale(.5);transform:none;box-shadow:none}
+input,textarea,select{border-radius:12px;border-color:#49303a;background:linear-gradient(180deg,#100d11,#0c0a0d);box-shadow:inset 0 2px 5px #0005;min-height:44px}
+select{appearance:auto;accent-color:#c8192e}
+.box,main{border-color:#4b2934;background:linear-gradient(145deg,#1c151b,#100e12 75%);box-shadow:0 12px 35px #0003}
+.card{border-color:#402630;background:linear-gradient(145deg,#191218,#100d11);box-shadow:0 6px 18px #0002;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#793344}
+h2{letter-spacing:.3px;text-shadow:0 0 16px #d5ad651a}
+.tile{border-radius:15px;min-height:104px;padding:16px;background:linear-gradient(145deg,#21171e,#120f13);box-shadow:inset 0 1px #ffffff08,0 7px 18px #0003}
+.tile b{font-size:13px;letter-spacing:.4px}.tile span{line-height:1.45}
+.navbtn{border:1px solid transparent;box-shadow:none;min-height:42px;border-radius:10px;font-weight:900}.navbtn.active{background:#45121e;border-color:#7b2637;color:#ff8495;box-shadow:0 0 15px #c8192e20}
+#adminRoster{display:grid;gap:10px;margin-top:14px}
+.admin-member{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:15px;border:1px solid #4a2934;border-radius:15px;background:linear-gradient(145deg,#21161d,#100d11);box-shadow:0 8px 22px #0003}
+.admin-member-top{display:flex;align-items:center;gap:10px;min-width:0}
+.admin-avatar{width:42px;height:42px;flex:0 0 42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#a91b31,#3b0b16);border:1px solid #d64b60;color:#fff;font-weight:950;box-shadow:0 0 16px #c8192e24}
+.admin-member-name{font-weight:900;overflow-wrap:anywhere}.admin-member-meta{font-size:11px;color:var(--muted);margin-top:3px}
+.rank-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;background:#34212b;border:1px solid #61404b;color:#f4d6df;font-size:10px;font-weight:900;letter-spacing:.5px}
+.rank-chip[data-rank="Boss"]{background:#4a1520;border-color:#d14b5f;color:#ff9aa8}.rank-chip[data-rank="Underboss"]{background:#39251b;border-color:#9a6a3b;color:#f4cc91}.rank-chip[data-rank="Capo"]{background:#2c2440;border-color:#6e5b9a;color:#d6c7ff}.rank-chip[data-rank="Soldier"]{background:#202b25;border-color:#486c57;color:#b8e5c5}.rank-chip[data-rank="Associate"]{background:#252127;border-color:#514752;color:#d3c8d0}
+.admin-rank-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}.admin-rank-controls select{margin:0}.admin-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.admin-actions button{width:100%}
+#adminRosterSearch{margin-top:12px} .admin-toolbar{display:grid;grid-template-columns:1fr;gap:7px}
+@media(min-width:520px){.admin-member{grid-template-columns:minmax(0,1fr) minmax(250px,1fr);align-items:center}.admin-member-top{grid-column:1}.admin-rank-controls,.admin-actions{grid-column:2}.admin-actions{grid-template-columns:1fr 1fr}.admin-toolbar{grid-template-columns:1fr 190px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+
+
+/* FINAL CINEMATIC UI â animated background, room icons, premium spacing */
+body{position:relative;isolation:isolate;background:#080709;overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;inset:-25%;pointer-events:none;z-index:-1}
+body:before{background:radial-gradient(ellipse at 18% 18%,#8e10251f,transparent 28%),radial-gradient(ellipse at 82% 38%,#c8192e1b,transparent 25%),radial-gradient(ellipse at 48% 90%,#d5ad650c,transparent 32%);animation:ambientFlow 18s ease-in-out infinite alternate}
+body:after{inset:0;background:linear-gradient(115deg,transparent 0%,#ff334d05 45%,transparent 65%);background-size:220% 100%;animation:lightSweep 13s linear infinite}
+@keyframes ambientFlow{0%{transform:translate3d(-2%,0,0) scale(1)}100%{transform:translate3d(2%,-2%,0) scale(1.08)}}
+@keyframes lightSweep{0%{background-position:180% 0}100%{background-position:-180% 0}}
+@keyframes redPulse{0%,100%{text-shadow:0 0 8px #c8192e35}50%{text-shadow:0 0 18px #ff334d85,0 0 34px #c8192e35}}
+.brand{animation:redPulse 4s ease-in-out infinite}
+header{border-bottom-color:#a51d3544;background:#09080cf0}
+.logo{box-shadow:0 0 0 4px #c8192e12,0 0 24px #c8192e24;background:linear-gradient(145deg,#260b13,#100b10)}
+.grid{gap:12px;margin-top:18px!important}
+.tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:7px;text-align:left;min-height:126px;padding:17px 15px;overflow:hidden;border:1px solid #4c2935;background:linear-gradient(145deg,#21141cdd,#100d12f5 70%);transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.tile:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#d21e39,#d5ad65,transparent);opacity:.72}
+.tile:after{content:"";position:absolute;width:110px;height:110px;right:-50px;bottom:-60px;border-radius:50%;background:#c8192e12;filter:blur(3px);transition:transform .25s}
+.tile:hover,.tile:focus-visible{transform:translateY(-3px);border-color:#b72c45;box-shadow:0 10px 28px #0006,0 0 20px #c8192e17}
+.tile:hover:after{transform:scale(1.5)}
+.tile .room-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;border:1px solid #793044;background:linear-gradient(145deg,#4a1321,#1a0d13);color:#ff7184;font-size:18px;box-shadow:inset 0 1px #ffffff14,0 0 15px #c8192e15}
+.tile b{font-size:13px;letter-spacing:.65px;text-transform:uppercase}
+.tile span{font-size:11px;color:#bbaeb5;margin-top:0}
+.page{animation:pageEnter .24s ease both}
+@keyframes pageEnter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.page>h2{display:flex;align-items:center;gap:9px;margin-top:18px}
+.page>h2:before{content:"";width:4px;height:23px;border-radius:5px;background:linear-gradient(#ff465e,#7b0c1d);box-shadow:0 0 12px #c8192e55}
+.page>button:first-child{margin:4px 0 8px}
+.card{border-radius:14px}
+.member{padding:14px}
+nav{background:#09080df5;border-top-color:#552333;backdrop-filter:blur(20px);padding-top:9px}
+.navinner{gap:4px}
+.navbtn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:7px 2px;font-size:9px;letter-spacing:.35px}
+.navbtn.active{box-shadow:inset 0 0 0 1px #7b2637,0 0 16px #c8192e20}
+button{transition:transform .16s ease,filter .16s ease,box-shadow .16s ease}
+button:active{transform:scale(.975);filter:brightness(1.12)}
+#home>.box h1{letter-spacing:-1px;text-shadow:0 4px 24px #c8192e35}
+#home>.box{position:relative;overflow:hidden;border-color:#713044;background:linear-gradient(125deg,#35101b,#171017 60%,#100d12)}
+#home>.box:after{content:"RF";position:absolute;right:-8px;bottom:-40px;font-size:150px;font-weight:1000;letter-spacing:-12px;color:#ffffff05;pointer-events:none}
+#rosterList .card{display:flex;align-items:center;justify-content:space-between;gap:12px}
+@media(max-width:380px){.grid{gap:8px}.tile{min-height:116px;padding:13px}.navbtn{font-size:8px}.brand{letter-spacing:1.5px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+
 </style>
 </head>
 <body><div class="wrap">
@@ -34,7 +107,7 @@ nav{position:fixed;bottom:0;left:0;right:0;background:#0c0b0df5;border-top:1px s
 <button id="reset" style="margin-top:8px" type="button">RESET PASSWORD</button><p id="status" class="status">Create an account or sign in.</p></section>
 <main id="main" class="hidden">
 <section class="page active" id="home"><div class="box" style="margin:0;background:linear-gradient(120deg,#2b0d15,#111014)"><div class="sub">THE FAMILY HUB</div><h1>ROMERO<br>FAMILY</h1><p>Respect the name. Protect the family. Build the legacy.</p><div class="row"><button class="primary" onclick="go('roster')">VIEW ROSTER</button><button onclick="go('news')">FAMILY NEWS</button></div></div>
-<div class="grid" style="margin-top:12px"><button class="tile" onclick="go('roster')">â <b>Gang Roster</b><span>Members and ranks</span></button><button class="tile" onclick="go('news')">â¤ <b>Announcements</b><span>Shared family updates</span></button><button class="tile" onclick="go('chat')">â <b>Family Chat</b><span>Live shared messages</span></button><button class="tile" onclick="go('gallery')">ð¸ <b>Family Gallery</b><span>Shared family photos</span></button><button class="tile" onclick="go('voice')">ðï¸ <b>Voice Calls</b><span>Call a family member</span></button><button class="tile" onclick="go('mvp')">â <b>Member of the Month</b><span>Family recognition</span></button><button id="adminTile" class="tile hidden" onclick="go('admin')">â <b>Admin Panel</b><span>Approve and manage</span></button></div>
+<div class="grid" style="margin-top:12px"><button class="tile" onclick="go('roster')"><i class="room-icon">â</i><b>Gang Roster</b><span>Members, ranks &amp; hierarchy</span></button><button class="tile" onclick="go('news')"><i class="room-icon">â¤</i><b>Family News</b><span>Announcements &amp; updates</span></button><button class="tile" onclick="go('chat')"><i class="room-icon">â</i><b>Family Chat</b><span>Private family conversation</span></button><button class="tile" onclick="go('gallery')"><i class="room-icon">â§</i><b>Photo Gallery</b><span>Shared family memories</span></button><button class="tile" onclick="go('voice')"><i class="room-icon">â«</i><b>Voice Calls</b><span>Talk with family members</span></button><button class="tile" onclick="go('mvp')"><i class="room-icon">â</i><b>Member of the Month</b><span>Recognize loyalty &amp; activity</span></button><button id="adminTile" class="tile hidden" onclick="go('admin')"><i class="room-icon">â</i><b>Admin Command</b><span>Approvals, ranks &amp; management</span></button></div>
 <h2>Latest announcements</h2><div id="homeNews"></div><h2>Member of the Month</h2><div class="card"><b id="mvpHome">Romero_Marco</b><p id="mvpReasonHome">Recognized for loyalty and activity.</p></div></section>
 <section class="page" id="roster"><button onclick="go('home')">â Home</button><h2>Gang Roster</h2><p class="muted">Approved members appear here automatically. New members start at Associate rank.</p><input id="search" placeholder="Search members..." oninput="renderRoster()"><select id="rankFilter" onchange="renderRoster()"><option value="">All ranks</option><option>Boss</option><option>Underboss</option><option>Capo</option><option>Soldier</option><option>Associate</option></select><div id="rosterList"></div></section>
 <section class="page" id="news"><button onclick="go('home')">â Home</button><h2>Family News</h2><div id="newsList"></div></section>
@@ -46,7 +119,7 @@ nav{position:fixed;bottom:0;left:0;right:0;background:#0c0b0df5;border-top:1px s
 <div class="card"><h3>Add roster member</h3><input id="newName" placeholder="Username"><select id="newRank"><option>Associate</option><option>Soldier</option><option>Capo</option><option>Underboss</option><option>Boss</option></select><input id="newStatus" placeholder="Status (e.g. Active)"><button id="addRoster" class="primary" type="button">Add member</button><div id="adminRoster"></div></div>
 <div class="card"><h3>Publish announcement</h3><input id="postTitle" placeholder="Title" maxlength="100"><textarea id="postBody" placeholder="Message" rows="4" maxlength="2000"></textarea><button id="publish" class="primary" type="button">Publish for all members</button></div>
 <div class="card"><h3>Member of the Month</h3><input id="mvpName" placeholder="Member username"><input id="mvpReason" placeholder="Reason"><button id="saveMvp" class="primary" type="button">Save for all members</button></div></section></main>
-<nav id="nav" class="hidden"><div class="navinner"><button class="navbtn active" data-page="home" onclick="go('home')">â HOME</button><button class="navbtn" data-page="roster" onclick="go('roster')">â ROSTER</button><button class="navbtn" data-page="news" onclick="go('news')">â¤ NEWS</button><button class="navbtn" data-page="chat" onclick="go('chat')">â CHAT</button><button class="navbtn" data-page="gallery" onclick="go('gallery')">ð¸ PHOTOS</button><button class="navbtn" data-page="voice" onclick="go('voice')">ðï¸ VOICE</button></div></nav></div>
+<nav id="nav" class="hidden"><div class="navinner"><button class="navbtn active" data-page="home" onclick="go('home')"><span>â</span><span>HOME</span></button><button class="navbtn" data-page="roster" onclick="go('roster')"><span>â</span><span>ROSTER</span></button><button class="navbtn" data-page="news" onclick="go('news')"><span>â¤</span><span>NEWS</span></button><button class="navbtn" data-page="chat" onclick="go('chat')"><span>â</span><span>CHAT</span></button><button class="navbtn" data-page="gallery" onclick="go('gallery')"><span>â§</span><span>PHOTOS</span></button><button class="navbtn" data-page="voice" onclick="go('voice')"><span>â«</span><span>VOICE</span></button></div></nav></div>
 <script type="module">
 const cfg={
  apiKey:"AIzaSyAtRYSd148kdfC-XZ5r1IrwHXO5lMPuHAE",
@@ -90,7 +163,25 @@ function renderPending(list){$("pending").innerHTML=list.map(m=>`<div class="car
  $("pending").querySelectorAll("[data-approve]").forEach(b=>b.onclick=async()=>{const uid=b.dataset.approve;const member=list.find(x=>x.uid===uid);const name=member?.username||member?.email?.split("@")[0]||"Member";try{await D.update(D.ref(db,"members/"+uid),{status:"approved"});await D.set(D.ref(db,"roster/"+uid),{name,rank:"Associate",status:"Active",uid,createdAt:member?.createdAt||Date.now(),approvedAt:Date.now()});alert("Member approved and added to Gang Roster.")}catch(e){alert("Member status may have changed, but roster sync failed: "+e.message+". Check Firebase Database rules and retry.")}});
  $("pending").querySelectorAll("[data-reject]").forEach(b=>b.onclick=async()=>{let uid=b.dataset.reject;if(!confirm("Reject this registration?"))return;try{await D.update(D.ref(db,"members/"+uid),{status:"rejected"});await D.remove(D.ref(db,"roster/"+uid));alert("Registration rejected and removed from Gang Roster.")}catch(e){alert("Error: "+e.message)}});
  $("pending").querySelectorAll("[data-delete-member]").forEach(b=>b.onclick=async()=>{let uid=b.dataset.deleteMember;if(!confirm("Delete this member profile from the database? This does not delete the Firebase Authentication login."))return;try{await D.remove(D.ref(db,"members/"+uid));await D.remove(D.ref(db,"roster/"+uid));alert("Member profile and roster entry deleted. The Authentication account remains.")}catch(e){alert("Error: "+e.message)}})}
-function renderAdminRoster(){$("adminRoster").innerHTML=roster.map(m=>`<div class="card member" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:120px"><b>${esc(m.name)}</b><div class="muted">${esc(m.status||"Active")} Â· ${esc(m.rank||"Associate")}</div></div><select data-rank-for="${esc(m.id)}" aria-label="Rank for ${esc(m.name)}"><option ${m.rank==="Associate"?"selected":""}>Associate</option><option ${m.rank==="Soldier"?"selected":""}>Soldier</option><option ${m.rank==="Capo"?"selected":""}>Capo</option><option ${m.rank==="Underboss"?"selected":""}>Underboss</option><option ${m.rank==="Boss"?"selected":""}>Boss</option></select><button class="primary" data-save-rank="${esc(m.id)}">Save rank</button><button class="danger" data-delete="${esc(m.id)}">Delete</button></div>`).join("")||"<p>No roster members yet.</p>";$("adminRoster").querySelectorAll("[data-save-rank]").forEach(b=>b.onclick=async()=>{if(!admin)return alert("Admin access required.");const id=b.dataset.saveRank;const select=$("adminRoster").querySelector(`[data-rank-for="${CSS.escape(id)}"]`);if(!select)return;try{b.disabled=true;await D.update(D.ref(db,"roster/"+id),{rank:select.value,updatedAt:Date.now(),updatedBy:user.uid});alert("Rank updated successfully.")}catch(e){alert("Could not update rank: "+e.message)}finally{b.disabled=false}});$("adminRoster").querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(!admin)return alert("Admin access required.");if(confirm("Delete this roster entry? This does not delete the member's login."))try{await D.remove(D.ref(db,"roster/"+b.dataset.delete))}catch(e){alert(e.message)}})}
+function renderAdminRoster(){
+ const q=($("adminRosterSearch")?.value||"").trim().toLowerCase();
+ const rankFilter=$("adminRankFilter")?.value||"";
+ const visible=roster.filter(m=>(m.name||"").toLowerCase().includes(q)&&(!rankFilter||(m.rank||"Associate")===rankFilter));
+ const rankOptions=["Associate","Soldier","Capo","Underboss","Boss"];
+ $("adminRoster").innerHTML=visible.map(m=>{
+   const rank=m.rank||"Associate";
+   const initial=(m.name||"M").trim().charAt(0).toUpperCase()||"M";
+   return `<div class="admin-member">
+    <div class="admin-member-top"><div class="admin-avatar">${esc(initial)}</div><div style="min-width:0;flex:1"><div class="admin-member-name">${esc(m.name||"Unnamed member")}</div><div class="admin-member-meta">${esc(m.status||"Active")}</div><span class="rank-chip" data-rank="${esc(rank)}">â ${esc(rank)}</span></div></div>
+    <div class="admin-rank-controls"><select data-rank-for="${esc(m.id)}" aria-label="Rank for ${esc(m.name)}">${rankOptions.map(r=>`<option value="${r}" ${rank===r?"selected":""}>${r}</option>`).join("")}</select><button class="primary" data-save-rank="${esc(m.id)}">Save rank</button></div>
+    <div class="admin-actions"><button data-delete="${esc(m.id)}" class="danger">Delete roster entry</button><span class="admin-member-meta" style="align-self:center">Rank changes apply to roster</span></div>
+   </div>`;
+ }).join("")||'<div class="card">No members match this search or rank filter.</div>';
+ $("adminRoster").querySelectorAll("[data-save-rank]").forEach(b=>b.onclick=async()=>{if(!admin)return alert("Admin access required.");const id=b.dataset.saveRank;const select=$("adminRoster").querySelector(`[data-rank-for="${CSS.escape(id)}"]`);if(!select)return;try{b.disabled=true;b.textContent="Savingâ¦";await D.update(D.ref(db,"roster/"+id),{rank:select.value,updatedAt:Date.now(),updatedBy:user.uid});b.textContent="Saved â";setTimeout(()=>{if(b.isConnected){b.textContent="Save rank";b.disabled=false}},1000)}catch(e){alert("Could not update rank: "+e.message);b.textContent="Save rank";b.disabled=false}});
+ $("adminRoster").querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{if(!admin)return alert("Admin access required.");if(confirm("Delete this roster entry? This does not delete the member's login."))try{await D.remove(D.ref(db,"roster/"+b.dataset.delete))}catch(e){alert(e.message)}});
+}
+$("adminRosterSearch")?.addEventListener("input",renderAdminRoster);
+$("adminRankFilter")?.addEventListener("change",renderAdminRoster);
 async function boot(){try{const appSdk=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js");A=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js");D=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js");const S=await import("https://www.gstatic.com/firebasejs/13.1.0/firebase-storage.js");const app=appSdk.initializeApp(cfg);auth=A.getAuth(app);db=D.getDatabase(app);window.__rfStorage=S.getStorage(app);window.__rfDb=D;window.__rfUser=()=>user;
  $("register").onclick=async()=>{let name=$("username").value.trim(),email=$("email").value.trim(),password=$("password").value;if(name.length<2||!email||password.length<6)return msg("Enter username, valid email, and password of at least 6 characters.");try{let c=await A.createUserWithEmailAndPassword(auth,email,password);await D.set(D.ref(db,"members/"+c.user.uid),{username:name,email:c.user.email,status:"pending",createdAt:Date.now()});msg("Account created. Wait for Admin approval.")}catch(e){error(e)}};
  $("login").onclick=async()=>{try{await A.signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);$("password").value=""}catch(e){error(e)}};

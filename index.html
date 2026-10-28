@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -526,9 +526,22 @@ a.btn{display:inline-block;text-decoration:none;text-align:center;line-height:20
 .wb-rotor{animation:rfSpin .45s linear infinite;transform-box:fill-box;transform-origin:center}
 .wb-eu{will-change:transform}
 @media(prefers-reduced-motion:reduce){.wb-fire,.wb-route,.wb-zone,.wb-push,.wb-rotor,.wb-flag{animation:none!important}}
+
+/* ======== PERFORMANCE LAYER (phones & touch screens) ======== */
+@media(hover:none),(max-width:700px){
+  body:before,body:after{animation:none}
+  .tile:before{animation:none}
+  .tile .room-icon,.tile:nth-child(1) .room-icon{animation:none}
+  .tile{transform:none}
+  .flame-glow{animation:none}
+  .rank-chip[data-rank="Boss"]:after,.pill:after{animation:none}
+  #authbox button.primary:after{animation:none}
+  #home>.box{animation:rfHeroEnter .65s ease both}
+  #home>.box:before{animation:none}
+}
 </style>
 </head>
-<body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rfFlame" x="-20%" y="-30%" width="140%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.06" numOctaves="2" seed="3" result="n"><animate attributeName="baseFrequency" dur="4s" values="0.015 0.06;0.022 0.1;0.015 0.06" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="wrap">
+<body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rfFlame" x="-20%" y="-30%" width="140%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.018 0.08" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="wrap">
 <header><div class="logo">RF</div><div><div class="brand">ROMERO FAMILY</div><div class="sub">LOYALTY · POWER · RESPECT</div></div><div class="spacer"></div><button id="logout" class="primary hidden">LOG OUT</button></header>
 <section class="box auth-shell" id="authbox">
 <div class="auth-brand" id="welcome"><div class="auth-crest"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 4 55 13v20c0 16-10 27-23 35C19 60 9 49 9 33V13Z"/><path d="M19 20 26 26h12l7-6-1 12 3 5-6 3-3 7-4 4h-4l-4-4-3-7-6-3 3-5Z"/><path fill="#f0cf8c" stroke="none" d="M24 33l5 2-3 2ZM40 33l-5 2 3 2ZM30 45h4l-2 2.5Z"/></svg></div><div class="auth-kicker">LOYALTY · POWER · RESPECT</div><h1>ROMERO<br>FAMILY</h1><p class="auth-tagline">YOUR FAMILY. YOUR LEGACY.</p><div class="auth-rule"><span></span> PRIVATE MEMBERS ACCESS <span></span></div></div>
@@ -617,7 +630,7 @@ async function endCall(remove=true){stopCallListeners();if(localStream)localStre
 function listenIncomingCalls(){if(!user)return;const r=D.ref(db,"calls/"+user.uid);const fn=D.onChildAdded(r,s=>{const c=s.val();if(!c?.offer||c.answer)return;const box=$("incomingCall");if(!box||box.dataset.call===s.key)return;box.dataset.call=s.key;box.innerHTML=`<div class="card"><b>Incoming call from ${esc(c.offer.callerName||"Family member")}</b><div class="row"><button class="primary" id="answerCall">Answer</button><button id="declineCall">Decline</button></div></div>`;$("answerCall").onclick=()=>acceptCall(c.offer.callerUid,s.key,{type:c.offer.type,sdp:c.offer.sdp});$("declineCall").onclick=async()=>{await D.remove(D.ref(db,`calls/${user.uid}/${s.key}`));box.innerHTML="";box.dataset.call=""}});stops.push(()=>D.off(r,"child_added",fn))}
 $("uploadPhoto").onclick=uploadPhoto;$("hangup").onclick=()=>endCall(true);
 function renderNews(){let card=n=>`<div class="card"><b>${esc(n.title)}</b><div class="muted">${esc(n.date||"Family update")}</div><p>${esc(n.body)}</p></div>`;$("newsList").innerHTML=news.map(card).join("")||'<div class="card">No announcements yet.</div>';const n0=news[0],rest=news.slice(1,3);$("topNewsTitle").textContent=n0?n0.title:"No announcements yet";$("topNewsDate").textContent=n0?(n0.date||"Family update"):"";$("topNewsBody").textContent=n0?n0.body:"The boss will post news here.";$("homeNews").innerHTML=rest.map(card).join("");$("homeNewsH").classList.toggle("hidden",!rest.length)}
-function renderChat(){$("chatbox").innerHTML=chat.map(c=>`<div class="bubble ${c.uid===user?.uid?"mine":""}">${esc(c.text)}<small>${esc(c.username)} · ${esc(c.timeLabel||"")}</small></div>`).join("")||"<p>No messages yet.</p>";$("chatbox").scrollTop=$("chatbox").scrollHeight}
+function renderChat(){$("chatbox").innerHTML=chat.map(c=>{const tl=c.timeLabel||(c.createdAt?new Date(c.createdAt).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"}):"");return`<div class="bubble ${c.uid===user?.uid?"mine":""}">${esc(c.text)}<small>${esc(c.username)} · ${esc(tl)}</small></div>`}).join("")||"<p>No messages yet.</p>";$("chatbox").scrollTop=$("chatbox").scrollHeight}
 function renderMvp(){["mvpHome","mvpPage"].forEach(id=>$(id).textContent=mvp.name||"Romero_Marco");["mvpReasonHome","mvpReasonPage"].forEach(id=>$(id).textContent=mvp.reason||"Recognized for loyalty and activity.")}
 function renderPending(list){$("pending").innerHTML=list.map(m=>`<div class="card"><b>${esc(m.username||m.email||m.uid)}</b><div class="muted">${esc(m.email||"")} · ${esc(m.status||"pending")}</div><div class="row" style="margin-top:10px"><button data-approve="${esc(m.uid)}" class="primary">Approve</button><button data-reject="${esc(m.uid)}" class="danger">Reject</button><button data-delete-member="${esc(m.uid)}" class="danger">Delete profile</button></div></div>`).join("")||"<p>No pending accounts.</p>";
  $("pending").querySelectorAll("[data-approve]").forEach(b=>b.onclick=async()=>{const uid=b.dataset.approve;const member=list.find(x=>x.uid===uid);const name=member?.username||member?.email?.split("@")[0]||"Member";try{await D.update(D.ref(db,"members/"+uid),{status:"approved"});await D.set(D.ref(db,"roster/"+uid),{name,rank:"Associate",status:"Active",uid,createdAt:member?.createdAt||Date.now(),approvedAt:Date.now()});alert("Member approved and added to Gang Roster.")}catch(e){alert("Member status may have changed, but roster sync failed: "+e.message+". Check Firebase Database rules and retry.")}});
@@ -679,7 +692,7 @@ $("warUpload").onclick=async()=>{if(!admin)return;const file=$("warFile").files?
   await D.push(D.ref(db,"warmaps"),{title,url,path,kind:video?"video":"image",uid:user.uid,username:profile?.username||user.email||"Admin",createdAt:Date.now()});$("warFile").value="";$("warTitle").value="";st.textContent="Map uploaded."}
  catch(e){st.textContent="Upload failed: "+e.message+". Check Storage rules for war-maps/."}finally{$("warUpload").disabled=false}};
 
-/* ===== WAR BOARD: 9 tactics (encircle, attack x2, 10v10 x2, retreat x2, helicopter, area spread) ===== */
+/* ===== WAR BOARD: 11 tactics (encircle, attack x2, 10v10 x4, retreat x2, helicopter, area spread) ===== */
 const WB={tac:"enc",phase:1,custom:{},edit:false,drag:null,timer:null,tm:[],ring:[0,0]};
 const C={cmd:"#f0cf8c",atk:"#ff334d",blk:"#ff8a2e",ovw:"#5fe0c8",med:"#8be0a4",drv:"#b89cff",sct:"#7fb8ff"};
 const ringPos=(cx,cy,rx,ry,i)=>{const a=(-90+i*36)*Math.PI/180;return[+(cx+rx*Math.cos(a)).toFixed(1),+(cy+ry*Math.sin(a)).toFixed(1)]};
@@ -797,7 +810,35 @@ spread:{tab:"🧭 Spread · Area",title:"Area Spread · 4 Sectors",names:["Gathe
  pos:(i,ph)=>{if(ph===1){if(i===0)return{x:300,y:200};const p=ringPos(300,200,64,44,i-1);return{x:p[0],y:p[1]}}const q=SP[ph-2][i];return{x:q[0],y:q[1]}},
  scene:()=>bl([[210,40,60,50],[330,310,60,50],[40,150,50,60],[510,150,50,60],[210,320,50,40],[390,40,50,40]])+'<path d="M300 0V400M0 200H600" stroke="#ffd27a" stroke-opacity=".35" stroke-dasharray="10 8"/>'+lab("NW SECTOR",70,22,"2,3,4",C.atk)+lab("NE SECTOR",530,22,"2,3,4",C.blk)+lab("SE SECTOR",530,392,"2,3,4",C.ovw)+lab("SW SECTOR",70,392,"2,3,4",C.drv)+'<g data-ph="3"><path class="wb-fire" d="M300 200L200 140"/><path class="wb-fire" d="M300 200L400 140"/><path class="wb-fire" d="M300 200L400 260"/><path class="wb-fire" d="M300 200L200 260"/></g><g data-ph="4">'+eMark(480,85,"CONTACT",16)+'<path class="wb-fire" d="M430 140L462 104"/><path class="wb-fire" d="M500 150L490 106"/><path class="wb-fire" d="M360 115L452 92"/></g>'+flag("CONTACT NE · SW HOLDS",300,392,"4")}
 });
-const TACORDER=["enc","atk","atk2","duel","duel2","ret","ret2","heli","spread"];
+
+/* ===== WEAPON-SPLIT TACTICS: Bat / Deagle / Sniper (10 vs 10) ===== */
+const BL=[
+ [[200,330],[250,330],[350,330],[400,330],[180,355],[260,355],[340,355],[420,355],[80,300],[520,300]],
+ [[215,290],[262,290],[338,290],[385,290],[190,320],[250,320],[350,320],[410,320],[70,230],[530,230]],
+ [[235,215],[275,215],[325,215],[365,215],[210,255],[260,255],[340,255],[390,255],[70,200],[530,200]],
+ [[240,150],[280,150],[320,150],[360,150],[215,190],[265,190],[335,190],[385,190],[70,160],[530,160]]];
+const PN=[
+ [[300,330],[335,335],[265,335],[330,360],[90,335],[120,345],[60,350],[95,365],[130,365],[150,330]],
+ [[300,290],[340,295],[260,295],[470,250],[70,240],[100,250],[45,255],[75,270],[105,270],[60,200]],
+ [[300,280],[340,285],[260,285],[470,230],[90,130],[120,140],[60,145],[90,155],[120,155],[60,90]],
+ [[300,230],[340,235],[260,235],[470,200],[170,70],[210,80],[140,85],[180,100],[220,105],[90,100]]];
+Object.assign(TAC,{
+bat10:{tab:"🏏 Bat·Deagle·Sniper",title:"10 vs 10 · Pressure & Cover",names:["Assemble","Take cover","Bats rush","Break through"],
+ roles:[["Bat Leader","Calls the rush",C.cmd],["Bat","Closes the distance",C.atk],["Bat","Closes the distance",C.atk],["Bat","Closes the distance",C.atk],["Deagle","Follows the bats",C.blk],["Deagle","Follows the bats",C.blk],["Deagle","Follows the bats",C.blk],["Deagle","Follows the bats",C.blk],["Sniper","High point · main entrance",C.sct],["Sniper","High point · flank",C.sct]],
+ caps:["The team gathers behind cover. 4 Bats in front, 4 Deagles behind them, 2 Snipers on the high points.","Snipers lock the entrance and the flank. Nobody moves before the signal.","Bats rush using corners and vehicles. Deagles advance behind them in pairs.","Bats force close combat, Deagles finish from behind, Snipers kill anyone who runs or heals."],
+ rules:["Bats go in first and close the distance fast.","Deagles never advance alone — every two cover each other.","Snipers cover the exit and the medics.","After the first wave, Snipers move to a new spot.","One leader gives the orders."],
+ pos:tbl(BL),
+ epos:(i,ph)=>({x:120+i*40,y:[60,70,85,95][ph-1],o:ph===4?.35:1}),
+ scene:()=>bl([[40,40,70,50],[490,40,70,50],[40,330,60,45],[500,330,60,45]])+'<rect x="0" y="120" width="600" height="160" fill="#140d12"/><text x="16" y="388" class="wb-lbl" fill="#8be0a4">OUR SIDE</text><text x="16" y="24" class="wb-lbl" fill="#ff8a98">ENEMY SIDE</text><g data-ph="2,3,4"><path class="wb-fire" d="M70 230L250 70"/><path class="wb-fire" d="M530 230L350 70"/></g>'+flag("BREAKTHROUGH",300,112,"4")},
+pinch10:{tab:"🪤 Pincer · Weapons",title:"10 vs 10 · Pincer",names:["Assemble","Split","Pinch","Collapse"],
+ roles:[["Deagle A","Front · holds attention",C.atk],["Deagle A","Front · holds attention",C.atk],["Deagle A","Front · holds attention",C.atk],["Sniper A","Gives the start signal",C.sct],["Deagle B","Flank team",C.blk],["Deagle B","Flank team",C.blk],["Bat B","Flank team",C.blk],["Bat B","Flank team",C.blk],["Bat B","Flank team",C.blk],["Sniper B","Covers the flank",C.sct]],
+ caps:["Team A (3 Deagle + Sniper) and Team B (2 Deagle + 3 Bat + Sniper) gather.","Team A moves to the front. Team B goes around the side under cover.","Team A pins the enemy while Team B reaches their flank.","Sniper A fires the first shot. Both teams hit at once and the enemy collapses."],
+ rules:["Team A draws attention from the front.","Team B hits from the side and back at the same time.","The start signal is the first shot from Sniper A.","Nobody leaves position before the signal.","Everyone knows the fallback point."],
+ pos:tbl(PN),
+ epos:(i,ph)=>({x:120+i*40,y:[70,80,95,105][ph-1],o:ph===4?.35:1}),
+ scene:()=>bl([[40,40,70,50],[490,40,70,50],[40,330,60,45],[500,330,60,45]])+'<rect x="0" y="120" width="600" height="160" fill="#140d12"/><text x="16" y="388" class="wb-lbl" fill="#8be0a4">OUR SIDE</text><text x="16" y="24" class="wb-lbl" fill="#ff8a98">ENEMY SIDE</text><g data-ph="3,4"><path class="wb-fire" d="M300 235V110"/><path class="wb-fire" d="M120 140L260 85"/></g>'+flag("COLLAPSE",300,112,"4")}
+});
+const TACORDER=["enc","atk","atk2","duel","duel2","bat10","pinch10","ret","ret2","heli","spread"];
 
 let cur=[],curE=[],curH=null,wbRaf=0;
 const lerp=(a,b,e)=>a+(b-a)*e;
@@ -860,7 +901,7 @@ function renderMeeting(v){const m=v&&v.name?v:null;$("meetAdmin").classList.togg
  $("meetView").innerHTML=`<div class="meet-card">${radar(false)}<div style="flex:1;min-width:200px"><div class="meet-tag">NEXT MEETING</div><h3 style="margin:6px 0 2px">${esc(m.name)}</h3><div class="muted">${esc(m.address||"")}</div><div class="meet-when">${esc(fmtWhen(m.when))}</div><div class="countdown" data-countdown="${esc(m.when||"")}">--</div>${m.notes?`<p>${esc(m.notes)}</p>`:""}<a class="btn primary" target="_blank" rel="noopener" href="${L.link}">📍 Open in Maps</a></div></div>${L.embed?`<iframe class="meet-map" src="${L.embed}" loading="lazy" title="Meeting map"></iframe>`:""}`;
  $("homeMeet").innerHTML=`${radar(true)}<div style="flex:1;min-width:0"><div class="meet-tag">NEXT MEETING</div><b>${esc(m.name)}</b><div class="countdown" style="font-size:18px" data-countdown="${esc(m.when||"")}">--</div></div>`;$("homeMeet").classList.remove("hidden");tickMeet()}
 function tickMeet(){document.querySelectorAll("[data-countdown]").forEach(el=>{const t=new Date(el.dataset.countdown).getTime();if(isNaN(t)){el.textContent="TBA";return}const d=t-Date.now();if(d<=0){el.textContent=d>-3600000?"⚔ MEETING IN PROGRESS":"Meeting ended";return}const days=Math.floor(d/864e5),h=Math.floor(d%864e5/36e5),mi=Math.floor(d%36e5/6e4),s=Math.floor(d%6e4/1e3);el.textContent=(days?days+"d ":"")+[h,mi,s].map(n=>String(n).padStart(2,"0")).join(":")})}
-setInterval(tickMeet,1000);
+setInterval(()=>{if(!document.hidden)tickMeet()},1000);
 $("saveMeet").onclick=async()=>{if(!admin)return;const name=$("meetName").value.trim();if(!name)return alert("Enter the place name.");try{await D.set(D.ref(db,"meeting"),{name,address:$("meetAddr").value.trim(),when:$("meetWhen").value,lat:$("meetLat").value.trim(),lng:$("meetLng").value.trim(),notes:$("meetNotes").value.trim(),updatedAt:Date.now(),updatedBy:user.uid});alert("Meeting place saved.")}catch(e){alert(e.message)}};
 $("clearMeet").onclick=async()=>{if(!admin||!confirm("Clear the meeting place?"))return;try{await D.remove(D.ref(db,"meeting"));["meetName","meetAddr","meetWhen","meetLat","meetLng","meetNotes"].forEach(i=>$(i).value="")}catch(e){alert(e.message)}};
 
@@ -870,20 +911,22 @@ boot();
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 
-/* 1) جمرات حمراء وذهبية تطفو في الخلفية */
+/* 1) جمرات حمراء وذهبية تطفو في الخلفية (أخف: عدد أقل، بدون ظل لكل جمرة، وتتوقف عند إخفاء التبويب) */
 if(!reduce){
  const c=document.createElement('canvas');c.id='rfEmbers';document.body.prepend(c);
  const x=c.getContext('2d');let W,H,P=[];
  const size=()=>{W=c.width=innerWidth;H=c.height=innerHeight};size();addEventListener('resize',size);
  const mk=init=>({x:Math.random()*W,y:init?Math.random()*H:H+10,r:Math.random()*2.2+.4,v:Math.random()*.6+.2,d:Math.random()*Math.PI*2,gold:Math.random()<.25,a:Math.random()*.6+.2});
- for(let i=0;i<Math.min(70,W/14);i++)P.push(mk(true));
- (function loop(){x.clearRect(0,0,W,H);
+ const small=matchMedia('(max-width:700px)').matches;
+ for(let i=0;i<(small?22:Math.min(45,W/20));i++)P.push(mk(true));
+ (function loop(){
+  if(document.hidden){requestAnimationFrame(loop);return}
+  x.clearRect(0,0,W,H);
   for(const p of P){p.y-=p.v;p.d+=.015;p.x+=Math.sin(p.d)*.4;
    if(p.y<-10)Object.assign(p,mk(false));
    const fade=Math.min(1,p.y/(H*.35));
-   x.beginPath();x.arc(p.x,p.y,p.r,0,7);
-   x.fillStyle=(p.gold?'rgba(213,173,101,':'rgba(255,51,77,')+(p.a*fade)+')';
-   x.shadowBlur=12;x.shadowColor=p.gold?'#d5ad65':'#ff334d';x.fill()}
+   x.beginPath();x.arc(p.x,p.y,p.r*1.6,0,7);
+   x.fillStyle=(p.gold?'rgba(213,173,101,':'rgba(255,51,77,')+(p.a*fade)+')';x.fill()}
   requestAnimationFrame(loop)})();
 }
 
@@ -913,11 +956,12 @@ if(!reduce&&matchMedia('(hover:hover)').matches){
 const cs=$('#callStatus');
 if(cs)new MutationObserver(()=>{const t=cs.textContent;cs.classList.toggle('live',/Calling|connected|Connected/.test(t)&&!/ended|failed/i.test(t))}).observe(cs,{childList:true,characterData:true,subtree:true});
 
-/* 6) ظهور العناصر عند التمرير */
+/* 6) ظهور العناصر عند التمرير (يراقب تغيّر المحتوى بدل الفحص الدوري) */
 if('IntersectionObserver' in window&&!reduce){
  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('rf-on');io.unobserve(e.target)}}),{threshold:.12});
  const watch=()=>$$('.page h2,.page h3,#home .card').forEach(el=>{if(!el.dataset.rf){el.dataset.rf=1;el.classList.add('rf-reveal');io.observe(el)}});
- watch();setInterval(watch,1500);
+ watch();let wt=0;const mm=$('#main');
+ if(mm)new MutationObserver(()=>{clearTimeout(wt);wt=setTimeout(watch,250)}).observe(mm,{childList:true,subtree:true});
 }
 
 /* 7) شريط تقدّم التمرير */

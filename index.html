@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -509,6 +509,23 @@ a.btn{display:inline-block;text-decoration:none;text-align:center;line-height:20
 .wb-chip span{display:block;font-size:11px;font-weight:900;color:#f4e6ea}.wb-chip small{display:block;font-size:9px;color:#b9aab1;line-height:1.35}
 .wb-rules{margin:14px 0 0;padding-left:20px;color:#d6c1c9;font-size:13px;line-height:1.7}.wb-rules b{color:#f0cf8c}
 @media(prefers-reduced-motion:reduce){.wb-stage:after,.wb-halo,.wb-pulse,.wb-ring,.wb-links,.wb-arrow,.wb-esc{animation:none!important}}
+
+/* ======== WAR BOARD: multi-tactic ======== */
+.wb-tacs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;margin-top:6px;-webkit-overflow-scrolling:touch}
+.wb-tacs button{flex:0 0 auto;min-width:0;white-space:nowrap}
+.wb-tacs button.on{background:linear-gradient(135deg,#ffd27a,#c97a10);color:#1a0f05;border-color:#ffd27a}
+.wb-phases{display:contents}
+#wbScene [data-ph]{opacity:0;transition:opacity .5s}#wbScene [data-ph].on{opacity:1}
+.wb-flag{fill:#ffd27a;font-size:13px;letter-spacing:3px;animation:rfBlinkTxt 1s steps(2) infinite}
+.wb-fire{fill:none;stroke:#ffd27a;stroke-width:1.8;stroke-dasharray:3 5;stroke-opacity:.9;animation:rfDash .5s linear infinite}
+.wb-route{fill:none;stroke:#8be0a4;stroke-width:2;stroke-dasharray:8 6;animation:rfDash 1s linear infinite}
+.wb-zone{animation:rfEsc 2s ease-in-out infinite}
+.wb-smoke{fill:#aab2bb;fill-opacity:.38;filter:blur(5px)}
+.wb-push{fill:none;stroke:#ff334d;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;animation:rfPush 1s ease-in-out infinite}
+@keyframes rfPush{0%{transform:translateY(0);opacity:.2}50%{opacity:1}100%{transform:translateY(16px);opacity:.1}}
+.wb-rotor{animation:rfSpin .45s linear infinite;transform-box:fill-box;transform-origin:center}
+.wb-eu{will-change:transform}
+@media(prefers-reduced-motion:reduce){.wb-fire,.wb-route,.wb-zone,.wb-push,.wb-rotor,.wb-flag{animation:none!important}}
 </style>
 </head>
 <body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rfFlame" x="-20%" y="-30%" width="140%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.06" numOctaves="2" seed="3" result="n"><animate attributeName="baseFrequency" dur="4s" values="0.015 0.06;0.022 0.1;0.015 0.06" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="wrap">
@@ -536,12 +553,13 @@ a.btn{display:inline-block;text-decoration:none;text-align:center;line-height:20
 <section class="page" id="voice"><button onclick="go('home')">&#8592; Home</button><h2>Family Voice Calls</h2><p>Direct voice calls with online family members. Keep this page open while calling.</p><div id="callStatus" class="voice-status">Ready for a call.</div><div id="incomingCall"></div><h3>Call a member</h3><div id="callRoster"></div><button id="hangup" class="danger" type="button">End call</button><audio id="remoteAudio" autoplay playsinline></audio></section>
 <section class="page" id="mvp"><button onclick="go('home')">&#8592; Home</button><h2>Member of the Month</h2><div class="card"><b id="mvpPage">Romero_Marco</b><p id="mvpReasonPage">Recognized for loyalty and activity.</p></div></section>
 <section class="page" id="war"><button onclick="go('home')">&#8592; Home</button><h2>War Tactique</h2><p class="muted">Animated tactical maps. Open a map to zoom and see live markers.</p>
-<div class="card wb-card"><h3>War Map — Encirclement Plan</h3>
-<div class="wb-ctrl"><button class="primary" id="wbPlay" type="button">▶ Play</button><button data-wb-ph="1" type="button">1 · Approach</button><button data-wb-ph="2" type="button">2 · Position</button><button data-wb-ph="3" type="button">3 · Encircle</button><button id="wbEdit" class="hidden" type="button">✎ Edit positions</button><button id="wbReset" class="danger hidden" type="button">Reset</button></div>
-<div class="wb-stage"><svg id="wbSvg" viewBox="0 0 600 400" role="img" aria-label="Tactical map with 10 positions encircling the enemy"></svg></div>
+<div class="card wb-card"><h3 id="wbTitle">War Map — Tactics</h3>
+<div class="wb-tacs" id="wbTacs"></div>
+<div class="wb-ctrl"><button class="primary" id="wbPlay" type="button">▶ Play</button><span id="wbPhases" class="wb-phases"></span><button id="wbEdit" class="hidden" type="button">✎ Edit positions</button><button id="wbReset" class="danger hidden" type="button">Reset</button></div>
+<div class="wb-stage"><svg id="wbSvg" viewBox="0 0 600 400" role="img" aria-label="Tactical map with 10 units"></svg></div>
 <div id="wbCaption" class="wb-caption"></div>
 <div id="wbLegend" class="wb-legend"></div>
-<ol class="wb-rules"><li><b>Scout first</b> — fix the enemy position before anyone moves.</li><li><b>Cut the exits</b> — units 3, 6 and 9 take the roads before the ring closes.</li><li><b>Flankers</b> (2, 4, 8, 10) arc around the sides — never walk straight in.</li><li><b>Overwatch</b> (5, 7) stay back and cover the gaps.</li><li><b>Close evenly</b> — no gap wider than one unit; Commander (1) calls the final push.</li></ol></div>
+<ol id="wbRules" class="wb-rules"></ol></div>
 <div id="warAdmin" class="card hidden"><h3>Upload a map (admin)</h3><input id="warTitle" placeholder="Map title (e.g. Port raid)" maxlength="80"><label for="warFile">GIF / PNG / JPG / WEBP / MP4 / WEBM — max 25 MB</label><input id="warFile" type="file" accept="image/*,video/mp4,video/webm"><button id="warUpload" class="primary" type="button">Upload map</button><div id="warStatus" class="voice-status">Choose a map file.</div></div>
 <div id="warGrid" class="war-grid"></div></section>
 <section class="page" id="meeting"><button onclick="go('home')">&#8592; Home</button><h2>Meeting Point</h2><div id="meetView"></div>
@@ -661,45 +679,174 @@ $("warUpload").onclick=async()=>{if(!admin)return;const file=$("warFile").files?
   await D.push(D.ref(db,"warmaps"),{title,url,path,kind:video?"video":"image",uid:user.uid,username:profile?.username||user.email||"Admin",createdAt:Date.now()});$("warFile").value="";$("warTitle").value="";st.textContent="Map uploaded."}
  catch(e){st.textContent="Upload failed: "+e.message+". Check Storage rules for war-maps/."}finally{$("warUpload").disabled=false}};
 
-/* ===== WAR BOARD: 10 positions + encirclement ===== */
-const WB={cx:300,cy:200,phase:3,custom:{},edit:false,drag:null,timer:null,tm:[],ring:[270,176]};
-const ROLES=[["Commander","North · gives the signal","#f0cf8c"],["Flanker","Closes the NE side","#ff334d"],["Road Block","East exit","#ff8a2e"],["Flanker","Closes the SE side","#ff334d"],["Overwatch","Covers the south-east","#5fe0c8"],["Road Block","South exit","#ff8a2e"],["Overwatch","Covers the south-west","#5fe0c8"],["Flanker","Closes the SW side","#ff334d"],["Road Block","West exit","#ff8a2e"],["Flanker","Closes the NW side","#ff334d"]];
-const RINGS={1:[270,176],2:[205,132],3:[112,72]};
-const CAPS={1:["PHASE 1 — APPROACH","The team arrives from the outer zone. Stay out of sight, keep radio silence."],2:["PHASE 2 — POSITION","Take the 10 positions around the target. Block the exits first (3, 6, 9)."],3:["PHASE 3 — ENCIRCLE","Close the ring slowly. No gaps, cover your neighbours, Commander (1) gives the final signal."]};
-let cur=[],wbRaf=0;
-function wbPos(i,ph){const c=WB.custom?.["p"+ph]?.[i];if(c&&isFinite(c.x)&&isFinite(c.y))return{x:+c.x,y:+c.y};const[rx,ry]=RINGS[ph],a=(-90+i*36)*Math.PI/180;return{x:+(WB.cx+rx*Math.cos(a)).toFixed(1),y:+(WB.cy+ry*Math.sin(a)).toFixed(1)}}
-function buildWB(){const svg=$("wbSvg");if(!svg)return;
- const bld=[[40,40,70,50],[130,60,60,90],[420,35,80,60],[510,70,50,80],[60,260,80,70],[150,320,70,50],[430,270,90,60],[520,320,60,55],[210,250,50,40],[360,110,45,50],[220,90,40,35],[330,290,50,45]];
- const esc8=[0,45,90,135,180,225,270,315].map(d=>{const a=d*Math.PI/180,c=Math.cos(a),s=Math.sin(a);return`<path class="wb-esc" d="M${(c*34).toFixed(1)} ${(s*34).toFixed(1)}L${(c*66).toFixed(1)} ${(s*66).toFixed(1)}" marker-end="url(#wbArrR)"/>`}).join("");
- const units=ROLES.map((r,i)=>`<g class="wb-unit" data-i="${i}"><circle class="wb-halo" r="19" fill="${r[2]}" fill-opacity=".2"/><circle r="15" fill="#140a0f" stroke="${r[2]}" stroke-width="2.5"/><text y="5" text-anchor="middle" class="wb-num" fill="${r[2]}">${i+1}</text></g>`).join("");
- svg.innerHTML=`<defs><pattern id="wbGrid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#ff334d" stroke-opacity=".13"/></pattern><marker id="wbArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ffd27a"/></marker><marker id="wbArrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff334d"/></marker><radialGradient id="wbEn"><stop offset="0" stop-color="#ff334d" stop-opacity=".6"/><stop offset="1" stop-color="#ff334d" stop-opacity="0"/></radialGradient></defs>
-<rect width="600" height="400" fill="#0a080c"/><rect width="600" height="400" fill="url(#wbGrid)"/>
-${bld.map(b=>`<rect x="${b[0]}" y="${b[1]}" width="${b[2]}" height="${b[3]}" rx="4" fill="#1a1016" stroke="#3b2230"/>`).join("")}
-<path d="M0 200H600M300 0V400" stroke="#241820" stroke-width="30"/><path d="M0 200H600M300 0V400" stroke="#5a3a46" stroke-width="1.5" stroke-dasharray="10 10"/>
-<g id="wbArrows"></g><ellipse id="wbRing" cx="300" cy="200" rx="100" ry="70" fill="none" stroke="#ffd27a" stroke-width="2" stroke-dasharray="8 6" class="wb-ring"/>
-<polygon id="wbLinks" class="wb-links" fill="#ff334d" fill-opacity=".07" stroke="#ff7184" stroke-width="1.5" stroke-dasharray="4 5"/>
-<g transform="translate(300 200)"><circle r="62" fill="url(#wbEn)" class="wb-pulse"/>${esc8}<circle r="26" fill="#2b0710" stroke="#ff334d" stroke-width="2.5"/><path d="M-11-11 11 11M11-11-11 11" stroke="#ff334d" stroke-width="4" stroke-linecap="round"/><text y="46" text-anchor="middle" class="wb-lbl" fill="#ff8a98">ENEMY</text><text id="wbTrap" y="-40" text-anchor="middle" class="wb-lbl wb-trap" fill="#ffd27a">TRAPPED</text></g>
-<g id="wbUnits">${units}</g><g transform="translate(560 38)"><circle r="19" fill="none" stroke="#7b2637"/><path d="M0-13 5 5 0 1-5 5Z" fill="#ff7184"/><text y="-24" text-anchor="middle" class="wb-lbl" fill="#ff9aa8">N</text></g>`;
- $("wbLegend").innerHTML=ROLES.map((r,i)=>`<div class="wb-chip" style="--c:${r[2]}"><b>${i+1}</b><div><span>${r[0]}</span><small>${r[1]}</small></div></div>`).join("");
- cur=[...Array(10)].map((_,i)=>wbPos(i,1));WB.ring=[...RINGS[1]];wbDraw()}
-function wbDraw(){document.querySelectorAll("#wbUnits .wb-unit").forEach((u,i)=>{if(cur[i])u.setAttribute("transform",`translate(${cur[i].x} ${cur[i].y})`)});
- $("wbLinks").setAttribute("points",cur.map(p=>p.x+","+p.y).join(" "));const r=$("wbRing");r.setAttribute("rx",WB.ring[0]);r.setAttribute("ry",WB.ring[1]);
- $("wbArrows").innerHTML=cur.map((p,i)=>{const s=wbPos(i,1);return Math.hypot(p.x-s.x,p.y-s.y)<8?"":`<path class="wb-arrow" d="M${s.x} ${s.y}L${p.x} ${p.y}" marker-end="url(#wbArr)"/>`}).join("")}
-function wbGo(ph,instant){WB.phase=ph;const from=cur.map(p=>({...p})),to=[...Array(10)].map((_,i)=>wbPos(i,ph)),rf=[...WB.ring],rt=RINGS[ph],t0=performance.now(),dur=instant?1:1200;
- document.querySelectorAll("[data-wb-ph]").forEach(b=>b.classList.toggle("on",+b.dataset.wbPh===ph));$("wbCaption").innerHTML=`<b>${CAPS[ph][0]}</b><span>${CAPS[ph][1]}</span>`;$("wbSvg").classList.toggle("trapped",ph===3);
- cancelAnimationFrame(wbRaf);const step=t=>{const k=Math.min(1,(t-t0)/dur),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;cur=to.map((p,i)=>({x:from[i].x+(p.x-from[i].x)*e,y:from[i].y+(p.y-from[i].y)*e}));WB.ring=[rf[0]+(rt[0]-rf[0])*e,rf[1]+(rt[1]-rf[1])*e];wbDraw();if(k<1)wbRaf=requestAnimationFrame(step)};wbRaf=requestAnimationFrame(step)}
-function wbStop(){clearInterval(WB.timer);WB.timer=null;WB.tm.forEach(clearTimeout);WB.tm=[];$("wbPlay").textContent="▶ Play"}
-function wbPlay(){if(WB.timer){wbStop();return}wbStop();$("wbPlay").textContent="⏸ Pause";let ph=0;const tick=()=>{ph=ph%3+1;wbGo(ph)};tick();WB.timer=setInterval(tick,3400)}
-function wbIntro(){wbStop();cur=[...Array(10)].map((_,i)=>wbPos(i,1));WB.ring=[...RINGS[1]];wbGo(1,true);WB.tm=[setTimeout(()=>wbGo(2),900),setTimeout(()=>wbGo(3),4200)]}
+/* ===== WAR BOARD: 9 tactics (encircle, attack x2, 10v10 x2, retreat x2, helicopter, area spread) ===== */
+const WB={tac:"enc",phase:1,custom:{},edit:false,drag:null,timer:null,tm:[],ring:[0,0]};
+const C={cmd:"#f0cf8c",atk:"#ff334d",blk:"#ff8a2e",ovw:"#5fe0c8",med:"#8be0a4",drv:"#b89cff",sct:"#7fb8ff"};
+const ringPos=(cx,cy,rx,ry,i)=>{const a=(-90+i*36)*Math.PI/180;return[+(cx+rx*Math.cos(a)).toFixed(1),+(cy+ry*Math.sin(a)).toFixed(1)]};
+const tbl=(T)=>(i,ph)=>({x:T[ph-1][i][0],y:T[ph-1][i][1]});
+const ROADS='<path d="M0 200H600M300 0V400" stroke="#241820" stroke-width="30"/><path d="M0 200H600M300 0V400" stroke="#5a3a46" stroke-width="1.5" stroke-dasharray="10 10"/>';
+const bl=a=>a.map(b=>`<rect x="${b[0]}" y="${b[1]}" width="${b[2]}" height="${b[3]}" rx="4" fill="#1a1016" stroke="#3b2230"/>`).join("");
+const eMark=(x,y,l,r=26)=>`<g transform="translate(${x} ${y})"><circle r="${r+36}" fill="url(#wbEn)" class="wb-pulse"/><circle r="${r}" fill="#2b0710" stroke="#ff334d" stroke-width="2.5"/><path d="M-11-11 11 11M11-11-11 11" stroke="#ff334d" stroke-width="4" stroke-linecap="round"/><text y="${r+16}" text-anchor="middle" class="wb-lbl" fill="#ff8a98">${l}</text></g>`;
+const flag=(t,x,y,ph)=>`<g data-ph="${ph}"><text x="${x}" y="${y}" text-anchor="middle" class="wb-lbl wb-flag">${t}</text></g>`;
+const lab=(t,x,y,ph,c)=>`<g data-ph="${ph}"><text x="${x}" y="${y}" text-anchor="middle" class="wb-lbl" fill="${c||"#ffd27a"}" opacity=".85">${t}</text></g>`;
+const esc8=(cx,cy)=>`<g transform="translate(${cx} ${cy})">`+[0,45,90,135,180,225,270,315].map(d=>{const a=d*Math.PI/180,c=Math.cos(a),s=Math.sin(a);return`<path class="wb-esc" d="M${(c*34).toFixed(1)} ${(s*34).toFixed(1)}L${(c*66).toFixed(1)} ${(s*66).toFixed(1)}" marker-end="url(#wbArrR)"/>`}).join("")+"</g>";
+
+const ATK=[
+ [[300,365],[235,352],[265,352],[250,378],[335,352],[365,352],[350,378],[205,372],[395,372],[300,340]],
+ [[300,290],[200,265],[225,285],[180,290],[400,265],[375,285],[420,290],[150,215],[450,215],[300,235]],
+ [[300,200],[215,150],[240,165],[195,170],[385,150],[360,165],[405,170],[150,215],[450,215],[300,235]],
+ [[300,125],[258,98],[275,80],[250,70],[342,98],[325,80],[350,70],[205,150],[395,150],[300,200]]];
+const DUEL=[
+ [[275,310],[175,310],[225,310],[325,310],[375,310],[75,310],[125,310],[475,310],[525,310],[425,310]],
+ [[300,288],[215,248],[262,242],[338,242],[385,248],[110,272],[150,250],[450,250],[490,272],[300,322]],
+ [[300,278],[215,245],[262,238],[338,238],[385,245],[80,190],[120,165],[480,165],[520,190],[300,315]],
+ [[300,245],[215,208],[262,200],[338,200],[385,208],[85,140],[150,120],[450,120],[515,140],[300,282]]];
+const RET=[
+ [[300,190],[240,160],[360,160],[180,175],[420,175],[210,200],[390,200],[300,225],[505,350],[320,240]],
+ [[330,250],[250,170],[350,170],[190,170],[410,170],[290,255],[370,255],[350,285],[505,350],[390,285]],
+ [[425,335],[270,200],[340,205],[400,300],[445,298],[310,260],[370,260],[465,352],[505,350],[490,318]],
+ [[475,320],[440,350],[465,375],[525,320],[545,350],[535,372],[445,325],[500,320],[500,350],[495,375]]];
+const HP3=[[330,200],[365,180],[385,200],[400,175],[420,195],[345,165],[325,228],[300,190],[360,228],[310,160]];
+const HP4=[[490,178],[455,150],[480,148],[505,148],[530,150],[430,172],[548,168],[478,190],[520,188],[400,172]];
+const HELIP=[[80,335,-40],[330,215,-35],[300,262,-35],[415,88,-20],[330,215,160]];
+
+const TAC={
+enc:{tab:"🎯 Encirclement",title:"Encirclement Plan",names:["Approach","Position","Encircle"],ring:{1:[270,176],2:[205,132],3:[112,72]},
+ roles:[["Commander","North · gives the signal",C.cmd],["Flanker","Closes the NE side",C.atk],["Road Block","East exit",C.blk],["Flanker","Closes the SE side",C.atk],["Overwatch","Covers the south-east",C.ovw],["Road Block","South exit",C.blk],["Overwatch","Covers the south-west",C.ovw],["Flanker","Closes the SW side",C.atk],["Road Block","West exit",C.blk],["Flanker","Closes the NW side",C.atk]],
+ caps:["The team arrives from the outer zone. Stay out of sight, keep radio silence.","Take the 10 positions around the target. Block the exits first (3, 6, 9).","Close the ring slowly. No gaps, cover your neighbours, Commander (1) gives the final signal."],
+ rules:["Scout first — fix the enemy position before anyone moves.","Cut the exits — units 3, 6 and 9 take the roads before the ring closes.","Flankers (2, 4, 8, 10) arc around the sides — never walk straight in.","Overwatch (5, 7) stay back and cover the gaps.","Close evenly — no gap wider than one unit; Commander (1) calls the final push."],
+ pos:(i,ph)=>{const r=TAC.enc.ring[ph],p=ringPos(300,200,r[0],r[1],i);return{x:p[0],y:p[1]}},
+ scene:()=>bl([[40,40,70,50],[130,60,60,90],[420,35,80,60],[510,70,50,80],[60,260,80,70],[150,320,70,50],[430,270,90,60],[520,320,60,55],[210,250,50,40],[360,110,45,50],[220,90,40,35],[330,290,50,45]])+ROADS+`<g data-ph="1,2">${esc8(300,200)}</g>`+eMark(300,200,"ENEMY")+flag("TRAPPED",300,158,"3")},
+atk:{tab:"⚔ Attack",title:"Attack Plan",names:["Assemble","Fire base","Assault","Breach"],
+ roles:[["Commander","Calls the breach",C.cmd],["Team A","Left assault",C.atk],["Team A","Left assault",C.atk],["Team A","Left assault",C.atk],["Team B","Right assault",C.blk],["Team B","Right assault",C.blk],["Team B","Right assault",C.blk],["Support","Suppressing fire (L)",C.ovw],["Support","Suppressing fire (R)",C.ovw],["Sniper","Overwatch · center",C.sct]],
+ caps:["The team gathers at the rally point. Brief the plan: Team A left, Team B right, fire base ready.","Support (8, 9) and sniper (10) take their spots and suppress the target. Assault teams move up behind cover.","While the fire base keeps their heads down, Team A and Team B advance along both sides toward the doors.","Both teams breach together on the Commander's call and clear room by room. Support shifts fire so it never hits our own."],
+ rules:["Never attack head-on — approach from two sides.","Fire base first: suppress before anyone moves in.","Teams A and B breach at the same time on the Commander's call.","Support shifts or stops fire when teams get close.","Commander stays one step behind the assault, never in front."],
+ pos:tbl(ATK),
+ scene:()=>bl([[40,60,80,60],[470,60,80,60],[60,240,70,50],[470,250,70,60],[170,60,40,40],[390,60,40,40]])+'<path d="M0 200H600" stroke="#241820" stroke-width="30"/><path d="M0 200H600" stroke="#5a3a46" stroke-width="1.5" stroke-dasharray="10 10"/><rect x="240" y="40" width="120" height="70" rx="4" fill="#2a0d14" stroke="#ff334d" stroke-width="2"/><path d="M285 110h30" stroke="#ffd27a" stroke-width="4"/>'+eMark(300,72,"TARGET",16)+'<g data-ph="2,3"><path class="wb-fire" d="M150 215L250 105"/><path class="wb-fire" d="M450 215L350 105"/><path class="wb-fire" d="M300 235V112"/></g>'+lab("RALLY POINT",300,396,"1")+flag("TARGET SECURED",300,28,"4")},
+duel:{tab:"🆚 10 vs 10",title:"Face-to-Face · 10 vs 10",names:["Face-off","Take cover","Flank","Break through"],
+ roles:[["Commander","Center · calls targets",C.cmd],["Front Line","Holds cover, pins them",C.atk],["Front Line","Holds cover, pins them",C.atk],["Front Line","Holds cover, pins them",C.atk],["Front Line","Holds cover, pins them",C.atk],["Left Flank","Swings around left",C.blk],["Left Flank","Swings around left",C.blk],["Right Flank","Swings around right",C.ovw],["Right Flank","Swings around right",C.ovw],["Medic","Heals &amp; revives",C.med]],
+ caps:["Two lines of 10 face each other across the street. Stay behind cover — nobody shoots before the Commander's call.","Front line (2-5) holds the cover points, flanks (6-9) hold the sides, Medic (10) stays behind the Commander.","Front line pins them down with steady fire while the flanks swing round both sides into a crossfire.","Their flanks collapse. Front line pushes forward together, flanks close in, nobody runs ahead of the line."],
+ rules:["Hold cover and trade shots — never stand in the open.","Focus fire on one enemy at a time and call it out.","Flanks only move while the front line is pinning them.","Medic stays behind the line and revives fast.","Push as one line — no hero runs."],
+ pos:tbl(DUEL),
+ epos:(i,ph)=>{const q=DUEL[ph<=1?0:1][i];let x=q[0],y=400-q[1],o=1;if(ph>=3&&i>=5&&i<=8)x+=x<300?25:-25;if(ph===3)y+=14;if(ph===4){y-=25;if(i>=1&&i<=4)o=.3}return{x,y,o}},
+ scene:()=>'<rect x="0" y="130" width="600" height="140" fill="#140d12"/><path d="M0 200H600" stroke="#ffd27a" stroke-opacity=".45" stroke-dasharray="12 8"/>'+[[175,232],[375,232],[175,156],[375,156]].map(c=>`<rect x="${c[0]}" y="${c[1]}" width="50" height="12" rx="3" fill="#2a1a22" stroke="#5a3a46"/>`).join("")+'<text x="300" y="196" text-anchor="middle" class="wb-lbl" fill="#ffd27a" opacity=".6">NO MAN\'S LAND</text><text x="16" y="388" class="wb-lbl" fill="#8be0a4">OUR SIDE</text><text x="16" y="24" class="wb-lbl" fill="#ff8a98">ENEMY SIDE</text><g data-ph="2,3,4"><path class="wb-fire" d="M262 238V166"/><path class="wb-fire" d="M338 238V166"/><path class="wb-fire" d="M215 244L215 168"/><path class="wb-fire" d="M385 244L385 168"/></g>'+flag("BREAKTHROUGH",300,112,"4")},
+ret:{tab:"↩ Retreat",title:"Fall-back Plan",names:["Contact","Bound 1","Bound 2","Extract"],arrowFrom:1,
+ roles:[["Commander","Calls each bound",C.cmd],["Rear Guard","Last to leave",C.blk],["Rear Guard","Last to leave",C.blk],["Cover A","Covers 1st bound",C.atk],["Cover A","Covers 1st bound",C.atk],["Cover B","Covers 2nd bound",C.ovw],["Cover B","Covers 2nd bound",C.ovw],["Medic","Carries the wounded",C.med],["Driver","Vehicle ready",C.drv],["Scout","Leads the route",C.sct]],
+ caps:["Heavy pressure. Commander calls the retreat — nobody just runs, we fall back in stages.","Smoke up. Cover A (4, 5) and the Rear Guard hold the line while everyone else falls back to the second line.","Cover A falls back past Cover B (6, 7), who now cover them. Medic and Commander head for the vehicle.","All units reach the extraction point, driver ready. Count heads: 10 out of 10 before leaving."],
+ rules:["Retreat in stages: one group fires while the other moves.","Pop smoke before the first group moves.","Never turn your back without cover behind you.","Rear Guard leaves last, Commander counts everyone.","Driver is ready at extraction before the retreat begins."],
+ pos:tbl(RET),
+ scene:()=>bl([[40,60,70,60],[480,70,70,60],[60,250,80,60],[200,300,70,50],[150,110,40,40],[420,110,40,40]])+'<g data-ph="1,2,3"><g transform="translate(300 40)"><rect x="-74" y="-18" width="148" height="36" rx="8" fill="#2b0710" stroke="#ff334d" stroke-width="2"/><text y="5" text-anchor="middle" class="wb-lbl" fill="#ff8a98">ENEMY PUSH</text></g><path class="wb-push" d="M262 72l16 14 16-14"/><path class="wb-push" d="M292 72l16 14 16-14" style="animation-delay:.2s"/><path class="wb-push" d="M322 72l16 14 16-14" style="animation-delay:.4s"/></g><g data-ph="2,3"><circle class="wb-smoke" cx="190" cy="135" r="26"/><circle class="wb-smoke" cx="300" cy="125" r="30"/><circle class="wb-smoke" cx="410" cy="135" r="26"/></g><path class="wb-route" d="M300 210C340 250 420 295 465 330"/><circle cx="500" cy="345" r="62" fill="#8be0a41a" stroke="#8be0a4" stroke-dasharray="6 6" class="wb-zone"/><rect x="488" y="337" width="24" height="16" rx="3" fill="#1a2a22" stroke="#8be0a4"/><text x="500" y="276" text-anchor="middle" class="wb-lbl" fill="#8be0a4">EXTRACTION</text>'+flag("EXTRACTED · 10/10",300,388,"4")},
+heli:{tab:"🚁 Helicopter",title:"Helicopter Operation",names:["Board","Fly in","Insert","Assault","Extract"],arrowFrom:3,
+ roles:[["Commander","Coordinates with pilot",C.cmd],["Assault","Hits the compound",C.atk],["Assault","Hits the compound",C.atk],["Assault","Hits the compound",C.atk],["Assault","Hits the compound",C.atk],["Security","LZ security",C.blk],["Security","Rear security",C.blk],["Medic","Stays with Commander",C.med],["Heavy","Covering fire",C.ovw],["Sniper","Overwatch",C.sct]],
+ caps:["10 operators board the helicopter at the base pad. Check gear and radios.","The helicopter flies fast and low to the landing zone (LZ), staying out of the target's line of sight.","Units drop at the LZ and spread into a defensive arc facing the target. The helicopter lifts to hover behind.","The ground team advances on the compound while the helicopter circles overhead with covering fire.","Target down. The team returns to the LZ, the helicopter lands and everyone boards. Count 10 out of 10."],
+ rules:["Pilot and Commander agree the LZ and the exit route before takeoff.","Drop fast: spread out immediately, never bunch up at the LZ.","Air cover suppresses, the ground team decides when to move.","Keep the helicopter out of the target's direct line of fire.","Return to the LZ only on the Commander's signal."],
+ pos:(i,ph)=>{if(ph===1){const p=ringPos(80,335,46,46,i);return{x:p[0],y:p[1]}}if(ph===2)return{x:330,y:215,o:0};if(ph===3)return{x:HP3[i][0],y:HP3[i][1]};if(ph===4)return{x:HP4[i][0],y:HP4[i][1]};const p=ringPos(330,215,46,46,i);return{x:p[0],y:p[1]}},
+ heli:HELIP,
+ scene:()=>bl([[20,40,80,60],[140,50,70,60],[40,160,70,60],[200,300,90,50],[420,250,100,60],[250,40,60,50]])+'<rect x="450" y="60" width="110" height="75" rx="4" fill="#2a0d14" stroke="#ff334d" stroke-width="2"/>'+eMark(505,97,"TARGET",16)+'<circle cx="80" cy="335" r="30" fill="none" stroke="#ffd27a" stroke-width="2"/><text x="80" y="342" text-anchor="middle" class="wb-lbl" fill="#ffd27a" style="font-size:20px">H</text><text x="80" y="388" text-anchor="middle" class="wb-lbl" fill="#ffd27a">BASE</text><circle cx="330" cy="215" r="36" fill="none" stroke="#5fe0c8" stroke-width="2" stroke-dasharray="6 5" class="wb-zone"/><text x="330" y="262" text-anchor="middle" class="wb-lbl" fill="#5fe0c8">LZ</text><g data-ph="2"><path class="wb-fire" d="M80 335Q200 250 330 215"/></g><g data-ph="4"><path class="wb-fire" d="M412 86L482 92"/><path class="wb-fire" d="M418 96L490 108"/><text x="400" y="64" text-anchor="middle" class="wb-lbl" fill="#5fe0c8">AIR SUPPORT</text></g>'+flag("TARGET DOWN",505,40,"5")}
+};
+
+/* ===== EXTRA TACTICS: atk2 (decoy attack), duel2 (10v10 crossfire), ret2 (split retreat), spread (area control) ===== */
+const ATK2=[
+ [[100,350],[60,330],[90,325],[120,330],[60,360],[90,375],[125,365],[150,350],[40,345],[100,310]],
+ [[120,250],[250,300],[300,312],[350,300],[60,270],[85,245],[60,225],[85,200],[480,260],[510,235]],
+ [[130,150],[250,265],[300,275],[350,265],[70,120],[100,100],[130,80],[160,65],[470,200],[500,170]],
+ [[300,90],[255,240],[300,248],[345,240],[250,112],[285,108],[320,108],[355,112],[440,200],[470,180]]];
+const D2=[
+ [[300,335],[270,315],[330,315],[170,325],[200,325],[230,325],[370,325],[400,325],[430,325],[300,365]],
+ [[300,318],[260,262],[340,262],[95,300],[125,310],[155,300],[505,300],[475,310],[445,300],[300,352]],
+ [[300,312],[275,292],[325,292],[135,225],[165,238],[195,225],[465,225],[435,238],[405,225],[300,345]],
+ [[300,268],[280,238],[320,238],[210,185],[240,200],[190,200],[390,185],[360,200],[410,200],[300,300]]];
+const D2E=[
+ [[300,70],[260,75],[340,75],[220,80],[380,80],[180,85],[420,85],[140,90],[460,90],[300,100]],
+ [[300,150],[262,145],[338,145],[225,150],[375,150],[195,140],[405,140],[260,175],[340,175],[300,120]],
+ [[300,200],[265,195],[335,195],[240,205],[360,205],[270,225],[330,225],[300,175],[300,250],[300,160]],
+ [[300,150],[270,145],[330,145],[245,150],[355,150],[275,175],[325,175],[300,120],[300,185],[300,100]]];
+const R2=[
+ [[300,215],[255,210],[240,235],[270,240],[345,210],[360,235],[330,240],[270,175],[330,175],[300,262]],
+ [[300,265],[175,238],[150,262],[195,266],[425,238],[450,262],[405,266],[270,168],[330,168],[300,292]],
+ [[300,335],[85,325],[60,305],[110,345],[515,325],[540,305],[490,345],[255,230],[345,230],[320,355]]];
+const SP=[
+ [[300,200],[120,90],[165,130],[480,90],[435,130],[480,310],[435,270],[120,310],[165,270],[300,238]],
+ [[300,200],[100,70],[200,140],[500,70],[400,140],[500,330],[400,260],[100,330],[200,260],[300,240]],
+ [[330,190],[330,80],[360,115],[430,140],[500,150],[500,230],[470,200],[100,330],[200,260],[380,170]]];
+
+Object.assign(TAC,{
+atk2:{tab:"🎭 Attack · Decoy",title:"Decoy Attack Plan",names:["Rally","Split","Diversion","Strike"],
+ roles:[["Commander","Goes in with the entry team",C.cmd],["Decoy","Draws attention (front)",C.blk],["Decoy","Draws attention (front)",C.blk],["Decoy","Draws attention (front)",C.blk],["Entry","Swings round the back",C.atk],["Entry","Swings round the back",C.atk],["Entry","Swings round the back",C.atk],["Entry","Swings round the back",C.atk],["Overwatch","Covers the east side",C.sct],["Support","Covers the entry team",C.ovw]],
+ caps:["The team gathers at the rally point. Brief the plan: decoys in front, entry team around the back, overwatch on the side.","The group splits. Decoys (2-4) take the front street, the entry team (5-8) follows the left side with the Commander, overwatch (9-10) sets up on the right.","Decoys open fire on the front and make noise. While the target looks at them, the entry team swings round the back streets.","The entry team breaches the rear door on the Commander's call while the decoys push the front. The target is caught between both."],
+ rules:["Decoys (2, 3, 4) make noise at the front — they never push in alone.","Entry team (5-8) goes round by the back streets — never across the open.","Breach the rear only when the target is looking at the front.","Overwatch (9, 10) covers the side and the entry team's back.","Commander (1) stays with the entry team and calls \"GO\" for both breaches."],
+ pos:tbl(ATK2),
+ scene:()=>bl([[40,40,70,50],[470,40,70,50],[40,330,60,50],[500,330,60,50],[420,110,60,50]])+'<path d="M0 290H600" stroke="#241820" stroke-width="30"/><path d="M0 290H600" stroke="#5a3a46" stroke-width="1.5" stroke-dasharray="10 10"/><rect x="230" y="140" width="140" height="80" rx="4" fill="#2a0d14" stroke="#ff334d" stroke-width="2"/><path d="M285 220h30" stroke="#ffd27a" stroke-width="4"/><path d="M285 140h30" stroke="#ffd27a" stroke-width="4"/>'+eMark(300,180,"TARGET",16)+'<g data-ph="2,3"><path class="wb-route" d="M70 270C50 190 80 110 200 85"/></g><g data-ph="3,4"><path class="wb-fire" d="M250 262L270 224"/><path class="wb-fire" d="M300 270V224"/><path class="wb-fire" d="M350 262L330 224"/></g><g data-ph="4"><path class="wb-fire" d="M255 114L268 138"/><path class="wb-fire" d="M300 110V138"/><path class="wb-fire" d="M345 114L332 138"/></g>'+lab("RALLY POINT",100,396,"1")+lab("FRONT · DIVERSION",300,336,"2,3,4")+lab("REAR ENTRY",300,56,"3,4")+flag("TARGET SECURED",300,28,"4")},
+duel2:{tab:"🆚 10v10 · Crossfire",title:"10 vs 10 · Bait & Crossfire",names:["Set up","Bait","Crossfire","Finish"],
+ roles:[["Commander","Center · calls the shot",C.cmd],["Bait","Draws them in",C.blk],["Bait","Draws them in",C.blk],["Left Group","Crossfire from the left",C.atk],["Left Group","Crossfire from the left",C.atk],["Left Group","Crossfire from the left",C.atk],["Right Group","Crossfire from the right",C.ovw],["Right Group","Crossfire from the right",C.ovw],["Right Group","Crossfire from the right",C.ovw],["Medic","Heals &amp; revives",C.med]],
+ caps:["Both teams face off. Our line stays behind cover: bait pair in the middle, two 3-man groups on the sides, medic behind.","The 2 baiters step forward to draw the enemy. The side groups slide outward and take cover on both flanks.","Baiters fall back and the enemy follows into the center. Both side groups open fire from left and right — the enemy is caught in a crossfire.","Their line breaks. Baiters and side groups close in together, medic stays behind and revives. Nobody chases alone."],
+ rules:["Baiters (2, 3) go forward only a few steps, shoot to be seen, then fall back — never die for the bait.","Side groups (4-6 and 7-9) stay out of sight until the enemy is in the middle.","Open fire all together on the Commander's call — a crossfire only works if both sides shoot at once.","Focus one target at a time and call it out.","Medic (10) stays behind the Commander and revives fast."],
+ pos:tbl(D2),
+ epos:(i,ph)=>({x:D2E[ph-1][i][0],y:D2E[ph-1][i][1],o:(ph===4&&i>=3&&i<=8)?.3:1}),
+ scene:()=>bl([[40,40,70,50],[490,40,70,50],[40,330,60,45],[500,330,60,45]])+ROADS+[[95,248],[110,318],[455,248],[440,318]].map(c=>`<rect x="${c[0]}" y="${c[1]}" width="50" height="12" rx="3" fill="#2a1a22" stroke="#5a3a46"/>`).join("")+'<text x="16" y="388" class="wb-lbl" fill="#8be0a4">OUR SIDE</text><text x="16" y="24" class="wb-lbl" fill="#ff8a98">ENEMY SIDE</text><g data-ph="3,4"><circle cx="300" cy="200" r="58" fill="none" stroke="#ffd27a" stroke-width="2" stroke-dasharray="6 6" class="wb-zone"/></g><g data-ph="2"><path class="wb-fire" d="M260 262L262 180"/><path class="wb-fire" d="M340 262L338 180"/></g><g data-ph="3,4"><path class="wb-fire" d="M195 228L285 205"/><path class="wb-fire" d="M165 238L272 215"/><path class="wb-fire" d="M405 228L315 205"/><path class="wb-fire" d="M435 238L328 215"/></g>'+flag("CROSSFIRE · WIN",300,40,"4")},
+ret2:{tab:"🔀 Retreat · Split",title:"Split Retreat Plan",names:["Contact","Split","Break contact","Regroup"],arrowFrom:1,
+ roles:[["Commander","Calls the split",C.cmd],["Group A","West route",C.atk],["Group A","West route",C.atk],["Group A","West route",C.atk],["Group B","East route",C.ovw],["Group B","East route",C.ovw],["Group B","East route",C.ovw],["Decoy","Smoke &amp; hold, leaves last",C.blk],["Decoy","Smoke &amp; hold, leaves last",C.blk],["Medic","Goes with the Commander",C.med]],
+ caps:["The enemy pushes hard. Commander calls the retreat — don't run as one group, we split.","Group A (2-4) goes west, Group B (5-7) goes east, smoke goes up. The decoys (8, 9) hold the front a few seconds.","Two groups move down two separate roads, so the enemy can't chase everyone. The decoys drop back last, Commander and Medic go straight to the safe house.","Both routes meet at the safe house. Count heads: 10 out of 10 before anyone leaves."],
+ rules:["Split into two routes — the enemy can only follow one.","Smoke first, then move.","Decoys (8, 9) leave last and never alone.","Never stop on the road: keep moving until the safe house.","Commander counts everyone: 10 out of 10."],
+ pos:(i,ph)=>{if(ph<=3)return{x:R2[ph-1][i][0],y:R2[ph-1][i][1]};const p=ringPos(300,345,70,24,i);return{x:p[0],y:p[1]}},
+ scene:()=>bl([[40,60,70,60],[480,70,70,60],[40,200,60,50],[500,200,60,50],[150,110,40,40],[420,110,40,40]])+'<g data-ph="1,2,3"><g transform="translate(300 40)"><rect x="-74" y="-18" width="148" height="36" rx="8" fill="#2b0710" stroke="#ff334d" stroke-width="2"/><text y="5" text-anchor="middle" class="wb-lbl" fill="#ff8a98">ENEMY PUSH</text></g><path class="wb-push" d="M262 72l16 14 16-14"/><path class="wb-push" d="M292 72l16 14 16-14" style="animation-delay:.2s"/><path class="wb-push" d="M322 72l16 14 16-14" style="animation-delay:.4s"/></g><g data-ph="2,3"><circle class="wb-smoke" cx="235" cy="150" r="26"/><circle class="wb-smoke" cx="300" cy="140" r="30"/><circle class="wb-smoke" cx="365" cy="150" r="26"/></g><g data-ph="2,3,4"><path class="wb-route" d="M290 270C220 275 130 285 85 325"/><path class="wb-route" d="M310 270C380 275 470 285 515 325"/></g><circle cx="300" cy="345" r="82" fill="#8be0a41a" stroke="#8be0a4" stroke-dasharray="6 6" class="wb-zone"/><rect x="285" y="337" width="30" height="16" rx="3" fill="#1a2a22" stroke="#8be0a4"/><text x="300" y="396" text-anchor="middle" class="wb-lbl" fill="#8be0a4">SAFE HOUSE</text><text x="85" y="300" text-anchor="middle" class="wb-lbl" fill="#ff9aa8" opacity=".8">WEST ROUTE</text><text x="515" y="300" text-anchor="middle" class="wb-lbl" fill="#5fe0c8" opacity=".8">EAST ROUTE</text>'+flag("REGROUPED · 10/10",300,290,"4")},
+spread:{tab:"🧭 Spread · Area",title:"Area Spread · 4 Sectors",names:["Gather","Spread out","Hold sectors","Converge"],arrowFrom:3,
+ roles:[["Commander","Center · radio link",C.cmd],["Pair NW","North-west sector",C.atk],["Pair NW","North-west sector",C.atk],["Pair NE","North-east sector",C.blk],["Pair NE","North-east sector",C.blk],["Pair SE","South-east sector",C.ovw],["Pair SE","South-east sector",C.ovw],["Pair SW","South-west sector",C.drv],["Pair SW","South-west sector",C.drv],["Roamer","Reserve · medic · helps any sector",C.med]],
+ caps:["Everyone starts together around the Commander. Brief the 4 sectors and the radio signal.","On the Commander's call, 4 pairs move out to their sectors (NW, NE, SE, SW). Walk in pairs and keep each other in sight.","Each pair holds its sector: one unit forward, one covering behind. Commander and Roamer stay in the middle and link everyone by radio.","Contact in the NE: the NE pair engages, the NW and SE pairs close in from both sides. The SW pair stays in place so the map is never left open."],
+ rules:["Move in pairs — never alone in a sector.","One unit forward, one behind: the back one covers the front one.","Stay within sight or radio range of the next pair.","On contact only the two nearest pairs converge — the opposite sector keeps holding.","Commander and Roamer stay in the center to link everyone and help where needed."],
+ pos:(i,ph)=>{if(ph===1){if(i===0)return{x:300,y:200};const p=ringPos(300,200,64,44,i-1);return{x:p[0],y:p[1]}}const q=SP[ph-2][i];return{x:q[0],y:q[1]}},
+ scene:()=>bl([[210,40,60,50],[330,310,60,50],[40,150,50,60],[510,150,50,60],[210,320,50,40],[390,40,50,40]])+'<path d="M300 0V400M0 200H600" stroke="#ffd27a" stroke-opacity=".35" stroke-dasharray="10 8"/>'+lab("NW SECTOR",70,22,"2,3,4",C.atk)+lab("NE SECTOR",530,22,"2,3,4",C.blk)+lab("SE SECTOR",530,392,"2,3,4",C.ovw)+lab("SW SECTOR",70,392,"2,3,4",C.drv)+'<g data-ph="3"><path class="wb-fire" d="M300 200L200 140"/><path class="wb-fire" d="M300 200L400 140"/><path class="wb-fire" d="M300 200L400 260"/><path class="wb-fire" d="M300 200L200 260"/></g><g data-ph="4">'+eMark(480,85,"CONTACT",16)+'<path class="wb-fire" d="M430 140L462 104"/><path class="wb-fire" d="M500 150L490 106"/><path class="wb-fire" d="M360 115L452 92"/></g>'+flag("CONTACT NE · SW HOLDS",300,392,"4")}
+});
+const TACORDER=["enc","atk","atk2","duel","duel2","ret","ret2","heli","spread"];
+
+let cur=[],curE=[],curH=null,wbRaf=0;
+const lerp=(a,b,e)=>a+(b-a)*e;
+function wbPos(i,ph){const d=TAC[WB.tac].pos(i,ph),o=d.o??1,c=WB.custom?.[WB.tac]?.["p"+ph]?.[i];return c&&isFinite(c.x)&&isFinite(c.y)?{x:+c.x,y:+c.y,o}:{x:d.x,y:d.y,o}}
+function wbTargets(ph){const t=TAC[WB.tac];return{u:[...Array(10)].map((_,i)=>wbPos(i,ph)),e:t.epos?[...Array(10)].map((_,i)=>{const p=t.epos(i,ph);return{x:p.x,y:p.y,o:p.o??1}}):[],h:t.heli?{x:t.heli[ph-1][0],y:t.heli[ph-1][1],a:t.heli[ph-1][2]}:null,r:t.ring?t.ring[ph]:null}}
+const HELI='<g id="wbHeliG"><g id="wbHeliB"><ellipse rx="22" ry="9" fill="#0f171a" stroke="#5fe0c8" stroke-width="2"/><path d="M-20 -2L-48 -2.5V2.5L-20 2Z" fill="#5fe0c8"/><path d="M-46 -8V8" stroke="#5fe0c8" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="10" rx="7" ry="5" fill="#5fe0c8" fill-opacity=".5"/><g class="wb-rotor"><path d="M-30 0H30M0 -30V30" stroke="#d8f5ee" stroke-width="2.5" stroke-linecap="round"/><circle r="3" fill="#d8f5ee"/></g></g><text y="34" text-anchor="middle" class="wb-lbl" fill="#5fe0c8">AIR 1</text></g>';
+function wbStatic(){$("wbSvg").innerHTML=`<defs><pattern id="wbGrid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#ff334d" stroke-opacity=".13"/></pattern><marker id="wbArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ffd27a"/></marker><marker id="wbArrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff334d"/></marker><radialGradient id="wbEn"><stop offset="0" stop-color="#ff334d" stop-opacity=".6"/><stop offset="1" stop-color="#ff334d" stop-opacity="0"/></radialGradient></defs><rect width="600" height="400" fill="#0a080c"/><rect width="600" height="400" fill="url(#wbGrid)"/><g id="wbScene"></g><g id="wbArrows"></g><ellipse id="wbRing" cx="300" cy="200" rx="100" ry="70" fill="none" stroke="#ffd27a" stroke-width="2" stroke-dasharray="8 6" class="wb-ring"/><polygon id="wbLinks" class="wb-links" fill="#ff334d" fill-opacity=".07" stroke="#ff7184" stroke-width="1.5" stroke-dasharray="4 5"/><g id="wbEnemies"></g><g id="wbUnits"></g><g id="wbHeli"></g><g transform="translate(562 38)"><circle r="19" fill="none" stroke="#7b2637"/><path d="M0-13 5 5 0 1-5 5Z" fill="#ff7184"/><text y="-24" text-anchor="middle" class="wb-lbl" fill="#ff9aa8">N</text></g>`}
+function wbTac(id,run){wbStop();WB.tac=id;WB.phase=1;const t=TAC[id];
+ document.querySelectorAll("[data-wb-tac]").forEach(b=>b.classList.toggle("on",b.dataset.wbTac===id));
+ $("wbTitle").textContent="War Map — "+t.title;$("wbScene").innerHTML=t.scene();
+ $("wbUnits").innerHTML=t.roles.map((r,i)=>`<g class="wb-unit" data-i="${i}"><circle class="wb-halo" r="19" fill="${r[2]}" fill-opacity=".2"/><circle r="15" fill="#140a0f" stroke="${r[2]}" stroke-width="2.5"/><text y="5" text-anchor="middle" class="wb-num" fill="${r[2]}">${i+1}</text></g>`).join("");
+ $("wbEnemies").innerHTML=t.epos?[...Array(10)].map((_,i)=>`<g class="wb-eu"><rect x="-13" y="-13" width="26" height="26" rx="5" transform="rotate(45)" fill="#2b0710" stroke="#ff334d" stroke-width="2.5"/><text y="5" text-anchor="middle" class="wb-num" fill="#ff8a98">${i+1}</text></g>`).join(""):"";
+ $("wbHeli").innerHTML=t.heli?HELI:"";
+ $("wbRing").style.display=$("wbLinks").style.display=t.ring?"":"none";
+ $("wbPhases").innerHTML=t.names.map((n,k)=>`<button data-wb-ph="${k+1}" type="button">${k+1} · ${n}</button>`).join("");
+ document.querySelectorAll("[data-wb-ph]").forEach(b=>b.onclick=()=>{wbStop();wbGo(+b.dataset.wbPh)});
+ $("wbLegend").innerHTML=t.roles.map((r,i)=>`<div class="wb-chip" style="--c:${r[2]}"><b>${i+1}</b><div><span>${r[0]}</span><small>${r[1]}</small></div></div>`).join("");
+ $("wbRules").innerHTML=t.rules.map(x=>`<li>${x}</li>`).join("");
+ const g=wbTargets(1);cur=g.u;curE=g.e;curH=g.h;WB.ring=g.r?[...g.r]:[0,0];wbGo(1,true);if(run)wbRun()}
+function wbUI(ph){const t=TAC[WB.tac];document.querySelectorAll("[data-wb-ph]").forEach(b=>b.classList.toggle("on",+b.dataset.wbPh===ph));
+ $("wbCaption").innerHTML=`<b>PHASE ${ph} — ${t.names[ph-1].toUpperCase()}</b><span>${t.caps[ph-1]}</span>`;
+ document.querySelectorAll("#wbScene [data-ph]").forEach(e=>e.classList.toggle("on",e.dataset.ph.split(",").includes(String(ph))))}
+function wbDraw(){const t=TAC[WB.tac];
+ document.querySelectorAll("#wbUnits .wb-unit").forEach((u,i)=>{const p=cur[i];if(p){u.setAttribute("transform",`translate(${p.x} ${p.y})`);u.style.opacity=p.o}});
+ document.querySelectorAll("#wbEnemies .wb-eu").forEach((u,i)=>{const p=curE[i];if(p){u.setAttribute("transform",`translate(${p.x} ${p.y})`);u.style.opacity=p.o}});
+ const hg=$("wbHeliG");if(hg&&curH){hg.setAttribute("transform",`translate(${curH.x} ${curH.y})`);$("wbHeliB").setAttribute("transform",`rotate(${curH.a})`)}
+ if(t.ring){$("wbLinks").setAttribute("points",cur.map(p=>p.x+","+p.y).join(" "));$("wbRing").setAttribute("rx",WB.ring[0]);$("wbRing").setAttribute("ry",WB.ring[1])}
+ $("wbArrows").innerHTML=WB.phase<(t.arrowFrom||1)?"":cur.map((p,i)=>{const s=wbPos(i,t.arrowFrom||1);return(p.o<.3||Math.hypot(p.x-s.x,p.y-s.y)<8)?"":`<path class="wb-arrow" d="M${s.x} ${s.y}L${p.x} ${p.y}" marker-end="url(#wbArr)"/>`}).join("")}
+function wbGo(ph,instant){const t=TAC[WB.tac];ph=Math.max(1,Math.min(t.names.length,ph));WB.phase=ph;const g=wbTargets(ph),f={u:cur.map(p=>({...p})),e:curE.map(p=>({...p})),h:curH&&{...curH},r:[...WB.ring]},t0=performance.now(),dur=instant?1:1200;wbUI(ph);cancelAnimationFrame(wbRaf);
+ const step=now=>{const k=Math.min(1,(now-t0)/dur),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  cur=g.u.map((p,i)=>{const a=f.u[i]||p;return{x:lerp(a.x,p.x,e),y:lerp(a.y,p.y,e),o:lerp(a.o,p.o,e)}});
+  curE=g.e.map((p,i)=>{const a=f.e[i]||p;return{x:lerp(a.x,p.x,e),y:lerp(a.y,p.y,e),o:lerp(a.o,p.o,e)}});
+  if(g.h){const a=f.h||g.h;curH={x:lerp(a.x,g.h.x,e),y:lerp(a.y,g.h.y,e),a:lerp(a.a,g.h.a,e)}}
+  if(g.r)WB.ring=[lerp(f.r[0],g.r[0],e),lerp(f.r[1],g.r[1],e)];
+  wbDraw();if(k<1)wbRaf=requestAnimationFrame(step)};wbRaf=requestAnimationFrame(step)}
+function wbStop(){clearInterval(WB.timer);WB.timer=null;WB.tm.forEach(clearTimeout);WB.tm=[];const b=$("wbPlay");if(b)b.textContent="▶ Play"}
+function wbRun(){wbStop();const n=TAC[WB.tac].names.length;for(let p=2;p<=n;p++)WB.tm.push(setTimeout(()=>wbGo(p),900+(p-2)*3300))}
+function wbPlay(){if(WB.timer){wbStop();return}wbStop();$("wbPlay").textContent="⏸ Pause";const n=TAC[WB.tac].names.length;let ph=0;const tick=()=>{ph=ph%n+1;wbGo(ph)};tick();WB.timer=setInterval(tick,3400)}
 function wbAdmin(){["wbEdit","wbReset"].forEach(id=>$(id)&&$(id).classList.toggle("hidden",!admin))}
-buildWB();wbGo(3,true);
-$("wbPlay").onclick=wbPlay;document.querySelectorAll("[data-wb-ph]").forEach(b=>b.onclick=()=>{wbStop();wbGo(+b.dataset.wbPh)});
+wbStatic();$("wbTacs").innerHTML=TACORDER.map(k=>[k,TAC[k]]).map(([k,t])=>`<button data-wb-tac="${k}" type="button">${t.tab}</button>`).join("");
+document.querySelectorAll("[data-wb-tac]").forEach(b=>b.onclick=()=>wbTac(b.dataset.wbTac,true));
+wbTac("enc",false);wbGo(3,true);
+$("wbPlay").onclick=wbPlay;
 $("wbEdit").onclick=()=>{WB.edit=!WB.edit;wbStop();$("wbEdit").classList.toggle("on",WB.edit);$("wbEdit").textContent=WB.edit?"✔ Done editing":"✎ Edit positions";$("wbSvg").classList.toggle("editing",WB.edit)};
-$("wbReset").onclick=async()=>{if(!admin||!confirm("Reset all 10 positions to the default formation?"))return;try{await D.remove(D.ref(db,"warplan"))}catch(e){alert(e.message)}};
-$("wbSvg").addEventListener("pointerdown",e=>{if(!WB.edit||!admin)return;const u=e.target.closest(".wb-unit");if(!u)return;cancelAnimationFrame(wbRaf);WB.drag=+u.dataset.i;$("wbSvg").setPointerCapture(e.pointerId);e.preventDefault()});
-$("wbSvg").addEventListener("pointermove",e=>{if(WB.drag==null)return;const svg=$("wbSvg"),pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());cur[WB.drag]={x:Math.max(16,Math.min(584,Math.round(p.x))),y:Math.max(16,Math.min(384,Math.round(p.y)))};wbDraw()});
-$("wbSvg").addEventListener("pointerup",async()=>{if(WB.drag==null)return;const i=WB.drag,p=cur[i];WB.drag=null;WB.custom=WB.custom||{};(WB.custom["p"+WB.phase]??={})[i]=p;try{await D.set(D.ref(db,`warplan/p${WB.phase}/${i}`),p)}catch(e){alert(e.message)}});
-{const war=$("war");let was=war.classList.contains("active");new MutationObserver(()=>{const on=war.classList.contains("active");if(on&&!was)wbIntro();if(!on)wbStop();was=on}).observe(war,{attributes:true,attributeFilter:["class"]})}
+$("wbReset").onclick=async()=>{if(!admin||!confirm("Reset the 10 positions of this tactic to the default?"))return;try{await D.remove(D.ref(db,"warplan/"+WB.tac))}catch(e){alert(e.message)}};
+$("wbSvg").addEventListener("pointerdown",e=>{if(!WB.edit||!admin)return;const u=e.target.closest(".wb-unit");if(!u||cur[+u.dataset.i].o<.3)return;cancelAnimationFrame(wbRaf);WB.drag=+u.dataset.i;$("wbSvg").setPointerCapture(e.pointerId);e.preventDefault()});
+$("wbSvg").addEventListener("pointermove",e=>{if(WB.drag==null)return;const svg=$("wbSvg"),pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());cur[WB.drag]={x:Math.max(16,Math.min(584,Math.round(p.x))),y:Math.max(16,Math.min(384,Math.round(p.y))),o:1};wbDraw()});
+$("wbSvg").addEventListener("pointerup",async()=>{if(WB.drag==null)return;const i=WB.drag,p=cur[i];WB.drag=null;WB.custom=WB.custom||{};const tt=(WB.custom[WB.tac]??={});(tt["p"+WB.phase]??={})[i]={x:p.x,y:p.y};try{await D.set(D.ref(db,`warplan/${WB.tac}/p${WB.phase}/${i}`),{x:p.x,y:p.y})}catch(e){alert(e.message)}});
+{const war=$("war");let was=war.classList.contains("active");new MutationObserver(()=>{const on=war.classList.contains("active");if(on&&!was)wbTac(WB.tac,true);if(!on)wbStop();was=on}).observe(war,{attributes:true,attributeFilter:["class"]})}
 
 /* ===== MEETING POINT ===== */
 const PINSVG='<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>';
